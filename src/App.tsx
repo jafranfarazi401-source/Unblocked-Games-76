@@ -125,7 +125,7 @@ const GAMES = [
     id: 'retro-bowl',
     title: "Retro Bowl Unblocked",
     category: "Sports",
-    image: "https://play-lh.googleusercontent.com/TM9Ym-7t6a8-k_fV_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2",
+    image: "https://picsum.photos/seed/retrobowl/400/300",
     rating: 4.9,
     url: "https://game316009.konggames.com/game.html",
     description: "Retro Bowl is the perfect game for the armchair quarterback to finally prove a point. Presented in a glorious retro style, the game has simple roster management, including press duties and the handling of fragile egos, while on the field you get to call the shots."
@@ -134,7 +134,7 @@ const GAMES = [
     id: 'slope',
     title: "Slope Unblocked",
     category: "Racing",
-    image: "https://play-lh.googleusercontent.com/uC_7_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2",
+    image: "https://picsum.photos/seed/slope/400/300",
     rating: 4.8,
     url: "https://kdata1.com/2020/05/slope/",
     description: "Slope is the ultimate running game that will put your skills to the test. Speed down on a random slope. The farther you go, the faster your ball travels. This game might look simple but playing this will give you extreme adrenaline rush."
@@ -143,7 +143,7 @@ const GAMES = [
     id: 'tunnel-rush',
     title: "Tunnel Rush Unblocked",
     category: "Arcade",
-    image: "https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/8e7e1f4e-6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2_6-2",
+    image: "https://picsum.photos/seed/tunnelrush/400/300",
     rating: 4.7,
     url: "https://play.gamepix.com/tunnel-rush/embed?sid=VCOSN"
   },
@@ -151,7 +151,7 @@ const GAMES = [
     id: 'drive-mad',
     title: "Drive Mad Unblocked",
     category: "Racing",
-    image: "https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/drive-mad.png",
+    image: "https://picsum.photos/seed/drivemad/400/300",
     rating: 4.8,
     url: "https://play.gamepix.com/drive-mad/embed?sid=VCOSN"
   }
@@ -275,32 +275,32 @@ const FAQS = [
     answer: "Master special moves and evolving abilities to defeat formidable foes. The game features pulse-pounding combat and a deep narrative set in a world of intrigue."
   },
   {
-    question: "What is A Small World Cup on Unblocked Games 76?",
-    answer: "A Small World Cup is a hilarious, physics-based soccer game available on Unblocked Games 76. It features simple controls where you slam your player into the ball to score goals in a miniature tournament format."
+    question: "What is A Small World Cup on Classroom 6x?",
+    answer: "A Small World Cup is a hilarious, physics-based soccer game available on Classroom 6x. It features simple controls where you slam your player into the ball to score goals in a miniature tournament format."
   },
   {
-    question: "Is Unblocked Games 76 safe to use?",
-    answer: "Yes, Unblocked Games 76 is a safe platform for playing browser-based games. We do not require downloads or account creation, which minimizes security risks for our users."
+    question: "Is Classroom 6x safe to use?",
+    answer: "Yes, Classroom 6x is a safe platform for playing browser-based games. We do not require downloads or account creation, which minimizes security risks for our users."
   },
   {
-    question: "What happened to Unblocked Games 76?",
-    answer: "Unblocked Games 76 has evolved over the years, moving from older Flash-based platforms to modern HTML5 technology to ensure games remain playable in all modern browsers after the end of Flash support."
+    question: "What happened to Classroom 6x?",
+    answer: "Classroom 6x has evolved over the years, moving from older Flash-based platforms to modern HTML5 technology to ensure games remain playable in all modern browsers after the end of Flash support."
   },
   {
-    question: "Why is Unblocked Games 76 not working?",
-    answer: "If the site isn't working, it might be due to a strict school or office firewall. Try clearing your browser cache or using a different mirror link. We strive to keep our 76 unblocked games accessible at all times."
+    question: "Why is Classroom 6x not working?",
+    answer: "If the site isn't working, it might be due to a strict school or office firewall. Try clearing your browser cache or using a different mirror link. We strive to keep our unblocked games accessible at all times."
   },
   {
-    question: "How to play What Beats Rock game unblocked 76?",
+    question: "How to play What Beats Rock game unblocked at Classroom 6x?",
     answer: "What Beats Rock is a creative logic game. You can play it on our site by typing in objects that you think would logically defeat the previous one. It's a great test of wit and imagination."
   },
   {
-    question: "Can I play Retro Bowl on Unblocked Games 76?",
-    answer: "Absolutely! Retro Bowl unblocked games 76 is one of our most popular titles. You can manage your team and lead them to victory right in your browser."
+    question: "Can I play Retro Bowl on Classroom 6x?",
+    answer: "Absolutely! Retro Bowl unblocked on Classroom 6x is one of our most popular titles. You can manage your team and lead them to victory right in your browser."
   },
   {
     question: "Is Slope unblocked available here?",
-    answer: "Yes, Slope unblocked games 76 is a fan favorite. Experience the high-speed neon ball run and test your reflexes on our platform."
+    answer: "Yes, Slope unblocked on Classroom 6x is a fan favorite. Experience the high-speed neon ball run and test your reflexes on our platform."
   },
   {
     question: "What is Grand Theft Auto: San Andreas Unblocked?",
@@ -308,7 +308,7 @@ const FAQS = [
   },
   {
     question: "How can I play GTA San Andreas unblocked at school?",
-    answer: "You can play GTA San Andreas right here on Unblocked Games 76. We provide a browser-compatible version that bypasses most school filters, allowing you to enjoy the classic Rockstar title anywhere."
+    answer: "You can play GTA San Andreas right here on Classroom 6x. We provide a browser-compatible version that bypasses most school filters, allowing you to enjoy the classic Rockstar title anywhere."
   },
   {
     question: "Is GTA San Andreas Multiplayer available?",
@@ -357,17 +357,17 @@ export default function App() {
   useEffect(() => {
     if (selectedGame) {
       setIsPlaying(false); // Reset play state when changing games
-      document.title = `${selectedGame.title} - Play Online Free`;
+      document.title = `${selectedGame.title} - Play Online Free at Classroom 6x`;
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
-        const description = selectedGame.description || `Play ${selectedGame.title} for free! Experience the best unblocked games on our platform. No downloads, unblocked for school and work.`;
+        const description = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Experience the best unblocked games on our platform. No downloads, unblocked for school and work.`;
         metaDesc.setAttribute('content', description);
       }
     } else {
-      document.title = "Unblocked Games 76 - Play 76 Games Unblocked Online";
+      document.title = "Classroom 6x - Play Free Unblocked Games Online";
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
-        metaDesc.setAttribute('content', "Play Unblocked Games 76 for free! The best destination for 76 games unblocked, including Retro Bowl, Slope, GTA San Andreas Unblocked, and more. Unblocked 76 games for school and work. No downloads required.");
+        metaDesc.setAttribute('content', "Play Classroom 6x for free! The best destination for unblocked games, including Retro Bowl, Slope, GTA San Andreas Unblocked, and more. Unblocked games for school and work. No downloads required.");
       }
     }
   }, [selectedGame]);
@@ -398,8 +398,8 @@ export default function App() {
             <Gamepad2 className="text-white" size={24} />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="font-display text-xl tracking-wider text-slate-900">UNBLOCKED</span>
-            <span className="font-display text-sm tracking-[0.2em] text-brand-purple">GAMES 76</span>
+            <span className="font-display text-xl tracking-wider text-slate-900">CLASSROOM</span>
+            <span className="font-display text-sm tracking-[0.2em] text-brand-purple">6X</span>
           </div>
         </div>
 
@@ -580,11 +580,11 @@ export default function App() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="glass p-6 rounded-2xl space-y-2">
                       <h3 className="font-bold text-slate-900">Email Support</h3>
-                      <p className="text-brand-purple">support@unblockedgames76.com</p>
+                      <p className="text-brand-purple">support@classroom6x.com</p>
                     </div>
                     <div className="glass p-6 rounded-2xl space-y-2">
                       <h3 className="font-bold text-slate-900">Business Inquiries</h3>
-                      <p className="text-brand-purple">business@unblockedgames76.com</p>
+                      <p className="text-brand-purple">business@classroom6x.com</p>
                     </div>
                   </div>
                   <div className="glass p-8 rounded-3xl space-y-6">
@@ -603,7 +603,7 @@ export default function App() {
 
               {activePage === "Privacy Policy" && (
                 <div className="space-y-6">
-                  <p>At Unblocked Games 76, we take your privacy seriously. This policy describes how we collect, use, and protect your information.</p>
+                  <p>At Classroom 6x, we take your privacy seriously. This policy describes how we collect, use, and protect your information.</p>
                   <h3 className="text-xl font-bold text-slate-900">1. Information Collection</h3>
                   <p>We do not require user accounts to play games. We may collect anonymous usage data to improve our platform performance and user experience.</p>
                   <h3 className="text-xl font-bold text-slate-900">2. Cookies</h3>
@@ -615,7 +615,7 @@ export default function App() {
 
               {activePage === "Terms of Service" && (
                 <div className="space-y-6">
-                  <p>By using Unblocked Games 76, you agree to the following terms and conditions.</p>
+                  <p>By using Classroom 6x, you agree to the following terms and conditions.</p>
                   <h3 className="text-xl font-bold text-slate-900">1. Usage</h3>
                   <p>Our platform is intended for entertainment purposes only. You agree to use the site responsibly and in accordance with local laws.</p>
                   <h3 className="text-xl font-bold text-slate-900">2. Content</h3>
@@ -1056,7 +1056,7 @@ export default function App() {
                     transition={{ delay: 0.2 }}
                   >
                     <h1 className="font-display text-6xl md:text-7xl xl:text-8xl uppercase tracking-tighter text-gradient leading-none">
-                      UNBLOCKED<br />GAMES 76
+                      CLASSROOM<br />6X
                     </h1>
                   </motion.div>
 
@@ -1066,8 +1066,8 @@ export default function App() {
                     transition={{ delay: 0.4 }}
                     className="text-slate-600 text-base leading-relaxed max-w-xl mx-auto lg:mx-0"
                   >
-                    Welcome to the ultimate destination for unblocked gaming. Unblocked Games 76 brings you the best 
-                    collection of 76 games unblocked, including Retro Bowl, Slope, and thousands of other titles.
+                    Welcome to the ultimate destination for unblocked gaming. Classroom 6x brings you the best 
+                    collection of unblocked games, including Retro Bowl, Slope, and thousands of other titles.
                   </motion.p>
                 </div>
 
@@ -1187,55 +1187,55 @@ export default function App() {
               <div className="space-y-12 pt-12 border-t border-white/5">
                 <section className="glass rounded-3xl p-8 space-y-8">
                   <div className="space-y-6">
-                    <h2 className="text-4xl font-display uppercase tracking-tight text-gradient">Unblocked Games 76: Your Ultimate Guide to 76 Games Unblocked</h2>
+                    <h2 className="text-4xl font-display uppercase tracking-tight text-gradient">Classroom 6x: Your Ultimate Guide to Unblocked Games</h2>
                     <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-6">
                       <p>
-                        Welcome to <strong>Unblocked Games 76</strong>, the premier destination for students and gamers looking to enjoy their favorite titles without restrictions. Whether you're at school, in the office, or just looking for a quick gaming fix, our platform offers a massive collection of <strong>76 games unblocked</strong> that are ready to play instantly in your browser.
+                        Welcome to <strong>Classroom 6x</strong>, the premier destination for students and gamers looking to enjoy their favorite titles without restrictions. Whether you're at school, in the office, or just looking for a quick gaming fix, our platform offers a massive collection of <strong>unblocked games</strong> that are ready to play instantly in your browser.
                       </p>
                       
-                      <h3 className="text-2xl font-bold text-slate-900 mt-8">Why Unblocked Games 76 is the Best Choice</h3>
+                      <h3 className="text-2xl font-bold text-slate-900 mt-8">Why Classroom 6x is the Best Choice</h3>
                       <p>
-                        In today's world, many networks block popular gaming sites. That's where <strong>76 unblocked games</strong> come in. Our site is specifically designed to bypass these filters, providing you with access to <strong>games unblocked 76</strong> style. We focus on high-quality HTML5 games that don't require any downloads, making them safe and easy to access.
+                        In today's world, many networks block popular gaming sites. That's where <strong>Classroom 6x</strong> comes in. Our site is specifically designed to bypass these filters, providing you with access to <strong>unblocked games</strong>. We focus on high-quality HTML5 games that don't require any downloads, making them safe and easy to access.
                       </p>
                       <p>
-                        From the classic <strong>unblocked game 76</strong> experience to the latest releases, we curate our library to ensure there's something for everyone. Whether you're searching for <strong>unblock games 76</strong> or a specific title like <strong>retro bowl unblocked games 76</strong>, you'll find it here.
-                      </p>
-
-                      <h3 className="text-2xl font-bold text-slate-900 mt-8">Popular Titles on Unblocked Games 76</h3>
-                      <p>
-                        Our users love the variety we offer. Some of the most searched terms on our site include <strong>slope unblocked games 76</strong>, which offers a thrilling, fast-paced experience. If you're a fan of sports, you might be looking for <strong>basketball unblocked games 76</strong> or <strong>soccer games unblocked 76</strong>. We even have specialized titles like <strong>crazy cattle 3d unblocked games 76</strong> and <strong>100 meter sprint unblocked games 76</strong> for those who enjoy unique challenges.
-                      </p>
-                      <p>
-                        For fans of American football, <strong>unblocked games retro bowl 76</strong> is a must-play. It combines retro aesthetics with deep management gameplay. If you prefer the court, <strong>basketball stars unblocked games 76</strong> provides intense 1v1 action. We also cater to those who love speed with our <strong>car game unblocked 76</strong> and <strong>car games unblocked 76</strong> categories.
+                        From the classic <strong>Classroom 6x</strong> experience to the latest releases, we curate our library to ensure there's something for everyone. Whether you're searching for <strong>unblocked games</strong> or a specific title like <strong>retro bowl unblocked</strong>, you'll find it here.
                       </p>
 
-                      <h3 className="text-2xl font-bold text-slate-900 mt-8">The Variety of 76 Unblocked Games</h3>
+                      <h3 className="text-2xl font-bold text-slate-900 mt-8">Popular Titles on Classroom 6x</h3>
                       <p>
-                        The beauty of <strong>unblocked 76 games</strong> is the sheer diversity. You can jump from a high-speed <strong>parkour games unblocked 76</strong> session to a precision-based <strong>slice master unblocked games 76</strong> level in seconds. Our platform is built to handle this variety, ensuring smooth transitions and fast loading times.
+                        Our users love the variety we offer. Some of the most searched terms on our site include <strong>slope unblocked</strong>, which offers a thrilling, fast-paced experience. If you're a fan of sports, you might be looking for <strong>basketball unblocked</strong> or <strong>soccer games unblocked</strong>. We even have specialized titles like <strong>crazy cattle 3d unblocked</strong> and <strong>100 meter sprint unblocked</strong> for those who enjoy unique challenges.
                       </p>
                       <p>
-                        We understand that gamers are always looking for the latest <strong>unblock game 76</strong> links. That's why we constantly update our site with new mirrors and titles. Whether you're a fan of the original <strong>unblocked game 76</strong> or looking for something new, we've got you covered.
+                        For fans of American football, <strong>retro bowl unblocked</strong> is a must-play. It combines retro aesthetics with deep management gameplay. If you prefer the court, <strong>basketball stars unblocked</strong> provides intense 1v1 action. We also cater to those who love speed with our <strong>car games unblocked</strong> category.
                       </p>
 
-                      <h3 className="text-2xl font-bold text-slate-900 mt-8">How to Access Unblocked Games 76 at School</h3>
+                      <h3 className="text-2xl font-bold text-slate-900 mt-8">The Variety of Classroom 6x Games</h3>
                       <p>
-                        Accessing <strong>76 games unblocked</strong> at school can sometimes be tricky. However, because we use modern web technologies and frequently update our domains, we remain one of the most reliable sources for <strong>unblocked 76 games</strong>. Simply visit our site, browse the categories, and click play. No complicated setups or VPNs are usually required.
+                        The beauty of <strong>Classroom 6x</strong> is the sheer diversity. You can jump from a high-speed <strong>parkour games unblocked</strong> session to a precision-based <strong>slice master unblocked</strong> level in seconds. Our platform is built to handle this variety, ensuring smooth transitions and fast loading times.
                       </p>
                       <p>
-                        Our commitment to providing <strong>games unblocked 76</strong> means we prioritize user experience. The site is optimized for both desktop and mobile, so you can play <strong>unblocked games 76</strong> on any device.
+                        We understand that gamers are always looking for the latest <strong>unblocked game</strong> links. That's why we constantly update our site with new mirrors and titles. Whether you're a fan of the original <strong>Classroom 6x</strong> or looking for something new, we've got you covered.
+                      </p>
+
+                      <h3 className="text-2xl font-bold text-slate-900 mt-8">How to Access Classroom 6x at School</h3>
+                      <p>
+                        Accessing <strong>Classroom 6x</strong> at school can sometimes be tricky. However, because we use modern web technologies and frequently update our domains, we remain one of the most reliable sources for <strong>unblocked games</strong>. Simply visit our site, browse the categories, and click play. No complicated setups or VPNs are usually required.
+                      </p>
+                      <p>
+                        Our commitment to providing <strong>unblocked games</strong> means we prioritize user experience. The site is optimized for both desktop and mobile, so you can play <strong>Classroom 6x</strong> on any device.
                       </p>
 
                       <h3 className="text-2xl font-bold text-slate-900 mt-8">Safety and Security</h3>
                       <p>
-                        One of the most common questions we get is: "Is <strong>Unblocked Games 76</strong> safe?" The answer is a resounding yes. We don't ask for personal information, and our games are served over secure connections. We know that when you're looking for <strong>unblock games 76</strong>, you want a worry-free experience, and that's exactly what we provide.
+                        One of the most common questions we get is: "Is <strong>Classroom 6x</strong> safe?" The answer is a resounding yes. We don't ask for personal information, and our games are served over secure connections. We know that when you're looking for <strong>unblocked games</strong>, you want a worry-free experience, and that's exactly what we provide.
                       </p>
 
                       <h3 className="text-2xl font-bold text-slate-900 mt-8">Conclusion</h3>
                       <p>
-                        Whether you're here for <strong>retro bowl unblocked games 76</strong>, <strong>slope unblocked games 76</strong>, or just to explore the world of <strong>76 unblocked games</strong>, we're glad you're here. <strong>Unblocked Games 76</strong> is more than just a website; it's a community of gamers who value freedom and fun. Dive into our collection of <strong>games unblocked 76</strong> today and see why we're the #1 choice for unblocked gaming!
+                        Whether you're here for <strong>retro bowl unblocked</strong>, <strong>slope unblocked</strong>, or just to explore the world of <strong>Classroom 6x</strong>, we're glad you're here. <strong>Classroom 6x</strong> is more than just a website; it's a community of gamers who value freedom and fun. Dive into our collection of <strong>unblocked games</strong> today and see why we're the #1 choice for unblocked gaming!
                       </p>
                       <p>
-                        Remember to bookmark us and share with your friends so everyone can enjoy the best <strong>unblocked 76 games</strong> available on the web. From <strong>basketball stars unblocked games 76</strong> to <strong>slice master unblocked games 76</strong>, the fun never ends at <strong>Unblocked Games 76</strong>.
+                        Remember to bookmark us and share with your friends so everyone can enjoy the best <strong>unblocked games</strong> available on the web. From <strong>basketball stars unblocked</strong> to <strong>slice master unblocked</strong>, the fun never ends at <strong>Classroom 6x</strong>.
                       </p>
                     </div>
                   </div>
@@ -1269,7 +1269,7 @@ export default function App() {
               <div className="w-8 h-8 bg-brand-purple rounded-lg flex items-center justify-center">
                 <Gamepad2 size={18} />
               </div>
-              <span className="font-display text-xl tracking-wider">Unblocked Games 76</span>
+              <span className="font-display text-xl tracking-wider">Classroom 6x</span>
             </div>
             <p className="text-sm text-slate-500 leading-relaxed">
               The world's most popular destination for unblocked games. Play thousands of titles for free, anywhere, anytime.
@@ -1338,7 +1338,7 @@ export default function App() {
           </div>
         </div>
         <div className="container mx-auto mt-12 pt-8 border-t border-black/5 text-center text-xs text-slate-400">
-          © 2024 Unblocked Games 76. All rights reserved. Design inspired by cinematic excellence.
+          © 2024 Classroom 6x. All rights reserved. Design inspired by cinematic excellence.
         </div>
       </footer>
     </div>
