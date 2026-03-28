@@ -154,6 +154,15 @@ const GAMES = [
     image: "https://picsum.photos/seed/drivemad/400/300",
     rating: 4.8,
     url: "https://play.gamepix.com/drive-mad/embed?sid=VCOSN"
+  },
+  {
+    id: 'snow-rider-3d',
+    title: "Snow Rider 3D Classroom 6x",
+    category: "Racing",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_DVKF0NH5HT4lbRiRCv4_ey4q3gUXQS0zEQ&s",
+    rating: 4.9,
+    url: "https://itsvijaysingh.github.io/Snow-Rider3D/",
+    description: "Snow Rider 3D Classroom 6x is an exhilarating 3D racing game where you slide down snowy slopes, dodge obstacles, and collect gifts. Experience the thrill of high-speed sledding with stunning graphics and smooth gameplay, perfectly unblocked for school and work."
   }
 ];
 
@@ -313,6 +322,22 @@ const FAQS = [
   {
     question: "Is GTA San Andreas Multiplayer available?",
     answer: "While the original single-player story is the main focus, many unblocked versions and mods allow for various multiplayer experiences. Check out our Multiplayer category for more similar games."
+  },
+  {
+    question: "What is Snow Rider 3D Classroom 6x?",
+    answer: "Snow Rider 3D Classroom 6x is a fast-paced 3D sledding game where you navigate through a snowy landscape filled with obstacles. It's designed to provide an immersive winter sports experience directly in your browser."
+  },
+  {
+    question: "How do I play Snow Rider 3D?",
+    answer: "Use the Arrow keys or WASD to steer your sled. Avoid hitting trees, rocks, and other obstacles while collecting gifts to unlock new sleds. The goal is to go as far as possible and achieve a high score."
+  },
+  {
+    question: "Can I unlock new sleds in Snow Rider 3D?",
+    answer: "Yes! By collecting gifts during your run, you can save up to purchase different types of sleds, each with its own unique look and feel."
+  },
+  {
+    question: "Is Snow Rider 3D unblocked for school?",
+    answer: "Absolutely. Our version of Snow Rider 3D is optimized for Classroom 6x, ensuring it's unblocked and playable in restricted environments like schools or offices."
   }
 ];
 
@@ -367,7 +392,7 @@ export default function App() {
       document.title = "Classroom 6x - Play Free Unblocked Games Online";
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
-        metaDesc.setAttribute('content', "Play Classroom 6x for free! The best destination for unblocked games, including Retro Bowl, Slope, GTA San Andreas Unblocked, and more. Unblocked games for school and work. No downloads required.");
+        metaDesc.setAttribute('content', "Play Classroom 6x for free! The best destination for unblocked games, including Snow Rider 3D, Retro Bowl, Slope, GTA San Andreas Unblocked, and more. Unblocked games for school and work. No downloads required.");
       }
     }
   }, [selectedGame]);
@@ -1067,7 +1092,7 @@ export default function App() {
                     className="text-slate-600 text-base leading-relaxed max-w-xl mx-auto lg:mx-0"
                   >
                     Welcome to the ultimate destination for unblocked gaming. Classroom 6x brings you the best 
-                    collection of unblocked games, including Retro Bowl, Slope, and thousands of other titles.
+                    collection of unblocked games, including Retro Bowl, Slope, Snow Rider 3D, and thousands of other titles.
                   </motion.p>
                 </div>
 
@@ -1203,7 +1228,7 @@ export default function App() {
 
                       <h3 className="text-2xl font-bold text-slate-900 mt-8">Popular Titles on Classroom 6x</h3>
                       <p>
-                        Our users love the variety we offer. Some of the most searched terms on our site include <strong>slope unblocked</strong>, which offers a thrilling, fast-paced experience. If you're a fan of sports, you might be looking for <strong>basketball unblocked</strong> or <strong>soccer games unblocked</strong>. We even have specialized titles like <strong>crazy cattle 3d unblocked</strong> and <strong>100 meter sprint unblocked</strong> for those who enjoy unique challenges.
+                        Our users love the variety we offer. Some of the most searched terms on our site include <strong>slope unblocked</strong> and <strong>snow rider 3d classroom 6x</strong>, which offer thrilling, fast-paced experiences. If you're a fan of sports, you might be looking for <strong>basketball unblocked</strong> or <strong>soccer games unblocked</strong>. We even have specialized titles like <strong>crazy cattle 3d unblocked</strong> and <strong>100 meter sprint unblocked</strong> for those who enjoy unique challenges.
                       </p>
                       <p>
                         For fans of American football, <strong>retro bowl unblocked</strong> is a must-play. It combines retro aesthetics with deep management gameplay. If you prefer the court, <strong>basketball stars unblocked</strong> provides intense 1v1 action. We also cater to those who love speed with our <strong>car games unblocked</strong> category.
