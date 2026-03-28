@@ -368,6 +368,39 @@ const FAQS = [
 
 const NAV_TABS = ["Home", "Action", "Multiplayer", "Sports", "Shooter", "Drawing", "Arcade", "Fighting", "Racing", "Adventure"];
 
+const AdBanner = () => {
+  const adContent = `
+    <html>
+      <body style="margin: 0; padding: 0; overflow: hidden;">
+        <script type="text/javascript">
+          atOptions = {
+            'key' : 'b5db419380bcec72a0ea8fc0440e63b5',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+          };
+        </script>
+        <script type="text/javascript" src="https://www.highperformanceformat.com/b5db419380bcec72a0ea8fc0440e63b5/invoke.js"></script>
+      </body>
+    </html>
+  `;
+
+  return (
+    <div className="w-[320px] h-[50px] bg-black/5 border border-black/10 rounded-lg flex items-center justify-center overflow-hidden glass">
+      <iframe
+        srcDoc={adContent}
+        width="320"
+        height="50"
+        frameBorder="0"
+        scrolling="no"
+        title="Ad"
+        className="w-full h-full"
+      />
+    </div>
+  );
+};
+
 export default function App() {
   const [activeTab, setActiveTab] = useState("Home");
   const [activePage, setActivePage] = useState<string | null>(null);
@@ -1122,6 +1155,17 @@ export default function App() {
                     Welcome to the ultimate destination for unblocked gaming. Classroom 6x brings you the best 
                     collection of unblocked games, including Ragdoll Archers, Retro Bowl, Slope, Snow Rider 3D, and thousands of other titles.
                   </motion.p>
+
+                  {/* Ad Sections */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="flex flex-col gap-4 mt-6 items-center lg:items-start"
+                  >
+                    <AdBanner />
+                    <AdBanner />
+                  </motion.div>
                 </div>
 
                 {/* Right: Trending Games Sidebar */}
