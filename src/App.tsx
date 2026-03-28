@@ -163,6 +163,15 @@ const GAMES = [
     rating: 4.9,
     url: "https://itsvijaysingh.github.io/Snow-Rider3D/",
     description: "Snow Rider 3D Classroom 6x is an exhilarating 3D racing game where you slide down snowy slopes, dodge obstacles, and collect gifts. Experience the thrill of high-speed sledding with stunning graphics and smooth gameplay, perfectly unblocked for school and work."
+  },
+  {
+    id: 'ragdoll-archers',
+    title: "Ragdoll Archers Classroom 6x",
+    category: "Action",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQChhAQo9os5fZ3QLUY5gILDlhWrf-jYgwDIA&s",
+    rating: 4.9,
+    url: "https://bitlifeonline.github.io/ragdoll-archers/",
+    description: "Ragdoll Archers Classroom 6x is a physics-based archery game where you control a ragdoll archer in intense battles. Aim carefully, account for gravity, and defeat your opponents in this addictive unblocked game. Play solo or with a friend in 2-player mode!"
   }
 ];
 
@@ -338,6 +347,22 @@ const FAQS = [
   {
     question: "Is Snow Rider 3D unblocked for school?",
     answer: "Absolutely. Our version of Snow Rider 3D is optimized for Classroom 6x, ensuring it's unblocked and playable in restricted environments like schools or offices."
+  },
+  {
+    question: "What is Ragdoll Archers Classroom 6x?",
+    answer: "Ragdoll Archers Classroom 6x is a physics-based archery game featuring ragdoll characters. Players must use their archery skills to defeat enemies in various game modes, including 1-player, 2-player, and survival modes."
+  },
+  {
+    question: "How do I play Ragdoll Archers?",
+    answer: "Use your mouse or touch screen to aim and shoot. Click and drag to adjust the power and angle of your shot. In 2-player mode, players take turns or compete simultaneously depending on the selected mode. Collect power-ups and upgrade your archer to become more powerful."
+  },
+  {
+    question: "What makes Ragdoll Archers unique?",
+    answer: "The game's physics-based ragdoll mechanics add a layer of unpredictability and humor to the combat. Every hit affects the character's movement realistically, making for dynamic and engaging battles."
+  },
+  {
+    question: "Is Ragdoll Archers unblocked for school?",
+    answer: "Yes! Ragdoll Archers Classroom 6x is fully unblocked and optimized for school and work environments. You can enjoy the game directly in your browser without any restrictions."
   }
 ];
 
@@ -380,6 +405,7 @@ export default function App() {
   }, [isCategoriesOpen]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (selectedGame) {
       setIsPlaying(false); // Reset play state when changing games
       document.title = `${selectedGame.title} - Play Online Free at Classroom 6x`;
@@ -388,14 +414,16 @@ export default function App() {
         const description = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Experience the best unblocked games on our platform. No downloads, unblocked for school and work.`;
         metaDesc.setAttribute('content', description);
       }
+    } else if (activePage) {
+      document.title = `${activePage} - Classroom 6x`;
     } else {
       document.title = "Classroom 6x - Play Free Unblocked Games Online";
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
-        metaDesc.setAttribute('content', "Play Classroom 6x for free! The best destination for unblocked games, including Snow Rider 3D, Retro Bowl, Slope, GTA San Andreas Unblocked, and more. Unblocked games for school and work. No downloads required.");
+        metaDesc.setAttribute('content', "Play Classroom 6x for free! The best destination for unblocked games, including Ragdoll Archers, Snow Rider 3D, Retro Bowl, Slope, GTA San Andreas Unblocked, and more. Unblocked games for school and work. No downloads required.");
       }
     }
-  }, [selectedGame]);
+  }, [selectedGame, activePage]);
 
   const handleLogoClick = () => {
     setSelectedGame(null);
@@ -1074,14 +1102,14 @@ export default function App() {
                 </motion.div>
 
                 {/* Center: Text Content */}
-                <div className="lg:col-span-5 space-y-6 text-center lg:text-left">
+                <div className="lg:col-span-5 space-y-2 text-center lg:text-left -mt-8">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <h1 className="font-display text-6xl md:text-7xl xl:text-8xl uppercase tracking-tighter text-gradient leading-none">
-                      CLASSROOM<br />6X
+                    <h1 className="font-display text-4xl md:text-5xl xl:text-6xl uppercase tracking-tighter text-gradient leading-none">
+                      CLASSROOM 6X
                     </h1>
                   </motion.div>
 
@@ -1092,7 +1120,7 @@ export default function App() {
                     className="text-slate-600 text-base leading-relaxed max-w-xl mx-auto lg:mx-0"
                   >
                     Welcome to the ultimate destination for unblocked gaming. Classroom 6x brings you the best 
-                    collection of unblocked games, including Retro Bowl, Slope, Snow Rider 3D, and thousands of other titles.
+                    collection of unblocked games, including Ragdoll Archers, Retro Bowl, Slope, Snow Rider 3D, and thousands of other titles.
                   </motion.p>
                 </div>
 
@@ -1228,7 +1256,7 @@ export default function App() {
 
                       <h3 className="text-2xl font-bold text-slate-900 mt-8">Popular Titles on Classroom 6x</h3>
                       <p>
-                        Our users love the variety we offer. Some of the most searched terms on our site include <strong>slope unblocked</strong> and <strong>snow rider 3d classroom 6x</strong>, which offer thrilling, fast-paced experiences. If you're a fan of sports, you might be looking for <strong>basketball unblocked</strong> or <strong>soccer games unblocked</strong>. We even have specialized titles like <strong>crazy cattle 3d unblocked</strong> and <strong>100 meter sprint unblocked</strong> for those who enjoy unique challenges.
+                        Our users love the variety we offer. Some of the most searched terms on our site include <strong>slope unblocked</strong>, <strong>ragdoll archers classroom 6x</strong>, and <strong>snow rider 3d classroom 6x</strong>, which offer thrilling, fast-paced experiences. If you're a fan of sports, you might be looking for <strong>basketball unblocked</strong> or <strong>soccer games unblocked</strong>. We even have specialized titles like <strong>crazy cattle 3d unblocked</strong> and <strong>100 meter sprint unblocked</strong> for those who enjoy unique challenges.
                       </p>
                       <p>
                         For fans of American football, <strong>retro bowl unblocked</strong> is a must-play. It combines retro aesthetics with deep management gameplay. If you prefer the court, <strong>basketball stars unblocked</strong> provides intense 1v1 action. We also cater to those who love speed with our <strong>car games unblocked</strong> category.
