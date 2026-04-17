@@ -1405,24 +1405,45 @@ export default function App() {
 
                 {/* Additional SEO Visual Links Section */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="glass p-6 rounded-2xl flex flex-col items-center text-center space-y-4 group cursor-pointer hover:bg-white/40 transition-all">
-                    <img src="https://picsum.photos/seed/nav1/100/100" alt="New Games Section Icon Classroom 6x" className="w-16 h-16 rounded-full" />
+                  <div 
+                    onClick={() => {
+                      setActiveTab("New");
+                      setSelectedGame(null);
+                      document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="glass p-6 rounded-2xl flex flex-col items-center text-center space-y-4 group cursor-pointer hover:bg-white/40 transition-all"
+                  >
+                    <img src="https://picsum.photos/seed/nav1/100/100" alt="New Games Section Icon Classroom 6x" className="w-16 h-16 rounded-full group-hover:scale-110 transition-transform" />
                     <h3 className="font-bold">New Releases</h3>
                     <p className="text-xs text-slate-500">The latest school-friendly mirrors added today.</p>
                   </div>
-                  <div className="glass p-6 rounded-2xl flex flex-col items-center text-center space-y-4 group cursor-pointer hover:bg-white/40 transition-all">
-                    <img src="https://picsum.photos/seed/nav2/100/100" alt="Popular Games Section Icon Classroom 6x" className="w-16 h-16 rounded-full" />
+                  <div 
+                    onClick={() => {
+                      setActiveTab("Trending");
+                      setSelectedGame(null);
+                      document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="glass p-6 rounded-2xl flex flex-col items-center text-center space-y-4 group cursor-pointer hover:bg-white/40 transition-all"
+                  >
+                    <img src="https://picsum.photos/seed/nav2/100/100" alt="Popular Games Section Icon Classroom 6x" className="w-16 h-16 rounded-full group-hover:scale-110 transition-transform" />
                     <h3 className="font-bold">Trending Now</h3>
                     <p className="text-xs text-slate-500">What everyone is playing in the classroom right now.</p>
                   </div>
-                  <div className="glass p-6 rounded-2xl flex flex-col items-center text-center space-y-4 group cursor-pointer hover:bg-white/40 transition-all">
-                    <img src="https://picsum.photos/seed/nav3/100/100" alt="Top Rated Games Section Icon Classroom 6x" className="w-16 h-16 rounded-full" />
+                  <div 
+                    onClick={() => {
+                      setActiveTab("Popular");
+                      setSelectedGame(null);
+                      document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="glass p-6 rounded-2xl flex flex-col items-center text-center space-y-4 group cursor-pointer hover:bg-white/40 transition-all"
+                  >
+                    <img src="https://picsum.photos/seed/nav3/100/100" alt="Top Rated Games Section Icon Classroom 6x" className="w-16 h-16 rounded-full group-hover:scale-110 transition-transform" />
                     <h3 className="font-bold">Top Rated</h3>
                     <p className="text-xs text-slate-500">Highest rated unblocked titles by the community.</p>
                   </div>
                 </section>
 
-                <section className="space-y-8">
+                <section id="faq-section" className="space-y-8">
                   <h2 className="text-3xl font-heading font-bold flex items-center gap-3 text-slate-900">
                     <Clock className="text-brand-purple" />
                     General FAQ
@@ -1460,10 +1481,10 @@ export default function App() {
           <div>
             <h4 className="font-bold mb-6">Categories</h4>
             <ul className="space-y-3 text-sm text-slate-500">
-              <li className="hover:text-brand-purple cursor-pointer transition-colors">Action Games</li>
-              <li className="hover:text-brand-purple cursor-pointer transition-colors">Sports Games</li>
-              <li className="hover:text-brand-purple cursor-pointer transition-colors">Multiplayer</li>
-              <li className="hover:text-brand-purple cursor-pointer transition-colors">Puzzle Games</li>
+              <li onClick={() => { setActiveTab("Action"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Action Games</li>
+              <li onClick={() => { setActiveTab("Sports"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Sports Games</li>
+              <li onClick={() => { setActiveTab("Racing"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Racing Games</li>
+              <li onClick={() => { setActiveTab("Puzzle"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Puzzle Games</li>
             </ul>
           </div>
 
@@ -1480,7 +1501,20 @@ export default function App() {
               >
                 Contact Us
               </li>
-              <li className="hover:text-brand-purple cursor-pointer transition-colors">FAQ</li>
+              <li 
+                onClick={() => {
+                  setActivePage(null);
+                  setSelectedGame(null);
+                  setActiveTab("Home");
+                  setSearchQuery("");
+                  setTimeout(() => {
+                    document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="hover:text-brand-purple cursor-pointer transition-colors"
+              >
+                FAQ
+              </li>
               <li 
                 onClick={() => {
                   setActivePage("Privacy Policy");
