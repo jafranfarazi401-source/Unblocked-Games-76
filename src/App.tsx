@@ -125,7 +125,7 @@ const GAMES = [
     id: 'retro-bowl',
     title: "Retro Bowl Unblocked Classroom 6x",
     category: "Sports",
-    image: "https://picsum.photos/seed/retrobowl/400/300",
+    image: "https://mail.classroom6x.lol/public/upload/game/thumb-uD7sEUYq6p.png",
     rating: 4.9,
     url: "https://game316009.konggames.com/gamez/0031/6009/live/index.html",
     description: "Retro Bowl is the perfect game for the armchair quarterback to finally prove a point. Presented in a glorious retro style, the game has simple roster management, including press duties and the handling of fragile egos, while on the field you get to call the shots."
@@ -373,6 +373,20 @@ const AdBanner = () => {
     <html>
       <body style="margin: 0; padding: 0; overflow: hidden;">
         <script type="text/javascript">
+          // Fix for "Cannot set property fetch of #<Window> which has only a getter"
+          try {
+            if (window.fetch && (Object.getOwnPropertyDescriptor(window, 'fetch') || {}).get) {
+              const originalFetch = window.fetch;
+              Object.defineProperty(window, 'fetch', {
+                value: originalFetch,
+                writable: true,
+                configurable: true
+              });
+            }
+          } catch (e) {
+            console.error('Failed to patch fetch:', e);
+          }
+
           atOptions = {
             'key' : 'b5db419380bcec72a0ea8fc0440e63b5',
             'format' : 'iframe',
@@ -1135,7 +1149,7 @@ export default function App() {
                 </motion.div>
 
                 {/* Center: Text Content */}
-                <div className="lg:col-span-5 space-y-2 text-center lg:text-left -mt-8">
+                <div className="lg:col-span-5 space-y-2 text-center lg:text-left">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
