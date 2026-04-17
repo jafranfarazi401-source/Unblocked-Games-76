@@ -18,7 +18,7 @@ import {
 const GAMES = [
   { 
     id: 'basket-random', 
-    title: "Basket Random Unblocked", 
+    title: "Basket Random Unblocked at Classroom 6x", 
     category: "Sports", 
     image: "https://taptapshots.net/uploads/2025/8/basket-random.webp", 
     rating: 4.9,
@@ -26,7 +26,7 @@ const GAMES = [
   },
   {
     id: 'hoops-and-fruits',
-    title: "Hoops & Fruits",
+    title: "Hoops & Fruits Classroom 6x",
     category: "Drawing",
     image: "https://img.gamepix.com/games/hoops-and-fruits/icon/hoops-and-fruits.png?w=105",
     rating: 4.8,
@@ -34,7 +34,7 @@ const GAMES = [
   },
   {
     id: 'funny-shooter-2',
-    title: "Funny Shooter 2 unblock",
+    title: "Funny Shooter 2 unblock Classroom 6x",
     category: "Shooter",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReRQw36C3zJ2i13AdaEkJniN4NCTvig3nM-w&s",
     rating: 4.7,
@@ -42,7 +42,7 @@ const GAMES = [
   },
   {
     id: 'epic-duck',
-    title: "Epic Duck Unblocked",
+    title: "Epic Duck Unblocked Classroom 6x",
     category: "Arcade",
     image: "https://play-lh.googleusercontent.com/4btOwsNG-fLmSqmbpjmDEdJQDlRCmKWcnV2CRYI23-O-_U88IB_QqQhgE9k56vVwBwjmbRMx1ZIJ3I8MFXum",
     rating: 4.6,
@@ -50,7 +50,7 @@ const GAMES = [
   },
   {
     id: 'stickman-street-fighting',
-    title: "Stickman Street Fighting 3D Unblocked",
+    title: "Stickman Street Fighting 3D Unblocked Classroom 6x",
     category: "Fighting",
     image: "https://www.friv2online.com/files/images/ba/ba980ba53e51b6b64db4fb2340ccfbe2.jpg",
     rating: 4.8,
@@ -58,7 +58,7 @@ const GAMES = [
   },
   {
     id: 'penalty-kick-wiz',
-    title: "Penalty Kick Wiz Unblocked",
+    title: "Penalty Kick Wiz Unblocked Classroom 6x",
     category: "Sports",
     image: "https://a.silvergames.com/j/b/world-cup-penalty-shootout.jpg",
     rating: 4.8,
@@ -66,7 +66,7 @@ const GAMES = [
   },
   {
     id: 'moto-x3m-spooky-land',
-    title: "Moto X3M: Spooky Land Unblocked",
+    title: "Moto X3M: Spooky Land Unblocked Classroom 6x",
     category: "Racing",
     image: "https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/3f8a297822df891a1c158576b6461014/moto-x3m-spooky-land.png",
     rating: 4.9,
@@ -74,7 +74,7 @@ const GAMES = [
   },
   {
     id: 'merge-mine-idle-clicker',
-    title: "Merge Mine - Idle Clicker Unblocked",
+    title: "Merge Mine - Idle Clicker Unblocked Classroom 6x",
     category: "Adventure",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4pwoUFYJ3RCEHfZh8RrVUgNmk6EYcBtP-Gg&s",
     rating: 4.7,
@@ -82,7 +82,7 @@ const GAMES = [
   },
   {
     id: 'evil-invader',
-    title: "Evil Invader",
+    title: "Evil Invader Classroom 6x",
     category: "Arcade",
     image: "https://img.gamepix.com/games/evil-invader/icon/evil-invader.png?w=105",
     rating: 4.7,
@@ -90,7 +90,7 @@ const GAMES = [
   },
   {
     id: 'hoop-world',
-    title: "Hoop World Unblocked",
+    title: "Hoop World Unblocked Classroom 6x",
     category: "Sports",
     image: "https://play-lh.googleusercontent.com/b0MjOypDwP6KNeXyGX253avRT8cfRmxwv-RSy7rmQYt4f21lE4OqwgBjNkE5TAeIGqo",
     rating: 4.8,
@@ -98,7 +98,7 @@ const GAMES = [
   },
   {
     id: 'goal-skibidi-goal',
-    title: "Goal Skibidi Goal",
+    title: "Goal Skibidi Goal Classroom 6x",
     category: "Sports",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlj5I8XPSSFtWZmDixk15POYBMne2P51HsQg&s",
     rating: 4.8,
@@ -106,7 +106,7 @@ const GAMES = [
   },
   {
     id: 'samurai-brawling',
-    title: "Samurai Brawling Unblocked",
+    title: "Samurai Brawling Unblocked Classroom 6x",
     category: "Fighting",
     image: "https://imgcdn.stablediffusionweb.com/2024/10/20/9a451112-66fa-4549-b2cf-c5ff9c41afe2.jpg",
     rating: 4.9,
@@ -114,7 +114,7 @@ const GAMES = [
   },
   {
     id: 'gta-san-andreas',
-    title: "Grand Theft Auto: San Andreas Unblocked",
+    title: "Grand Theft Auto: San Andreas Unblocked Classroom 6x",
     category: "Multiplayer",
     image: "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg",
     rating: 5.0,
@@ -123,16 +123,16 @@ const GAMES = [
   },
   {
     id: 'retro-bowl',
-    title: "Retro Bowl Unblocked",
+    title: "Retro Bowl Unblocked Classroom 6x",
     category: "Sports",
     image: "https://picsum.photos/seed/retrobowl/400/300",
     rating: 4.9,
-    url: "https://game316009.konggames.com/game.html",
+    url: "https://game316009.konggames.com/gamez/0031/6009/live/index.html",
     description: "Retro Bowl is the perfect game for the armchair quarterback to finally prove a point. Presented in a glorious retro style, the game has simple roster management, including press duties and the handling of fragile egos, while on the field you get to call the shots."
   },
   {
     id: 'slope',
-    title: "Slope Unblocked",
+    title: "Slope Unblocked Classroom 6x",
     category: "Racing",
     image: "https://picsum.photos/seed/slope/400/300",
     rating: 4.8,
@@ -141,7 +141,7 @@ const GAMES = [
   },
   {
     id: 'tunnel-rush',
-    title: "Tunnel Rush Unblocked",
+    title: "Tunnel Rush Unblocked Classroom 6x",
     category: "Arcade",
     image: "https://picsum.photos/seed/tunnelrush/400/300",
     rating: 4.7,
@@ -149,7 +149,7 @@ const GAMES = [
   },
   {
     id: 'drive-mad',
-    title: "Drive Mad Unblocked",
+    title: "Drive Mad Unblocked Classroom 6x",
     category: "Racing",
     image: "https://picsum.photos/seed/drivemad/400/300",
     rating: 4.8,
@@ -177,72 +177,72 @@ const GAMES = [
 
 const FAQS = [
   {
-    question: "What is Basket Random Unblocked?",
-    answer: "Basket Random Unblocked is a chaotic, physics-based 2-player basketball game where every round brings new surprises. From changing fields to different players and balls, the goal remains the same: score 5 points to win!"
+    question: "What is Basket Random Unblocked at Classroom 6x?",
+    answer: "Basket Random Unblocked at Classroom 6x is a chaotic, physics-based 2-player basketball game where every round brings new surprises. From changing fields to different players and balls, the goal remains the same: score 5 points to win!"
   },
   {
-    question: "How do I play Basket Random?",
-    answer: "The controls are incredibly simple! You only need one key to jump and throw. In 2-player mode, one player uses the 'W' key while the other uses the 'Up Arrow'. The randomness of the physics is what makes it fun!"
+    question: "How do I play Basket Random on Classroom 6x?",
+    answer: "The controls are incredibly simple! You only need one key to jump and throw on Classroom 6x. In 2-player mode, one player uses the 'W' key while the other uses the 'Up Arrow'. The randomness of the physics is what makes it fun!"
   },
   {
-    question: "Can I play Basket Random with a friend?",
-    answer: "Yes! Basket Random features a dedicated 2-player mode on the same keyboard, making it one of the best local multiplayer games for school or home."
+    question: "Can I play Basket Random with a friend at Classroom 6x?",
+    answer: "Yes! Basket Random at Classroom 6x features a dedicated 2-player mode on the same keyboard, making it one of the best local multiplayer games for school or home."
   },
   {
     question: "Why is it called 'Random'?",
     answer: "The game is called 'Random' because almost everything changes every time a basket is scored. You might find yourself playing with long arms, on an icy court, or using a bowling ball instead of a basketball."
   },
   {
-    question: "Is Basket Random Unblocked free to play?",
-    answer: "Absolutely. You can play the full version of Basket Random Unblocked directly in your browser without any downloads or hidden costs."
+    question: "Is Basket Random Unblocked free to play at Classroom 6x?",
+    answer: "Absolutely. You can play the full version of Basket Random Unblocked directly in your browser at Classroom 6x without any downloads or hidden costs."
   },
   {
-    question: "Does the game work on mobile?",
-    answer: "Yes, Basket Random is built with HTML5 technology, meaning it works seamlessly on both desktop browsers and mobile devices."
+    question: "Does the game work on mobile at Classroom 6x?",
+    answer: "Yes, Basket Random at Classroom 6x is built with HTML5 technology, meaning it works seamlessly on both desktop browsers and mobile devices."
   },
   {
-    question: "What is Hoops & Fruits?",
-    answer: "Hoops & Fruits is a whimsical arcade game where you toss hoops to catch colorful, fruity targets. It combines addictive drag-and-drop gameplay with charming graphics and a captivating soundtrack."
+    question: "What is Hoops & Fruits at Classroom 6x?",
+    answer: "Hoops & Fruits at Classroom 6x is a whimsical arcade game where you toss hoops to catch colorful, fruity targets. It combines addictive drag-and-drop gameplay with charming graphics and a captivating soundtrack."
   },
   {
     question: "How do I score big in Hoops & Fruits?",
     answer: "The key to high scores is hooping multiple fruits at once! Master the drag-and-drop mechanics to clear levels and achieve the highest possible score."
   },
   {
-    question: "What is Funny Shooter 2 unblock?",
-    answer: "Funny Shooter 2 is a zany first-person shooter where you face off against quirky enemies in a whimsical world. It features endless customization and action-packed gameplay."
+    question: "What is Funny Shooter 2 unblock at Classroom 6x?",
+    answer: "Funny Shooter 2 at Classroom 6x is a zany first-person shooter where you face off against quirky enemies in a whimsical world. It features endless customization and action-packed gameplay."
   },
   {
     question: "Is Funny Shooter 2 unblocked for school?",
     answer: "Yes! Our platform provides the unblocked version of Funny Shooter 2, allowing you to enjoy the hilarious chaos anywhere, including school or work."
   },
   {
-    question: "What is Epic Duck Unblocked?",
-    answer: "Epic Duck is an adventurous arcade game where you navigate charming levels, uncover hidden keys, and unlock doorways. It's a delightful test of strategy and reflexes."
+    question: "What is Epic Duck Unblocked at Classroom 6x?",
+    answer: "Epic Duck at Classroom 6x is an adventurous arcade game where you navigate charming levels, uncover hidden keys, and unlock doorways. It's a delightful test of strategy and reflexes."
   },
   {
     question: "How do I play Epic Duck?",
     answer: "Use your keyboard or touch controls to move the duck through the levels. Explore the environment to find keys and reach the exit while avoiding obstacles."
   },
   {
-    question: "What is Stickman Street Fighting 3D Unblocked?",
-    answer: "Stickman Street Fighting 3D is an intense brawler where you play as a fearless stickman dominating the streets. It features strategic combat, power-ups, and various weapons."
+    question: "What is Stickman Street Fighting 3D Unblocked at Classroom 6x?",
+    answer: "Stickman Street Fighting 3D at Classroom 6x is an intense brawler where you play as a fearless stickman dominating the streets. It features strategic combat, power-ups, and various weapons."
   },
   {
     question: "How do I win in Stickman Street Fighting?",
     answer: "Defeat all enemies in each level using quick reflexes and strategic blows. Break objects to find power-ups and weapons that give you an edge in combat."
   },
   {
-    question: "What is Penalty Kick Wiz Unblocked?",
-    answer: "Penalty Kick Wiz is an adrenaline-filled sports game where you engage in a penalty shootout duel. It tests your precision, anticipation, and split-second decision-making as both a shooter and a goalkeeper."
+    question: "What is Penalty Kick Wiz Unblocked at Classroom 6x?",
+    answer: "Penalty Kick Wiz at Classroom 6x is an adrenaline-filled sports game where you engage in a penalty shootout duel. It tests your precision, anticipation, and split-second decision-making as both a shooter and a goalkeeper."
   },
   {
     question: "How do I play Penalty Kick Wiz?",
     answer: "Use your mouse or touch screen to aim and shoot. When defending, react quickly to your opponent's shots to make saves. Timing and strategy are key to winning the tournament."
   },
   {
-    question: "What is Moto X3M: Spooky Land Unblocked?",
-    answer: "Moto X3M: Spooky Land is a high-octane bike racing game with a spooky theme. It features challenging tracks filled with supernatural obstacles, gravity-defying stunts, and eerie environments."
+    question: "What is Moto X3M: Spooky Land Unblocked at Classroom 6x?",
+    answer: "Moto X3M: Spooky Land at Classroom 6x is a high-octane bike racing game with a spooky theme. It features challenging tracks filled with supernatural obstacles, gravity-defying stunts, and eerie environments."
   },
   {
     question: "How do I control the bike in Moto X3M?",
@@ -253,40 +253,40 @@ const FAQS = [
     answer: "Yes, you can play Moto X3M: Spooky Land Unblocked for free directly in your browser on our platform with no downloads required."
   },
   {
-    question: "What is Merge Mine - Idle Clicker Unblocked?",
-    answer: "Merge Mine - Idle Clicker is a strategic mining game where you tap to mine diamonds, upgrade tools, and merge them to increase your mining efficiency. It's an addictive idle game that lets you build a massive mining empire."
+    question: "What is Merge Mine - Idle Clicker Unblocked at Classroom 6x?",
+    answer: "Merge Mine - Idle Clicker at Classroom 6x is a strategic mining game where you tap to mine diamonds, upgrade tools, and merge them to increase your mining efficiency. It's an addictive idle game that lets you build a massive mining empire."
   },
   {
     question: "How do I play Merge Mine?",
     answer: "Tap the screen to mine resources. Use your earnings to buy new tools. Merge two identical tools to create a more powerful version. Automate your mining process to keep earning even when you're not clicking!"
   },
   {
-    question: "What is Evil Invader?",
-    answer: "Evil Invader is an intense survival shooter set in a dystopian battlefield. You must fight off relentless monstrous foes using a variety of weapons and power-ups while mastering enemy patterns to survive."
+    question: "What is Evil Invader at Classroom 6x?",
+    answer: "Evil Invader at Classroom 6x is an intense survival shooter set in a dystopian battlefield. You must fight off relentless monstrous foes using a variety of weapons and power-ups while mastering enemy patterns to survive."
   },
   {
     question: "How do I survive in Evil Invader?",
     answer: "Success in Evil Invader requires quick reflexes and strategic use of power-ups. Master the movement and attack patterns of different enemies, and level up to unlock more powerful weapons to handle the increasing difficulty."
   },
   {
-    question: "What is Hoop World Unblocked?",
-    answer: "Hoop World is a dynamic 3D basketball game where you perform aerial acrobatics and flipping dunks. It combines simple mouse-click controls with spectacular moves for a thrilling sports experience."
+    question: "What is Hoop World Unblocked at Classroom 6x?",
+    answer: "Hoop World at Classroom 6x is a dynamic 3D basketball game where you perform aerial acrobatics and flipping dunks. It combines simple mouse-click controls with spectacular moves for a thrilling sports experience."
   },
   {
     question: "How do I play Hoop World?",
     answer: "Use your mouse to time your jumps and flips. Click to soar through the air and perform dunks. Precision and timing are key to mastering the aerial stunts and outshining your opponents with style."
   },
   {
-    question: "What is Goal Skibidi Goal?",
-    answer: "Goal Skibidi Goal is a zany, physics-based soccer game where you use head motions to navigate and outwit opponents in dynamic duels filled with unpredictability."
+    question: "What is Goal Skibidi Goal at Classroom 6x?",
+    answer: "Goal Skibidi Goal at Classroom 6x is a zany, physics-based soccer game where you use head motions to navigate and outwit opponents in dynamic duels filled with unpredictability."
   },
   {
     question: "How do I play Goal Skibidi Goal?",
     answer: "Navigate using nimble head motions, leveraging clever jumps, ducks, and slides. Master power-ups to outwit opponents in dynamic duels filled with exhilarating momentum."
   },
   {
-    question: "What is Samurai Brawling Unblocked?",
-    answer: "Samurai Brawling is an exhilarating 3D adventure where you play as Arashin, a fierce Yakuza warrior. Engage in strategic battles against samurais and ninjas in a gripping storyline."
+    question: "What is Samurai Brawling Unblocked at Classroom 6x?",
+    answer: "Samurai Brawling at Classroom 6x is an exhilarating 3D adventure where you play as Arashin, a fierce Yakuza warrior. Engage in strategic battles against samurais and ninjas in a gripping storyline."
   },
   {
     question: "How do I play Samurai Brawling?",
