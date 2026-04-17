@@ -1336,6 +1336,21 @@ export default function App() {
                         Welcome to the official <strong>Classroom 6x</strong> platform, where the barriers between you and your favorite digital entertainment disappear. In the modern educational landscape, finding high-quality <strong>unblocked games</strong> that are safe, reliable, and accessible from school networks can be a challenge. Our mission is to provide a curated, high-speed gaming environment that bypasses restrictive filters while maintaining a secure and distraction-free experience for students worldwide.
                       </p>
 
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 border-y border-black/5 py-12">
+                        <article className="space-y-4">
+                          <h3 className="text-2xl font-bold text-slate-900">About Classroom 6x</h3>
+                          <p className="text-base text-slate-600">
+                            <strong>Classroom 6x</strong> is a premier gaming portal designed for students who seek a safe, high-performance environment to enjoy digital entertainment. Unlike generic gaming sites, we curate our library to ensure every title is "Classroom 6x" certified—meaning it is lightweight, runs flawlessly on Chromebooks, and is optimized for the educational user base. Our platform serves as a reliable hub for original unblocked content and updated mirrors.
+                          </p>
+                        </article>
+                        <article className="space-y-4">
+                          <h3 className="text-2xl font-bold text-slate-900">What is Unblocked Games?</h3>
+                          <p className="text-base text-slate-600">
+                            <strong>Unblocked games</strong> are specialized versions of popular web games that are hosted on alternative domains or through advanced web tech like HTML5 to remain accessible on networks with strict filters, such as schools and offices. These games do not require downloads or installations, making them the safest way to enjoy gaming during your downtime without triggering network security alerts or software restrictions.
+                          </p>
+                        </article>
+                      </div>
+
                       <article className="space-y-4">
                         <h3 className="text-2xl font-bold text-slate-900 mt-8">Why Students Choose Classroom 6x for Unblocked Gaming</h3>
                         <p>
