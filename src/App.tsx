@@ -516,6 +516,22 @@ export default function App() {
             Home
           </button>
 
+          <button
+            onClick={() => {
+              setSelectedGame(null);
+              setIsPlaying(false);
+              setActiveTab("Home");
+              setActivePage(null);
+              setSearchQuery("");
+              setTimeout(() => {
+                document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+            }}
+            className="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900 hover:bg-black/5 border border-transparent hover:border-black/5 transition-all"
+          >
+            Browse All Directory
+          </button>
+
           <div className="relative categories-dropdown-container">
             <button
               onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
@@ -613,6 +629,22 @@ export default function App() {
             className="fixed inset-x-4 top-24 z-40 glass rounded-2xl p-6 md:hidden"
           >
             <div className="flex flex-col gap-4">
+              <button 
+                onClick={() => {
+                  setSelectedGame(null);
+                  setIsPlaying(false);
+                  setActiveTab("Home");
+                  setActivePage(null);
+                  setSearchQuery("");
+                  setIsMenuOpen(false);
+                  setTimeout(() => {
+                    document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="text-left py-3 px-4 rounded-xl text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900 hover:bg-black/5 transition-all border border-black/5"
+              >
+                Browse All Directory
+              </button>
               {NAV_TABS.map((tab) => (
                 <button
                   key={tab}
