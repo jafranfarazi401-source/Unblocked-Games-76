@@ -11,7 +11,8 @@ import {
   Menu,
   X,
   Star,
-  Loader2
+  Loader2,
+  Linkedin
 } from 'lucide-react';
 
 // Mock Data
@@ -1523,6 +1524,17 @@ export default function App() {
             <p className="text-sm text-slate-500 leading-relaxed">
               The world's most popular destination for unblocked games. Play thousands of titles for free, anywhere, anytime.
             </p>
+            <div className="pt-2">
+              <a 
+                href="https://www.linkedin.com/in/likhon-farazi-b06893276/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-brand-purple transition-all"
+              >
+                <Linkedin size={16} />
+                Connect with Owner
+              </a>
+            </div>
           </div>
           
           <div>
