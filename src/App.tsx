@@ -12,7 +12,8 @@ import {
   X,
   Star,
   Loader2,
-  Linkedin
+  Linkedin,
+  Youtube
 } from 'lucide-react';
 
 // Mock Data
@@ -135,26 +136,28 @@ const GAMES = [
     id: 'slope',
     title: "Slope Unblocked Classroom 6x",
     category: "Racing",
-    image: "https://picsum.photos/seed/slope/400/300",
+    image: "https://play-lh.googleusercontent.com/Mh8fn59cPlFcqNOop1KllhKCIw1id8ZkvupMTM8-1Q7u8HSD58sEXmUIMjfJrRZtC0E",
     rating: 4.8,
     url: "https://kdata1.com/2020/05/slope/",
-    description: "Slope is the ultimate running game that will put your skills to the test. Speed down on a random slope. The farther you go, the faster your ball travels. This game might look simple but playing this will give you extreme adrenaline rush."
+    description: "Slope Unblocked Classroom 6x is the definitive 3D space-running game. Test your reflexes as you navigate a high-speed ball through a neon-lit futuristic world. Avoid obstacles, master the tilt, and achieve the highest score in this addictive, school-friendly unblocked game."
   },
   {
     id: 'tunnel-rush',
     title: "Tunnel Rush Unblocked Classroom 6x",
     category: "Arcade",
-    image: "https://picsum.photos/seed/tunnelrush/400/300",
+    image: "https://play-lh.googleusercontent.com/KwF38WdLVxmnEC3FgMN3GpWY16XhZGu6fkLAPInrltPvUXnycG5IjTvazosfhtGmA_OPYV3O-PfoVSKYOApGbA=w526-h296-rw",
     rating: 4.7,
-    url: "https://play.gamepix.com/tunnel-rush/embed?sid=VCOSN"
+    url: "https://play.gamepix.com/tunnel-rush/embed?sid=VCOSN",
+    description: "Tunnel Rush Unblocked Classroom 6x is a high-speed, heart-pounding 3D racing game where you navigate through a neon tunnel of infinite obstacles. Test your reflexes and agility in this addictive arcade title, perfectly optimized for school and work browsers."
   },
   {
     id: 'drive-mad',
     title: "Drive Mad Unblocked Classroom 6x",
     category: "Racing",
-    image: "https://picsum.photos/seed/drivemad/400/300",
+    image: "https://drivemad3.io/data/image/game/drive-mad-unblocked.png",
     rating: 4.8,
-    url: "https://play.gamepix.com/drive-mad/embed?sid=VCOSN"
+    url: "https://play.fancade.com/5F084A0BCE06B710?max_w=999999&max_h=9999999&istart=1",
+    description: "Drive Mad Unblocked Classroom 6x is a physics-based car racing game where you test your driving skills across increasingly difficult tracks. Experience unique vehicle mechanics, massive wheels, and mind-bending obstacles in this school-safe arcade classic."
   },
   {
     id: 'snow-rider-3d',
@@ -164,6 +167,15 @@ const GAMES = [
     rating: 4.9,
     url: "https://itsvijaysingh.github.io/Snow-Rider3D/",
     description: "Snow Rider 3D Classroom 6x is an exhilarating 3D racing game where you slide down snowy slopes, dodge obstacles, and collect gifts. Experience the thrill of high-speed sledding with stunning graphics and smooth gameplay, perfectly unblocked for school and work."
+  },
+  {
+    id: 'its-taxi',
+    title: "Its taxi by artast Unblocked Classroom 6x",
+    category: "Racing",
+    image: "https://play-lh.googleusercontent.com/eme5H81HUS8hGMIKLdI8nxxDbM8vWkbtjYmkNuAE9U7PK0yyxSVLGsfTW-s_6_yCONxI8iNPBllk5tD8dm1qqw",
+    rating: 4.8,
+    url: "https://play.fancade.com/622C3C5036AF773F?max_w=999999&max_h=9999999&istart=1",
+    description: "Its taxi by artast Unblocked Classroom 6x is a charming and challenging taxi simulator where you navigate isometric city streets. Master the art of picking up passengers and delivering them safely in this pixel-perfect puzzle-racer, optimized for school and work browsers."
   },
   {
     id: 'ragdoll-archers',
@@ -837,6 +849,10 @@ export default function App() {
                        selectedGame.id === 'hoop-world' ? 'Hoop World: Master the Art of Aerial Dunks' :
                        selectedGame.id === 'goal-skibidi-goal' ? 'Goal Skibidi Goal: Zany Physics and Frenetic Soccer' :
                        selectedGame.id === 'samurai-brawling' ? 'Samurai Brawling: Arashin\'s Path of Vengeance and Honor' :
+                       selectedGame.id === 'slope' ? 'Slope Unblocked Classroom 6x: The Ultimate 3D Speed Challenge' :
+                       selectedGame.id === 'tunnel-rush' ? 'Tunnel Rush Unblocked Classroom 6x: High-Speed Reflex Odyssey' :
+                       selectedGame.id === 'drive-mad' ? 'Drive Mad Unblocked Classroom 6x: Master the Physics of Racing' :
+                       selectedGame.id === 'its-taxi' ? 'Its taxi by artast Unblocked Classroom 6x: The Pixel-Perfect Taxi Sim' :
                        `The Chaotic Joy of ${selectedGame.title}`}
                     </h2>
                     <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
@@ -1057,6 +1073,98 @@ export default function App() {
                           <h3 className="text-2xl font-bold text-slate-900 mt-8">Unblocked Action Anywhere</h3>
                           <p>
                             Samurai Brawling is fully unblocked and optimized for seamless browser play on our platform. Whether you're at school, work, or home, you can jump straight into Arashin's adventure without any downloads or installations. Experience the ultimate samurai brawler today and prove your worth as a legendary warrior!
+                          </p>
+                        </>
+                      ) : selectedGame.id === 'slope' ? (
+                        <>
+                          <p>
+                            Welcome to the high-stakes world of <strong>Slope Unblocked Classroom 6x</strong>, the definitive 3D speed-running experience that has captivated millions of players worldwide. In this minimalist yet intense neon world, you control a high-velocity ball hurtling down a never-ending series of futuristic slopes.
+                          </p>
+                          <p>
+                            The premise is simple: stay on the track. However, as your speed increases and the physics take over, <strong>Slope Game</strong> becomes a true test of your hand-eye coordination and lightning-fast reflexes. Every tilt and turn must be calculated to avoid the red obstacles and the bottomless pits that line the course.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Dynamic Physics and Neon Aesthetics</h3>
+                          <p>
+                            What makes <strong>Slope Unblocked</strong> stand out is its seamless integration of high-speed physics and a mesmerizing neon aesthetic. The game world is procedurally generated, meaning every run offers a new set of challenges. The minimalist design ensures that your focus remains entirely on the speed and the path ahead, creating an "in-the-zone" experience unlike any other unblocked title.
+                          </p>
+                          <p>
+                            As you navigate through steep drops and tight corners, the adrenaline increases proportionally with your velocity. It's a game that rewards persistence; every failed attempt is a lesson learned, pushing you to beat your previous high score and climb the local leaderboards.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Unblocked for Classroom Performance</h3>
+                          <p>
+                            Optimized specifically for the <strong>Classroom 6x</strong> ecosystem, this version of Slope is built to run flawlessly on Chromebooks and school networks. We've ensured that there is zero lag between your inputs and the ball's movement—a critical factor in a game where a millisecond makes the difference between a high score and a game over.
+                          </p>
+                          <p>
+                            Experience the raw speed of <strong>Slope Unblocked Classroom 6x</strong> today. With no downloads required and instant browser play, the ultimate 3D challenge is just a single click away. Are you ready to master the slope?
+                          </p>
+                        </>
+                      ) : selectedGame.id === 'tunnel-rush' ? (
+                        <>
+                          <p>
+                            Prepare for the ultimate adrenaline rush with <strong>Tunnel Rush Unblocked Classroom 6x</strong>, a fast-paced 3D arcade game that pushes your reflexes to the absolute limit. In this neon-soaked odyssey, you are propelled through a vibrant, ever-changing tunnel at breakneck speeds, with only your agility between you and a high-score ending crash.
+                          </p>
+                          <p>
+                            The core of <strong>Tunnel Rush</strong> is its minimalist but incredibly challenging gameplay. As you hurtle forward, a variety of geometric obstacles appear in your path. You must rotate the tunnel (or your perspective) instantly to navigate through gaps and stay alive. The further you progress, the faster the tunnel moves, and the more complex the patterns become.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Mastering the Rhythm of Speed</h3>
+                          <p>
+                            To succeed in <strong>Tunnel Rush Unblocked</strong>, you need more than just quick fingers; you need to find the rhythm of the game. Each level or segment introduces new obstacle configurations that require split-second decision-making. The high-contrast neon visuals combined with a pulse-pounding electronic soundtrack create an immersive "flow state" that keeps players engaged for hours.
+                          </p>
+                          <p>
+                            Whether you're dodging spinning blades or threading the needle through narrow corridors, the satisfying feedback of a successful run is what makes this a staple of the <strong>Classroom 6x</strong> collection. It's the perfect game for challenging yourself to beat a personal record or competing with friends for the top spot on the leaderboard.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Optimized for School and Browser Play</h3>
+                          <p>
+                            Like all our featured titles, this version of <strong>Tunnel Rush</strong> is fully unblocked and optimized for web browser performance. We've ensured that the game runs smoothly without the need for high-end hardware, making it perfect for Chromebooks and school computers.
+                          </p>
+                          <p>
+                            Dive into the neon depths of <strong>Tunnel Rush Unblocked Classroom 6x</strong> now. No downloads, no lag—just pure, high-speed exhilaration available at your fingertips. Can you survive the rush?
+                          </p>
+                        </>
+                      ) : selectedGame.id === 'drive-mad' ? (
+                        <>
+                          <p>
+                            Get ready for a racing experience like no other with <strong>Drive Mad Unblocked Classroom 6x</strong>. Developed with a focus on quirky physics and challenging level design, this game takes the traditional racing genre and flips it on its head. In <strong>Drive Mad</strong>, speed is important, but control is everything.
+                          </p>
+                          <p>
+                            Each stage of <strong>Drive Mad Unblocked</strong> presents a new vehicle and a unique set of obstacles. From massive monster trucks with disproportionate wheels to fragile cars that crumble under pressure, the variety of vehicles keeps the gameplay fresh and unpredictable. Your goal is to reach the finish line without flipping your car or getting stuck on the creatively designed terrain.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Unique Physics-Based Challenges</h3>
+                          <p>
+                            The standout feature of <strong>Drive Mad</strong> is its physics engine. Every wheel rotation and every bump in the road affects your vehicle realistically. You'll need to master the art of feathering the throttle and knowing when to use full power to scale steep inclines or clear massive gaps. The gratification of finally conquering a particularly difficult track is what makes this game a fan favorite on <strong>Classroom 6x</strong>.
+                          </p>
+                          <p>
+                            With dozens of levels ranging from simple sprints to complex mechanical puzzles, <strong>Drive Mad Unblocked Classroom 6x</strong> offers hours of entertainment. The minimalist, blocky art style not only looks modern and clean but also ensures high performance on school networks and Chromebooks.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Unblocked Racing for All Devices</h3>
+                          <p>
+                            We have optimized <strong>Drive Mad</strong> to ensure it is fully unblocked and accessible in restricted environments. Whether you are playing during a study break or at home, you can enjoy the full experience directly in your browser with zero installations.
+                          </p>
+                          <p>
+                            Start your engines and put your skills to the test in <strong>Drive Mad Unblocked Classroom 6x</strong> today. Can you master the madness and reach the final level?
+                          </p>
+                        </>
+                      ) : selectedGame.id === 'its-taxi' ? (
+                        <>
+                          <p>
+                            Step into the colorful, isometric world of <strong>Its taxi by artast Unblocked Classroom 6x</strong>, a delightful and addictive taxi simulator that blends puzzle-solving with precision driving. Developed with the unique Fancade aesthetic, <strong>Its taxi</strong> challenges you to become the most efficient driver on the block while navigating through intricate city layouts.
+                          </p>
+                          <p>
+                            The core objective of <strong>Its taxi by artast</strong> is simple: pick up passengers and get them to their destinations. However, the path isn't always clear. You'll need to navigate through tight corners, avoid heavy traffic, and solve environmental puzzles to reach your goal. The minimalist design and smooth controls make it an instant classic for players looking for a relaxed yet mentally stimulating gaming session.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Master the Art of Urban Navigation</h3>
+                          <p>
+                            What makes <strong>Its taxi Unblocked</strong> special is its focus on strategic movement. Every city block is a puzzle waiting to be solved. You'll need to plan your route carefully to ensure your passengers arrive on time. As you progress through the levels, the city layouts become more complex, introducing new obstacles and traffic patterns that will test your patience and your driving finesse.
+                          </p>
+                          <p>
+                            The vibrant pixel-art style and the cheerful soundtrack create a welcoming atmosphere that makes every delivery a joy. Whether you're playing for five minutes or an hour, <strong>Its taxi by artast Classroom 6x</strong> provides a satisfying sense of progression and accomplishment.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Perfect for School and Productivity Breaks</h3>
+                          <p>
+                            We have optimized this version of <strong>Its taxi</strong> specifically for the <strong>Classroom 6x</strong> platform. The game is fully unblocked and optimized to run flawlessly in any modern web browser, including on Chromebooks and other school-issued devices. No downloads are necessary, allowing you to jump straight into the driver's seat and start picking up fares.
+                          </p>
+                          <p>
+                            Discover why <strong>Its taxi by artast Unblocked Classroom 6x</strong> is becoming a favorite among students and casual gamers alike. Start your shift today and see if you can become the city's top-rated taxi driver!
                           </p>
                         </>
                       ) : (
@@ -1524,7 +1632,7 @@ export default function App() {
             <p className="text-sm text-slate-500 leading-relaxed">
               The world's most popular destination for unblocked games. Play thousands of titles for free, anywhere, anytime.
             </p>
-            <div className="pt-2">
+            <div className="pt-2 flex flex-col gap-3">
               <a 
                 href="https://www.linkedin.com/in/likhon-farazi-b06893276/" 
                 target="_blank" 
@@ -1533,6 +1641,15 @@ export default function App() {
               >
                 <Linkedin size={16} />
                 Connect with Owner
+              </a>
+              <a 
+                href="https://www.youtube.com/watch?v=oDfa5Z8DCyU&pp=ygUPdW5ibG9ja2VkIGdhbWVz" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-[#FF0000] transition-all"
+              >
+                <Youtube size={16} />
+                Watch on YouTube
               </a>
             </div>
           </div>
