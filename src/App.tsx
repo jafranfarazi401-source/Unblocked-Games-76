@@ -626,6 +626,26 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  // Domain Protection & Cannonical Redirection logic
+  useEffect(() => {
+    const allowedDomains = [
+      "classroom6x.store",
+      "www.classroom6x.store"
+    ];
+    
+    // Safety check: Don't redirect in development or preview environments
+    const hostname = window.location.hostname;
+    const isDev = hostname === 'localhost' || 
+                  hostname === '127.0.0.1' || 
+                  hostname.includes('asia-east1.run.app') || 
+                  hostname.includes('google.com') ||
+                  hostname.includes('webcontainer.io');
+
+    if (!isDev && !allowedDomains.includes(hostname)) {
+      window.location.replace(`https://classroom6x.store${window.location.pathname}${window.location.search}`);
+    }
+  }, []);
+
   // Filtered games based on activeTab and searchQuery
   const filteredGames = GAMES.filter(game => {
     const matchesCategory = activeTab === "Home" || game.category === activeTab;
