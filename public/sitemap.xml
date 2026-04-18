@@ -6,56 +6,56 @@
     <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://classroom6x.store/#blogs</loc>
+    <loc>https://classroom6x.store/blogs</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   
   <!-- Categories -->
-  <url><loc>https://classroom6x.store/#action</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/#multiplayer</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/#sports</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/#shooter</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/#drawing</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/#arcade</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/#fighting</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/#racing</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/#adventure</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/action</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/multiplayer</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/sports</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/shooter</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/drawing</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/arcade</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/fighting</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/racing</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/adventure</loc><priority>0.7</priority></url>
 
   <!-- Popular Games -->
-  <url><loc>https://classroom6x.store/#game-basket-random</loc><priority>0.9</priority></url>
-  <url><loc>https://classroom6x.store/#game-slope</loc><priority>0.9</priority></url>
-  <url><loc>https://classroom6x.store/#game-retro-bowl</loc><priority>0.9</priority></url>
-  <url><loc>https://classroom6x.store/#game-run-3</loc><priority>0.9</priority></url>
-  <url><loc>https://classroom6x.store/#game-gta-san-andreas</loc><priority>0.9</priority></url>
-  <url><loc>https://classroom6x.store/#game-hoops-and-fruits</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-funny-shooter-2</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-epic-duck</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-stickman-street-fighting</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-penalty-kick-wiz</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-moto-x3m-spooky-land</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-merge-mine-idle-clicker</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-evil-invader</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-hoop-world</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-goal-skibidi-goal</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-samurai-brawling</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-tunnel-rush</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-drive-mad</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-snow-rider-3d</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-its-taxi</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/#game-ragdoll-archers</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/basket-random</loc><priority>0.9</priority></url>
+  <url><loc>https://classroom6x.store/game/slope</loc><priority>0.9</priority></url>
+  <url><loc>https://classroom6x.store/game/retro-bowl</loc><priority>0.9</priority></url>
+  <url><loc>https://classroom6x.store/game/run-3</loc><priority>0.9</priority></url>
+  <url><loc>https://classroom6x.store/game/gta-san-andreas</loc><priority>0.9</priority></url>
+  <url><loc>https://classroom6x.store/game/hoops-and-fruits</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/funny-shooter-2</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/epic-duck</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/stickman-street-fighting</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/penalty-kick-wiz</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/moto-x3m-spooky-land</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/merge-mine-idle-clicker</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/evil-invader</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/hoop-world</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/goal-skibidi-goal</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/samurai-brawling</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/tunnel-rush</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/drive-mad</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/snow-rider-3d</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/its-taxi</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/ragdoll-archers</loc><priority>0.8</priority></url>
 
   <!-- Blog Articles -->
-  <url><loc>https://classroom6x.store/#blog-what-are-unblocked-games</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-how-unblocked-games-work</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-is-classroom-6x-safe</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-how-to-play-2026</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-how-to-access-no-vpn</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-how-to-play-slope-chromebook</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-top-10-unblocked-games</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-best-classroom-games-online</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-top-5-games-like-slope</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-best-retro-browser-games</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-how-to-play-classroom-6x-2026</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/#blog-top-10-classroom-6x</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/what-are-unblocked-games</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/how-unblocked-games-work</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/is-classroom-6x-safe</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/how-to-play-2026</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/how-to-access-no-vpn</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/how-to-play-slope-chromebook</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/top-10-unblocked-games</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/best-classroom-games-online</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/top-5-games-like-slope</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/best-retro-browser-games</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/how-to-play-classroom-6x-2026</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/top-10-classroom-6x</loc><priority>0.6</priority></url>
 </urlset>

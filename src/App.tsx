@@ -643,6 +643,43 @@ export default function App() {
     }
   }, []);
 
+  // SEO: Pseudo-Router to handle deep links for Games and Blogs
+  useEffect(() => {
+    const path = window.location.pathname.toLowerCase();
+    
+    // Check for Game paths (/game/run-3 or /run-3)
+    const gameMatch = path.match(/^\/(game\/)?([a-z0-9-]+)$/);
+    if (gameMatch) {
+      const id = gameMatch[2];
+      const game = GAMES.find(g => g.id === id);
+      if (game) {
+        setSelectedGame(game);
+        return;
+      }
+    }
+
+    // Check for Blog paths (/blog/title)
+    const blogMatch = path.match(/^\/blog\/([a-z0-9-]+)$/);
+    if (blogMatch) {
+      const id = blogMatch[1];
+      const blog = BLOGS.find(b => b.id === id);
+      if (blog) {
+        setSelectedBlog(blog);
+        return;
+      }
+    }
+
+    // Check for Categories via URL (optional but helpful)
+    const categoryMatch = path.match(/^\/category\/([a-z0-9-]+)$/);
+    if (categoryMatch) {
+      const catId = categoryMatch[1];
+      const category = NAV_TABS.find(t => t.toLowerCase() === catId);
+      if (category) {
+        setActiveTab(category);
+      }
+    }
+  }, []);
+
   // Filtered games based on activeTab and searchQuery
   const filteredGames = GAMES.filter(game => {
     const matchesCategory = activeTab === "Home" || game.category === activeTab;
@@ -1842,16 +1879,16 @@ export default function App() {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10 gap-4">
                   {["Action", "Sports", "Racing", "Arcade", "Puzzle", "Shooter", "Multiplayer", "Fighting", "Adventure", "Drawing"].map(cat => (
-                    <a
-                      key={cat}
-                      href={`#${cat.toLowerCase()}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setActiveTab(cat);
-                        document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                      className="glass p-4 rounded-2xl text-center group transition-all hover:bg-brand-purple/10 border-transparent hover:border-brand-purple/20"
-                    >
+                      <a
+                        key={cat}
+                        href={`/category/${cat.toLowerCase()}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setActiveTab(cat);
+                          document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="glass p-4 rounded-2xl text-center group transition-all hover:bg-brand-purple/10 border-transparent hover:border-brand-purple/20"
+                      >
                       <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 group-hover:text-brand-purple transition-colors">
                         {cat}
                       </span>
@@ -1916,7 +1953,7 @@ export default function App() {
                           {BLOGS.slice(0, 6).map(blog => (
                             <a 
                               key={blog.id} 
-                              href={`#blog-${blog.id}`}
+                              href={`/blog/${blog.id}`}
                               onClick={(e) => {
                                 e.preventDefault();
                                 setSelectedBlog(blog);

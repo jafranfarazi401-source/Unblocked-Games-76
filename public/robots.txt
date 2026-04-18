@@ -1,4 +1,6 @@
+# Robots.txt for https://classroom6x.store
 User-agent: *
 Allow: /
 
+# Sitemap Location
 Sitemap: https://classroom6x.store/sitemap.xml
