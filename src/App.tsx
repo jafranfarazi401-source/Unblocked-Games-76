@@ -13,7 +13,10 @@ import {
   Star,
   Loader2,
   Linkedin,
-  Youtube
+  Youtube,
+  BookOpen,
+  ArrowLeft,
+  ShieldCheck
 } from 'lucide-react';
 
 // Mock Data
@@ -178,6 +181,15 @@ const GAMES = [
     description: "Its taxi by artast Unblocked Classroom 6x is a charming and challenging taxi simulator where you navigate isometric city streets. Master the art of picking up passengers and delivering them safely in this pixel-perfect puzzle-racer, optimized for school and work browsers."
   },
   {
+    id: 'run-3',
+    title: "Run 3 Unblocked Classroom 6x",
+    category: "Arcade",
+    image: "https://img.vofey.com/Run-3.jpg",
+    rating: 4.9,
+    url: "https://play.gamepix.com/run-3/embed?sid=VCOSN",
+    description: "Run 3 Unblocked Classroom 6x is the ultimate gravity-defying endless runner. Navigate through a vast tunnel system in space, switching gravity to run on walls and ceilings. A classic unblocked game perfect for school and home play."
+  },
+  {
     id: 'ragdoll-archers',
     title: "Ragdoll Archers Classroom 6x",
     category: "Action",
@@ -185,6 +197,168 @@ const GAMES = [
     rating: 4.9,
     url: "https://bitlifeonline.github.io/ragdoll-archers/",
     description: "Ragdoll Archers Classroom 6x is a physics-based archery game where you control a ragdoll archer in intense battles. Aim carefully, account for gravity, and defeat your opponents in this addictive unblocked game. Play solo or with a friend in 2-player mode!"
+  }
+];
+
+const BLOGS = [
+  {
+    id: 'what-are-unblocked-games',
+    title: "What are Unblocked Games? (Complete Guide)",
+    excerpt: "Everything you need to know about the world of unblocked gaming and why they are so popular in schools.",
+    content: `
+      <h2>The Rise of Unblocked Gaming</h2>
+      <p>Unblocked games are essentially web-based games that can be accessed on networks that typically restrict gaming sites, such as schools or workplaces. These games are hosted on mirror sites or using technologies that bypass standard firewalls.</p>
+      <p>Platforms like <strong>Classroom 6x</strong> have specialized in providing these titles, ensuring that students have access to high-quality entertainment during their breaks. From simple arcade games to complex 3D runners like <strong>Slope</strong>, the variety is immense.</p>
+      <h3>Why Students Love Them</h3>
+      <p>The main appeal lies in accessibility. When standard platforms like Steam or Epic Games are blocked, unblocked sites offer a seamless way to play instantly in the browser with no downloads required.</p>
+    `
+  },
+  {
+    id: 'how-unblocked-games-work',
+    title: "How Unblocked Games Work in School Networks",
+    excerpt: "A deep dive into the technology behind bypassing school firewalls and web filters.",
+    content: `
+      <h2>Understanding Web Filters</h2>
+      <p>Most school networks use web filters to block specific categories of websites, including 'Gaming'. Unblocked sites work by using several methods:</p>
+      <ul>
+        <li><strong>Mirror Sites:</strong> Hosting the game on a less obvious URL.</li>
+        <li><strong>Google Sites/GitHub Pages:</strong> Using trusted domains that schools rarely block.</li>
+        <li><strong>Embedded Players:</strong> Using iframes to pull game data from external servers.</li>
+      </ul>
+      <p><strong>Classroom 6x at school</strong> works efficiently because it's optimized to load quickly even on restricted connections, providing a smooth <strong>unblocked games school</strong> experience for everyone.</p>
+    `
+  },
+  {
+    id: 'is-classroom-6x-safe',
+    title: "Is Classroom 6x Safe? Everything You Need to Know",
+    excerpt: "Safety and security are our priorities. Learn why Classroom 6x is the most trusted source for games.",
+    content: `
+      <h2>Your Safety First</h2>
+      <p>At Classroom 6x, we understand that safety is a major concern for students and parents alike. Unlike many other sites that are cluttered with intrusive ads or malicious scripts, we curate our library with care.</p>
+      <h3>Why Trust Classroom 6x?</h3>
+      <ul>
+        <li><strong>No Downloads:</strong> You never have to download files that could contain viruses.</li>
+        <li><strong>Secure Hosting:</strong> We use reliable servers to ensure a safe browsing experience.</li>
+        <li><strong>Hand-Picked Games:</strong> Every game is tested for quality and safety before being added.</li>
+      </ul>
+      <p>Play <strong>unblocked games school</strong> with peace of mind knowing that Classroom 6x is designed to be a safe haven for gamers. We provide a <strong>Classroom 6x at school</strong> experience that is both fun and secure.</p>
+    `
+  },
+  {
+    id: 'how-to-play-2026',
+    title: "How to Play Unblocked Games at School (2026 Guide)",
+    excerpt: "The latest tips and tricks for accessing your favorite games on restricted school networks in 2026.",
+    content: `
+      <h2>Accessing Games in 2026</h2>
+      <p>As school firewalls become more sophisticated, the methods to access games also evolve. This 2026 guide covers the most reliable ways to stay connected to <strong>Classroom 6x at school</strong>.</p>
+      <h3>Top Methods:</h3>
+      <ol>
+        <li><strong>Search for Specific Engines:</strong> Using direct links to game pages often bypasses main site blocks.</li>
+        <li><strong>Browser Extensions:</strong> Some lightweight extensions can help with site accessibility.</li>
+        <li><strong>Cache Browsing:</strong> Using cached versions of pages can sometimes work.</li>
+      </ol>
+      <p>The easiest method remains visiting <strong>Classroom 6x</strong>, which is constantly updated to remain accessible for all your <strong>unblocked games school</strong> needs.</p>
+    `
+  },
+  {
+    id: 'how-to-access-no-vpn',
+    title: "How to Access Blocked Games Without VPN",
+    excerpt: "Simple techniques to bypass game blocks without using a VPN, perfect for school chromebooks.",
+    content: `
+      <h2>Games Without VPN</h2>
+      <p>Many students prefer not to use a VPN due to speed issues or school policy. You can still reach your <strong>unblocked games school</strong> list using sites like <strong>Classroom 6x</strong> which are built on accessible frameworks.</p>
+      <p>By leveraging mirror URLs and cloud-hosted platforms, we provide a <strong>Classroom 6x at school</strong> experience that doesn't trigger VPN detection.</p>
+    `
+  },
+  {
+    id: 'how-to-play-slope-chromebook',
+    title: "How to Play Slope Unblocked on School Chromebook",
+    excerpt: "A step-by-step guide to running the high-performance Slope game on lightweight school devices.",
+    content: `
+      <h2>Slope on Chromebooks</h2>
+      <p>Chromebooks are excellent for web apps. To play <strong>Slope Unblocked</strong> on your <strong>Classroom 6x at school</strong> portal, ensure your browser is updated and hardware acceleration is on.</p>
+      <p>Slope is optimized for the Chrome OS environment, making it one of the most stable <strong>unblocked games school</strong> titles available.</p>
+    `
+  },
+  {
+    id: 'top-10-unblocked-games',
+    title: "Top 10 Unblocked Games for School",
+    excerpt: "Our curated selection of the absolute best games to play during your school breaks.",
+    content: `
+      <h2>School Break Favorites</h2>
+      <p>Here are the best <strong>unblocked games school</strong> students are playing in 2026:</p>
+      <ul>
+        <li><strong>Slope:</strong> High-speed reaction test.</li>
+        <li><strong>Retro Bowl:</strong> Football management.</li>
+        <li><strong>Run 3:</strong> Gravity-defying running.</li>
+        <li><strong>Basket Random:</strong> Chaotic sports fun.</li>
+        <li><strong>1v1.LOL:</strong> Strategic building and shooting.</li>
+      </ul>
+      <p>All these are available on <strong>Classroom 6x</strong>, the leader in <strong>unblocked games school</strong> accessibility.</p>
+    `
+  },
+  {
+    id: 'best-classroom-games-online',
+    title: "Best Classroom Games to Play Online Free",
+    excerpt: "Discover the most engaging classroom games that are completely free to eye-popping browser games.",
+    content: `
+      <h2>Free Classroom Fun</h2>
+      <p>Online classroom games are designed to be played quickly. <strong>Classroom 6x at school</strong> offers a massive variety of these titles, from math puzzles to action racers.</p>
+      <p>Because they are <strong>unblocked games school</strong> ready, you can enjoy them instantly with your classmates.</p>
+    `
+  },
+  {
+    id: 'top-5-games-like-slope',
+    title: "Top 5 Games Like Slope You Must Try",
+    excerpt: "If you love the intensity of Slope, check out these 5 similar high-speed arcade games.",
+    content: `
+      <h2>If You Like Slope...</h2>
+      <p>Loved the rush of Slope? Try these <strong>unblocked games school</strong> alternatives on <strong>Classroom 6x</strong>:</p>
+      <ol>
+        <li><strong>Tunnel Rush:</strong> Faster reflexes required.</li>
+        <li><strong>Snow Rider 3D:</strong> Sledding madness.</li>
+        <li><strong>Run 3:</strong> Space running with gravity.</li>
+        <li><strong>Interstellar Run:</strong> A modern twist on the genre.</li>
+        <li><strong>Death Run:</strong> High stakes and high speed.</li>
+      </ol>
+    `
+  },
+  {
+    id: 'best-retro-browser-games',
+    title: "Best Retro Browser Games (No Download)",
+    excerpt: "Relive the classics with our collection of nostalgic retro games that require no installation.",
+    content: `
+      <h2>Retro Gaming Reborn</h2>
+      <p>Retro games like <strong>Retro Bowl</strong> are perfect for <strong>unblocked games school</strong> sessions and work perfectly on <strong>Classroom 6x at school</strong>.</p>
+      <p>No downloads, just pure nostalgic fun right in your browser.</p>
+    `
+  },
+  {
+    id: 'how-to-play-classroom-6x-2026',
+    title: "How to Play Classroom 6x Games at School (2026 Guide)",
+    excerpt: "A comprehensive guide on ensuring you always have access to Classroom 6x games throughout 2026.",
+    content: `
+      <h2>Classroom 6x Guide 2026</h2>
+      <p>To ensure you never lose access to <strong>Classroom 6x at school</strong>, bookmark our mirror sites and follow this <strong>unblocked games school</strong> guide.</p>
+      <p>Access <strong>Classroom 6x</strong> safely and efficiently using the latest web technologies available in 2026.</p>
+    `
+  },
+  {
+    id: 'top-10-classroom-6x',
+    title: "Top 10 Games on Classroom 6x You Should Play",
+    excerpt: "The definitive list of the best games currently available on the Classroom 6x platform.",
+    content: `
+      <h2>The Best of Classroom 6x</h2>
+      <p>With thousands of titles, choosing what to play can be hard. Here are our top picks available on <strong>Classroom 6x</strong>:</p>
+      <ol>
+        <li><strong>Slope:</strong> The ultimate 3D speed challenge.</li>
+        <li><strong>Retro Bowl:</strong> Manage your own football team in retro style.</li>
+        <li><strong>Run 3:</strong> Defy gravity in deep space.</li>
+        <li><strong>Ragdoll Archers:</strong> Physics-based archery fun.</li>
+        <li><strong>Basket Random:</strong> Chaotic basketball madness.</li>
+      </ol>
+      <p>Each of these games is perfectly optimized for <strong>unblocked games school</strong> play, ensuring you get the best performance on any device at <strong>Classroom 6x at school</strong>.</p>
+    `
   }
 ];
 
@@ -376,10 +550,22 @@ const FAQS = [
   {
     question: "Is Ragdoll Archers unblocked for school?",
     answer: "Yes! Ragdoll Archers Classroom 6x is fully unblocked and optimized for school and work environments. You can enjoy the game directly in your browser without any restrictions."
+  },
+  {
+    question: "Is Classroom 6x safe for school use?",
+    answer: "Yes, Classroom 6x is designed to be a safe and accessible platform for students. We hand-pick our games and host them on secure servers to ensure a worry-free unblocked games school experience."
+  },
+  {
+    question: "How do I access Classroom 6x at school in 2026?",
+    answer: "Simply visit our URL directly. We constantly update our site infrastructure to ensure that Classroom 6x at school remains the most reliable destination for unblocked gaming."
+  },
+  {
+    question: "Can I play Slope Unblocked on a school Chromebook?",
+    answer: "Absolutely! Slope is one of our most popular titles and is perfectly optimized to run on Chromebooks via Classroom 6x with zero lag."
   }
 ];
 
-const NAV_TABS = ["Home", "Action", "Multiplayer", "Sports", "Shooter", "Drawing", "Arcade", "Fighting", "Racing", "Adventure"];
+const NAV_TABS = ["Home", "Blogs", "Action", "Multiplayer", "Sports", "Shooter", "Drawing", "Arcade", "Fighting", "Racing", "Adventure"];
 
 const AdBanner = () => {
   const adContent = `
@@ -431,6 +617,7 @@ const AdBanner = () => {
 export default function App() {
   const [activeTab, setActiveTab] = useState("Home");
   const [activePage, setActivePage] = useState<string | null>(null);
+  const [selectedBlog, setSelectedBlog] = useState<any>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState<any>(null);
@@ -474,6 +661,8 @@ export default function App() {
         const description = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Experience the best unblocked games on our platform. No downloads, unblocked for school and work.`;
         metaDesc.setAttribute('content', description);
       }
+    } else if (selectedBlog) {
+      document.title = `${selectedBlog.title} - Classroom 6x Blog`;
     } else if (activePage) {
       document.title = `${activePage} - Classroom 6x`;
     } else {
@@ -483,10 +672,11 @@ export default function App() {
         metaDesc.setAttribute('content', "Play Classroom 6x for free! The best destination for unblocked games, including Ragdoll Archers, Snow Rider 3D, Retro Bowl, Slope, GTA San Andreas Unblocked, and more. Unblocked games for school and work. No downloads required.");
       }
     }
-  }, [selectedGame, activePage]);
+  }, [selectedGame, activePage, selectedBlog]);
 
   const handleLogoClick = () => {
     setSelectedGame(null);
+    setSelectedBlog(null);
     setIsPlaying(false);
     setActiveTab("Home");
     setActivePage(null);
@@ -566,16 +756,17 @@ export default function App() {
                   className="absolute top-full left-0 mt-2 w-64 glass rounded-2xl p-4 shadow-2xl border border-black/5 z-[60]"
                 >
                   <div className="grid grid-cols-2 gap-2">
-                    {NAV_TABS.filter(tab => tab !== "Home").map((tab) => (
+                    {NAV_TABS.filter(tab => !["Home", "Blogs"].includes(tab)).map((tab) => (
                       <button
                         key={tab}
                         onClick={() => {
                           setActiveTab(tab);
                           setSelectedGame(null);
+                          setSelectedBlog(null);
                           setIsCategoriesOpen(false);
                         }}
                         className={`px-3 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all text-left ${
-                          activeTab === tab && !selectedGame 
+                          activeTab === tab && !selectedGame && !selectedBlog
                             ? "bg-brand-purple/10 text-brand-purple" 
                             : "text-slate-500 hover:bg-black/5 hover:text-slate-900"
                         }`}
@@ -588,6 +779,22 @@ export default function App() {
               )}
             </AnimatePresence>
           </div>
+
+          <button
+            onClick={() => {
+              setSelectedGame(null);
+              setSelectedBlog(null);
+              setActiveTab("Blogs");
+              setActivePage(null);
+            }}
+            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${
+              activeTab === "Blogs"
+                ? "bg-brand-purple text-white shadow-lg shadow-brand-purple/20" 
+                : "text-slate-500 hover:text-slate-900 hover:bg-black/5"
+            }`}
+          >
+            Blogs
+          </button>
         </div>
 
         {/* Right: Actions & Status */}
@@ -1256,6 +1463,114 @@ export default function App() {
               </aside>
             </div>
           </div>
+        ) : selectedBlog ? (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-4xl mx-auto space-y-12 py-8"
+          >
+            <button 
+              onClick={() => setSelectedBlog(null)}
+              className="flex items-center gap-2 text-slate-500 hover:text-brand-purple transition-colors font-bold uppercase tracking-widest text-xs"
+            >
+              <ArrowLeft size={16} /> Back to Home
+            </button>
+
+            <article className="glass rounded-[2rem] p-8 md:p-12 space-y-8">
+              <header className="space-y-4">
+                <div className="flex items-center gap-3 text-brand-purple font-bold uppercase tracking-widest text-xs">
+                  <BookOpen size={16} />
+                  <span>Classroom 6x Knowledge Hub</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl font-display uppercase tracking-tight text-gradient leading-tight">
+                  {selectedBlog.title}
+                </h1>
+              </header>
+
+              <div 
+                className="prose prose-slate prose-lg max-w-none text-slate-700 leading-relaxed space-y-6"
+                dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
+              />
+
+              {/* Internal Links for Top 10 Game Blog */}
+              {selectedBlog.id === 'top-10-classroom-6x' && (
+                <div className="pt-8 border-t border-black/5 space-y-6">
+                  <h3 className="text-xl font-bold text-slate-900">Quick Links:</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {['slope', 'retro-bowl', 'run-3'].map(gameId => {
+                      const game = GAMES.find(g => g.id === gameId);
+                      if (!game) return null;
+                      return (
+                        <button
+                          key={gameId}
+                          onClick={() => {
+                            setSelectedGame(game);
+                            setSelectedBlog(null);
+                          }}
+                          className="glass p-4 rounded-2xl flex items-center gap-4 hover:scale-105 transition-transform text-left group"
+                        >
+                          <img 
+                            src={game.image} 
+                            alt={game.title} 
+                            className="w-16 h-16 rounded-xl object-cover"
+                            referrerPolicy="no-referrer"
+                          />
+                          <div>
+                            <p className="text-[10px] font-bold text-brand-purple uppercase tracking-widest">Play Now</p>
+                            <p className="text-sm font-bold text-slate-900 group-hover:text-brand-purple transition-colors truncate w-24">{game.title.split(' ')[0]}</p>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </article>
+
+            {/* Safety Callout */}
+            <section className="glass rounded-[2rem] p-8 bg-emerald-500/5 border border-emerald-500/10 flex flex-col md:flex-row items-center gap-8">
+              <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg shadow-emerald-500/20">
+                <ShieldCheck size={32} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-display uppercase tracking-tight text-emerald-600">Secure & Verified Site</h3>
+                <p className="text-slate-600 font-medium">Classroom 6x is committed to providing a safe, unblocked environment. No tracking, no malware, just pure gaming.</p>
+              </div>
+            </section>
+          </motion.div>
+        ) : activeTab === "Blogs" ? (
+          <div className="space-y-12 py-12">
+            <header className="text-center max-w-3xl mx-auto space-y-4">
+              <h1 className="text-5xl md:text-6xl font-display uppercase tracking-tight text-gradient leading-tight">Guides & Insights</h1>
+              <p className="text-slate-500 text-lg">Master the art of unblocked gaming with our exclusive guides and news.</p>
+            </header>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {BLOGS.map((blog, idx) => (
+                <motion.div
+                  key={blog.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: idx * 0.1 }}
+                  onClick={() => setSelectedBlog(blog)}
+                  className="glass rounded-[2rem] overflow-hidden group cursor-pointer border border-black/5 hover:border-brand-purple/20 transition-all p-8 flex flex-col h-full"
+                >
+                  <div className="flex-grow space-y-4">
+                    <div className="flex items-center gap-3 text-brand-purple font-bold uppercase tracking-widest text-[10px]">
+                      <BookOpen size={14} />
+                      <span>Article</span>
+                    </div>
+                    <h3 className="text-2xl font-display uppercase tracking-tight group-hover:text-brand-purple transition-colors leading-tight">{blog.title}</h3>
+                    <p className="text-slate-500 line-clamp-3 leading-relaxed">{blog.excerpt}</p>
+                  </div>
+                  <div className="pt-6 mt-auto border-t border-black/5 flex items-center justify-between">
+                    <span className="text-brand-purple font-bold uppercase tracking-widest text-[10px]">Read More</span>
+                    <ChevronRight size={16} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         ) : (
           <div className="grid grid-cols-1 gap-8">
             {/* Left Section: Hero & Grid */}
@@ -1460,7 +1775,50 @@ export default function App() {
                         </article>
                       </div>
 
-                      <article className="space-y-4">
+                      <section className="mt-16 space-y-12">
+                        <div className="text-center space-y-4">
+                          <h3 className="text-3xl font-display uppercase tracking-tight text-gradient">Classroom 6x Guides</h3>
+                          <p className="text-slate-500">Expert advice on unblocked gaming, safety, and school access.</p>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {BLOGS.slice(0, 6).map(blog => (
+                            <div 
+                              key={blog.id} 
+                              onClick={() => {
+                                setSelectedBlog(blog);
+                                window.scrollTo({top: 0, behavior: 'smooth'});
+                              }}
+                              className="glass p-6 rounded-2xl cursor-pointer hover:border-brand-purple/30 group transition-all"
+                            >
+                              <div className="flex items-center gap-2 mb-3 text-brand-purple">
+                                <BookOpen size={14} />
+                                <span className="text-[10px] font-bold uppercase tracking-widest">Guide</span>
+                              </div>
+                              <h4 className="font-bold text-slate-900 group-hover:text-brand-purple transition-colors mb-2">{blog.title}</h4>
+                              <p className="text-xs text-slate-500 line-clamp-2">{blog.excerpt}</p>
+                              <div className="mt-4 pt-4 border-t border-black/5 flex items-center justify-between">
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest group-hover:text-brand-purple transition-colors">Read Article</span>
+                                <ChevronRight size={14} className="text-slate-300 group-hover:translate-x-1 transition-transform" />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="text-center mt-8">
+                          <button 
+                            onClick={() => {
+                              setActiveTab("Blogs");
+                              window.scrollTo({top: 0, behavior: 'smooth'});
+                            }}
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-brand-purple text-white rounded-xl font-bold uppercase tracking-widest text-xs shadow-lg shadow-brand-purple/20 hover:scale-105 transition-all"
+                          >
+                            Explore All Blogs <ChevronRight size={16} />
+                          </button>
+                        </div>
+                      </section>
+
+                      <article className="space-y-4 pt-12 border-t border-black/5">
                         <h3 className="text-2xl font-bold text-slate-900 mt-8">Why Students Choose Classroom 6x for Unblocked Gaming</h3>
                         <p>
                           What sets <strong>Classroom 6x</strong> apart from other gaming sites is our commitment to technical excellence and content curation. Every game on our list, from the adrenaline-pumping <button onClick={() => { const s = GAMES.find(g => g.id === 'slope'); if(s) setSelectedGame(s); }} className="text-brand-purple font-semibold hover:underline">Slope Unblocked</button> to tactical simulations like <strong>Retro Bowl</strong>, is optimized for HTML5. This means no bulky Flash plugins, no slow loading times, and absolutely no downloads required. 
@@ -1608,6 +1966,44 @@ export default function App() {
                     {FAQS.map((faq, idx) => (
                       <div key={idx} className="glass p-6 rounded-2xl space-y-3">
                         <h4 className="font-bold text-lg text-slate-900">{faq.question}</h4>
+                        <p className="text-sm text-slate-500 leading-relaxed">{faq.answer}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+                
+                <section className="glass rounded-[2rem] p-8 lg:p-12 space-y-10 bg-brand-purple/5 border-brand-purple/10">
+                  <div className="text-center space-y-4">
+                    <h3 className="text-3xl font-display uppercase tracking-tight text-gradient">Important Questions (FAQ)</h3>
+                    <p className="text-slate-500">Everything you need to know about Classroom 6x and Unblocked Games.</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {FAQS.slice(-6).map((faq, idx) => (
+                      <div key={idx} className="glass p-6 rounded-2xl border border-black/5 hover:border-black/10 transition-all">
+                        <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 bg-brand-purple rounded-full" />
+                          {faq.question}
+                        </h4>
+                        <p className="text-sm text-slate-500 leading-relaxed">{faq.answer}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="glass rounded-[2rem] p-8 lg:p-12 space-y-10 bg-brand-purple/5 border border-brand-purple/10">
+                  <div className="text-center space-y-4">
+                    <h3 className="text-3xl font-display uppercase tracking-tight text-gradient">Important Questions (FAQ)</h3>
+                    <p className="text-slate-500">Everything you need to know about Classroom 6x and Unblocked Games.</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {FAQS.slice(-6).map((faq, idx) => (
+                      <div key={idx} className="glass p-6 rounded-2xl border border-black/5 hover:border-black/10 transition-all">
+                        <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 bg-brand-purple rounded-full" />
+                          {faq.question}
+                        </h4>
                         <p className="text-sm text-slate-500 leading-relaxed">{faq.answer}</p>
                       </div>
                     ))}
