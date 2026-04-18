@@ -65,7 +65,7 @@ const GAMES = [
     id: 'penalty-kick-wiz',
     title: "Penalty Kick Wiz Unblocked Classroom 6x",
     category: "Sports",
-    image: "https://a.silvergames.com/j/b/world-cup-penalty-shootout.jpg",
+    image: "https://eazegames.com/_next/image?url=https%3A%2F%2Feazegames.com%2Fstorage%2Fgames%2Fcommon%2FFree_Kick_Shooter%2Fpreview%2Fmobile-thumbnail%402x.webp&w=384&q=85",
     rating: 4.8,
     url: "https://play.gamepix.com/penalty-kick-wiz/embed?sid=VCOSN"
   },
@@ -184,7 +184,7 @@ const GAMES = [
     id: 'run-3',
     title: "Run 3 Unblocked Classroom 6x",
     category: "Arcade",
-    image: "https://img.vofey.com/Run-3.jpg",
+    image: "https://www.virlan.co/unblocked-games/wp-content/uploads/2022/03/Run-3-1.jpg",
     rating: 4.9,
     url: "https://play.gamepix.com/run-3/embed?sid=VCOSN",
     description: "Run 3 Unblocked Classroom 6x is the ultimate gravity-defying endless runner. Navigate through a vast tunnel system in space, switching gravity to run on walls and ceilings. A classic unblocked game perfect for school and home play."
@@ -628,20 +628,17 @@ export default function App() {
 
   // Domain Protection & Cannonical Redirection logic
   useEffect(() => {
-    const allowedDomains = [
-      "classroom6x.store",
-      "www.classroom6x.store"
-    ];
+    // force only non-www
+    const hostname = window.location.hostname;
     
     // Safety check: Don't redirect in development or preview environments
-    const hostname = window.location.hostname;
     const isDev = hostname === 'localhost' || 
                   hostname === '127.0.0.1' || 
                   hostname.includes('asia-east1.run.app') || 
                   hostname.includes('google.com') ||
                   hostname.includes('webcontainer.io');
 
-    if (!isDev && !allowedDomains.includes(hostname)) {
+    if (!isDev && hostname !== "classroom6x.store") {
       window.location.replace(`https://classroom6x.store${window.location.pathname}${window.location.search}`);
     }
   }, []);
@@ -1010,6 +1007,27 @@ export default function App() {
           </motion.div>
         ) : selectedGame ? (
           <div className="space-y-8">
+            {/* Breadcrumb Navigation */}
+            <nav className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+              <a 
+                href="/" 
+                onClick={(e) => { e.preventDefault(); setSelectedGame(null); }}
+                className="hover:text-brand-purple transition-colors"
+              >
+                Home
+              </a>
+              <ChevronRight size={10} />
+              <a 
+                href={`#${selectedGame.category}`} 
+                onClick={(e) => { e.preventDefault(); setActiveTab(selectedGame.category); setSelectedGame(null); }}
+                className="hover:text-brand-purple transition-colors"
+              >
+                {selectedGame.category} Games
+              </a>
+              <ChevronRight size={10} />
+              <span className="text-slate-900">{selectedGame.title}</span>
+            </nav>
+
             {/* Game Player Section */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -1473,20 +1491,51 @@ export default function App() {
                 </div>
 
                 <div className="glass rounded-3xl p-6 space-y-6">
-                  <h3 className="font-bold text-xl">Recent Uploads</h3>
-                  <div className="space-y-4">
-                    {GAMES.filter(g => g.id !== selectedGame.id).map(game => (
-                      <div 
+                  <h3 className="font-bold text-xl">Related Games</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    {GAMES.filter(g => g.category === selectedGame.category && g.id !== selectedGame.id).slice(0, 8).map(game => (
+                      <a 
                         key={game.id} 
-                        className="flex gap-4 group cursor-pointer"
-                        onClick={() => setSelectedGame(game)}
+                        href={`#game-${game.id}`}
+                        className="flex gap-4 group cursor-pointer items-center no-underline"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setSelectedGame(game);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
                       >
-                        <img src={game.image} className="w-16 h-16 rounded-lg object-cover group-hover:scale-105 transition-transform" alt="" />
+                        <img src={game.image} className="w-16 h-16 rounded-xl object-cover group-hover:scale-105 transition-transform shadow-sm" alt={game.title} />
                         <div>
-                          <h4 className="font-bold group-hover:text-brand-purple transition-colors text-slate-900">{game.title}</h4>
-                          <p className="text-xs text-slate-500">{game.category}</p>
+                          <h4 className="font-bold text-sm group-hover:text-brand-purple transition-colors text-slate-900 leading-snug">{game.title}</h4>
+                          <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold font-sans">Play {game.id === 'slope' ? 'Slope' : game.id === 'retro-bowl' ? 'Retro Bowl' : 'Unblocked'}</p>
                         </div>
-                      </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="glass rounded-3xl p-6 space-y-6">
+                  <h3 className="font-bold text-xl">Popular in {selectedGame.category}</h3>
+                  <div className="space-y-4">
+                    {GAMES.filter(g => g.category !== selectedGame.category).slice(0, 10).map(game => (
+                      <a 
+                        key={game.id} 
+                        href={`#game-${game.id}`}
+                        className="flex gap-4 group cursor-pointer items-center no-underline"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setSelectedGame(game);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                      >
+                        <img src={game.image} className="w-12 h-12 rounded-lg object-cover group-hover:scale-105 transition-transform" alt={game.title} />
+                        <div>
+                          <h4 className="font-bold text-xs group-hover:text-brand-purple transition-colors text-slate-900 truncate w-32">{game.title}</h4>
+                          <div className="flex items-center gap-1 text-[10px] text-yellow-500 font-bold">
+                            <Star size={10} fill="currentColor" /> {game.rating}
+                          </div>
+                        </div>
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -1782,6 +1831,53 @@ export default function App() {
                       <p className="text-slate-400 text-sm mt-2">Check back later for new releases!</p>
                     </div>
                   )}
+                </div>
+              </section>
+
+              {/* Popular Categories Links - Relocated to Bottom for SEO */}
+              <section className="space-y-6 pt-12 border-t border-black/5">
+                <div className="flex items-center gap-3">
+                  <Trophy className="text-yellow-500" />
+                  <h2 className="text-2xl font-bold uppercase tracking-tight">Browse Popular Categories</h2>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10 gap-4">
+                  {["Action", "Sports", "Racing", "Arcade", "Puzzle", "Shooter", "Multiplayer", "Fighting", "Adventure", "Drawing"].map(cat => (
+                    <a
+                      key={cat}
+                      href={`#${cat.toLowerCase()}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setActiveTab(cat);
+                        document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="glass p-4 rounded-2xl text-center group transition-all hover:bg-brand-purple/10 border-transparent hover:border-brand-purple/20"
+                    >
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 group-hover:text-brand-purple transition-colors">
+                        {cat}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </section>
+
+              {/* Quick Game Directory - Relocated to Bottom for SEO */}
+              <section className="glass rounded-[2rem] p-8 space-y-4">
+                <h3 className="font-bold uppercase tracking-widest text-[10px] text-slate-400 border-b border-black/5 pb-2">Classroom 6x Internal Game Directory</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-2 gap-x-6">
+                  {GAMES.map(game => (
+                    <a 
+                      key={`dir-${game.id}`}
+                      href={`/game/${game.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSelectedGame(game);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="text-[11px] font-bold text-slate-500 hover:text-brand-purple transition-colors truncate"
+                    >
+                      Play {game.title.split(' ')[0]} Unblocked
+                    </a>
+                  ))}
                 </div>
               </section>
 
