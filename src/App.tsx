@@ -707,20 +707,26 @@ export default function App() {
         </div>
 
         {/* Center: Navigation (Hidden on mobile) */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            onClick={handleLogoClick}
-            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${
+        <div className="hidden md:flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLogoClick();
+            }}
+            className={`px-4 py-2 rounded-xl transition-all ${
               activeTab === "Home" && !selectedGame 
                 ? "bg-brand-purple text-white shadow-lg shadow-brand-purple/20" 
                 : "text-slate-500 hover:text-slate-900 hover:bg-black/5"
             }`}
           >
             Home
-          </button>
+          </a>
 
-          <button
-            onClick={() => {
+          <a
+            href="#directory"
+            onClick={(e) => {
+              e.preventDefault();
               setSelectedGame(null);
               setIsPlaying(false);
               setActiveTab("Home");
@@ -730,16 +736,16 @@ export default function App() {
                 document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
               }, 100);
             }}
-            className="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900 hover:bg-black/5 border border-transparent hover:border-black/5 transition-all"
+            className="px-4 py-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-black/5 border border-transparent hover:border-black/5 transition-all"
           >
-            Browse All Directory
-          </button>
+            Directory
+          </a>
 
           <div className="relative categories-dropdown-container">
             <button
               onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center gap-2 ${
-                isCategoriesOpen || (activeTab !== "Home" && !selectedGame)
+              className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 ${
+                isCategoriesOpen || (activeTab !== "Home" && !selectedGame && activeTab !== "Blogs")
                   ? "bg-brand-purple text-white shadow-lg shadow-brand-purple/20" 
                   : "text-slate-500 hover:text-slate-900 hover:bg-black/5"
               }`}
@@ -757,9 +763,11 @@ export default function App() {
                 >
                   <div className="grid grid-cols-2 gap-2">
                     {NAV_TABS.filter(tab => !["Home", "Blogs"].includes(tab)).map((tab) => (
-                      <button
+                      <a
                         key={tab}
-                        onClick={() => {
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
                           setActiveTab(tab);
                           setSelectedGame(null);
                           setSelectedBlog(null);
@@ -772,7 +780,7 @@ export default function App() {
                         }`}
                       >
                         {tab}
-                      </button>
+                      </a>
                     ))}
                   </div>
                 </motion.div>
@@ -780,21 +788,23 @@ export default function App() {
             </AnimatePresence>
           </div>
 
-          <button
-            onClick={() => {
+          <a
+            href="#blogs"
+            onClick={(e) => {
+              e.preventDefault();
               setSelectedGame(null);
               setSelectedBlog(null);
               setActiveTab("Blogs");
               setActivePage(null);
             }}
-            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${
+            className={`px-4 py-2 rounded-xl transition-all ${
               activeTab === "Blogs"
                 ? "bg-brand-purple text-white shadow-lg shadow-brand-purple/20" 
                 : "text-slate-500 hover:text-slate-900 hover:bg-black/5"
             }`}
           >
             Blogs
-          </button>
+          </a>
         </div>
 
         {/* Right: Actions & Status */}
@@ -1611,8 +1621,8 @@ export default function App() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <h1 className="font-display text-3xl md:text-5xl xl:text-6xl uppercase tracking-tighter text-gradient leading-none">
-                      Classroom 6x: Best Unblocked Games for School
+                    <h1 className="font-display text-4xl md:text-5xl xl:text-6xl uppercase tracking-tighter text-gradient leading-none mb-4">
+                      Classroom 6x: Best Unblocked Games for School 2026
                     </h1>
                   </motion.div>
 
@@ -1622,8 +1632,8 @@ export default function App() {
                     transition={{ delay: 0.4 }}
                     className="text-slate-600 text-base leading-relaxed max-w-xl mx-auto lg:mx-0"
                   >
-                    Welcome to the ultimate destination for unblocked gaming. Classroom 6x brings you the best 
-                    collection of unblocked games, including Ragdoll Archers, Retro Bowl, Slope, Snow Rider 3D, and thousands of other titles.
+                    Welcome to the ultimate destination for <strong>Classroom 6x unblocked games</strong>. Our mission is to provide the best 
+                    collection of <strong>unblocked games for school</strong>, including Ragdoll Archers, Retro Bowl, Slope, Snow Rider 3D, and thousands of other titles.
                   </motion.p>
 
                   {/* Ad Sections */}
@@ -1706,13 +1716,18 @@ export default function App() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                   {filteredGames.length > 0 ? (
                     filteredGames.map((game, idx) => (
-                      <motion.div
+                      <motion.a
                         key={game.id}
+                        href={`#game-${game.id}`}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.1 }}
-                        onClick={() => setSelectedGame(game)}
-                        className="glass rounded-xl overflow-hidden group cursor-pointer hover:border-brand-purple/30 transition-all"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setSelectedGame(game);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="glass rounded-xl overflow-hidden group cursor-pointer hover:border-brand-purple/30 transition-all block"
                       >
                         <div className="relative aspect-[4/3] overflow-hidden">
                           <img 
@@ -1738,7 +1753,7 @@ export default function App() {
                             <p className="text-[10px] text-slate-500">{game.category}</p>
                           </div>
                         </div>
-                      </motion.div>
+                      </motion.a>
                     ))
                   ) : (
                     <div className="col-span-full py-16 text-center glass rounded-3xl border-dashed border-black/10">
@@ -1783,13 +1798,15 @@ export default function App() {
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                           {BLOGS.slice(0, 6).map(blog => (
-                            <div 
+                            <a 
                               key={blog.id} 
-                              onClick={() => {
+                              href={`#blog-${blog.id}`}
+                              onClick={(e) => {
+                                e.preventDefault();
                                 setSelectedBlog(blog);
                                 window.scrollTo({top: 0, behavior: 'smooth'});
                               }}
-                              className="glass p-6 rounded-2xl cursor-pointer hover:border-brand-purple/30 group transition-all"
+                              className="glass p-6 rounded-2xl group transition-all block hover:border-brand-purple/30"
                             >
                               <div className="flex items-center gap-2 mb-3 text-brand-purple">
                                 <BookOpen size={14} />
@@ -1801,20 +1818,22 @@ export default function App() {
                                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest group-hover:text-brand-purple transition-colors">Read Article</span>
                                 <ChevronRight size={14} className="text-slate-300 group-hover:translate-x-1 transition-transform" />
                               </div>
-                            </div>
+                            </a>
                           ))}
                         </div>
 
                         <div className="text-center mt-8">
-                          <button 
-                            onClick={() => {
+                          <a 
+                            href="#blogs"
+                            onClick={(e) => {
+                              e.preventDefault();
                               setActiveTab("Blogs");
                               window.scrollTo({top: 0, behavior: 'smooth'});
                             }}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-brand-purple text-white rounded-xl font-bold uppercase tracking-widest text-xs shadow-lg shadow-brand-purple/20 hover:scale-105 transition-all"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-brand-purple text-white rounded-xl font-bold uppercase tracking-widest text-xs shadow-lg shadow-brand-purple/20 hover:scale-105 transition-all block max-w-max mx-auto"
                           >
-                            Explore All Blogs <ChevronRight size={16} />
-                          </button>
+                            Explore All Guides & Articles <ChevronRight size={16} />
+                          </a>
                         </div>
                       </section>
 
@@ -2051,81 +2070,100 @@ export default function App() {
           </div>
           
           <div>
-            <h4 className="font-bold mb-6">Categories</h4>
+            <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Categories</h4>
             <ul className="space-y-3 text-sm text-slate-500">
-              <li onClick={() => { setActiveTab("Action"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Action Games</li>
-              <li onClick={() => { setActiveTab("Sports"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Sports Games</li>
-              <li onClick={() => { setActiveTab("Racing"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Racing Games</li>
-              <li onClick={() => { setActiveTab("Puzzle"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Puzzle Games</li>
+              <li><a href="#action" onClick={(e) => { e.preventDefault(); setActiveTab("Action"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Action Games</a></li>
+              <li><a href="#sports" onClick={(e) => { e.preventDefault(); setActiveTab("Sports"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Sports Games</a></li>
+              <li><a href="#racing" onClick={(e) => { e.preventDefault(); setActiveTab("Racing"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Racing Games</a></li>
+              <li><a href="#puzzle" onClick={(e) => { e.preventDefault(); setActiveTab("Puzzle"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Puzzle Games</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-6">Support</h4>
+            <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Support</h4>
             <ul className="space-y-3 text-sm text-slate-500">
-              <li 
-                onClick={() => {
-                  setActivePage("Contact Us");
-                  setSelectedGame(null);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="hover:text-brand-purple cursor-pointer transition-colors"
-              >
-                Contact Us
+              <li>
+                <a 
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActivePage("Contact Us");
+                    setSelectedGame(null);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="hover:text-brand-purple cursor-pointer transition-colors"
+                >
+                  Contact Us
+                </a>
               </li>
-              <li 
-                onClick={() => {
-                  setActivePage(null);
-                  setSelectedGame(null);
-                  setActiveTab("Home");
-                  setSearchQuery("");
-                  setTimeout(() => {
-                    document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' });
-                  }, 100);
-                }}
-                className="hover:text-brand-purple cursor-pointer transition-colors"
-              >
-                FAQ
+              <li>
+                <a 
+                  href="#faq-section"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActivePage(null);
+                    setSelectedGame(null);
+                    setActiveTab("Home");
+                    setSearchQuery("");
+                    setTimeout(() => {
+                      document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  }}
+                  className="hover:text-brand-purple cursor-pointer transition-colors"
+                >
+                  FAQ
+                </a>
               </li>
-              <li 
-                onClick={() => {
-                  setActivePage("Privacy Policy");
-                  setSelectedGame(null);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="hover:text-brand-purple cursor-pointer transition-colors"
-              >
-                Privacy Policy
+              <li>
+                <a 
+                  href="/privacy"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActivePage("Privacy Policy");
+                    setSelectedGame(null);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="hover:text-brand-purple cursor-pointer transition-colors"
+                >
+                  Privacy Policy
+                </a>
               </li>
-              <li 
-                onClick={() => {
-                  setActivePage("Terms of Service");
-                  setSelectedGame(null);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="hover:text-brand-purple cursor-pointer transition-colors"
-              >
-                Terms of Service
+              <li>
+                <a 
+                  href="/terms"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActivePage("Terms of Service");
+                    setSelectedGame(null);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="hover:text-brand-purple cursor-pointer transition-colors"
+                >
+                  Terms of Service
+                </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-6">Newsletter</h4>
-            <div className="flex gap-2">
-              <input 
-                type="email" 
-                placeholder="Email address" 
-                className="bg-black/5 border border-black/10 rounded-xl px-4 py-2 text-sm flex-1 outline-none focus:border-brand-purple/50 text-slate-900 placeholder:text-slate-400"
-              />
-              <button className="p-2 bg-brand-purple rounded-xl hover:brightness-110 transition-all">
-                <ChevronRight size={20} />
-              </button>
+            <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Stay Updated</h4>
+            <div className="space-y-4">
+              <p className="text-xs text-slate-500 leading-relaxed font-bold uppercase tracking-tight">Subscribe for <span className="text-brand-purple">Unblocked Games school</span> updates.</p>
+              <div className="flex gap-2">
+                <input 
+                  type="email" 
+                  placeholder="Email address" 
+                  className="bg-black/5 border border-black/10 rounded-xl px-4 py-2 text-sm flex-1 outline-none focus:border-brand-purple/50 text-slate-900 placeholder:text-slate-400"
+                />
+                <button className="p-2 bg-brand-purple text-white rounded-xl hover:brightness-110 transition-all">
+                  <ChevronRight size={20} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        <div className="container mx-auto mt-12 pt-8 border-t border-black/5 text-center text-xs text-slate-400">
-          © 2024 Classroom 6x. All rights reserved. Design inspired by cinematic excellence.
+        <div className="container mx-auto mt-12 pt-8 border-t border-black/5 text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+          © 2024-2026 Classroom 6x - The Best Destination for Unblocked Games school Students and Teachers.
         </div>
       </footer>
     </div>
