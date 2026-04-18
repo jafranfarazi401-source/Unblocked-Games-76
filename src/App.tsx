@@ -628,7 +628,7 @@ export default function App() {
 
   // Domain Protection & Cannonical Redirection logic
   useEffect(() => {
-    // force only non-www
+    // force only main domain (no www, no workers.dev, no others)
     const hostname = window.location.hostname;
     
     // Safety check: Don't redirect in development or preview environments
