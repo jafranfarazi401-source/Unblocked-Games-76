@@ -709,7 +709,7 @@ export default function App() {
     window.scrollTo(0, 0);
     if (selectedGame) {
       setIsPlaying(false); // Reset play state when changing games
-      document.title = `${selectedGame.title} - Play Online Free at Classroom 6x`;
+      document.title = `${selectedGame.title} Unblocked - Play on Classroom 6x`;
       const metaDesc = document.querySelector('meta[name="description"]');
       const canonical = document.querySelector('link[rel="canonical"]');
       if (metaDesc) {
@@ -720,25 +720,25 @@ export default function App() {
         canonical.setAttribute('href', `https://classroom6x.store/game/${selectedGame.id}`);
       }
     } else if (selectedBlog) {
-      document.title = `${selectedBlog.title} - Classroom 6x Blog`;
+      document.title = `${selectedBlog.title} | Classroom 6x Guides`;
       const canonical = document.querySelector('link[rel="canonical"]');
       if (canonical) {
         canonical.setAttribute('href', `https://classroom6x.store/blog/${selectedBlog.id}`);
       }
     } else if (activePage) {
-      document.title = `${activePage} - Classroom 6x`;
+      document.title = `${activePage} | Classroom 6x`;
       const canonical = document.querySelector('link[rel="canonical"]');
       if (canonical) {
         canonical.setAttribute('href', `https://classroom6x.store/${activePage.toLowerCase()}`);
       }
     } else if (activeTab !== "Home") {
-      document.title = `${activeTab} Unblocked Games - Classroom 6x`;
+      document.title = `Best ${activeTab} Unblocked Games | Classroom 6x`;
       const canonical = document.querySelector('link[rel="canonical"]');
       if (canonical) {
         canonical.setAttribute('href', `https://classroom6x.store/category/${activeTab.toLowerCase()}`);
       }
     } else {
-      document.title = "Classroom 6x - Play Free Unblocked Games Online";
+      document.title = "Classroom 6x - Best Unblocked Games for School [2026]";
       const metaDesc = document.querySelector('meta[name="description"]');
       const canonical = document.querySelector('link[rel="canonical"]');
       if (metaDesc) {
@@ -1048,6 +1048,22 @@ export default function App() {
                   <p>We use cookies to remember your game progress and preferences. These are stored locally on your device.</p>
                   <h3 className="text-xl font-bold text-slate-900">3. Third-Party Services</h3>
                   <p>Our games are provided by various developers and may contain their own tracking or advertising scripts. We encourage you to review their respective privacy policies.</p>
+                  
+                  <div className="pt-8 mt-8 border-t border-black/5">
+                    <h4 className="font-bold text-slate-900 mb-4">Jump Back into Gaming:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {GAMES.slice(0, 8).map(game => (
+                        <a 
+                          key={`privacy-game-${game.id}`}
+                          href={`/game/${game.id}`}
+                          onClick={(e) => { e.preventDefault(); setSelectedGame(game); setActivePage(null); }}
+                          className="px-3 py-1 bg-black/5 hover:bg-brand-purple/10 text-slate-600 rounded-lg text-xs font-bold transition-all"
+                        >
+                          {game.title}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -1060,6 +1076,22 @@ export default function App() {
                   <p>All games and media on this site are the property of their respective owners. We do not claim ownership of third-party content.</p>
                   <h3 className="text-xl font-bold text-slate-900">3. Disclaimer</h3>
                   <p>The site is provided "as is" without warranties of any kind. We are not responsible for any issues arising from the use of our platform.</p>
+
+                  <div className="pt-8 mt-8 border-t border-black/5">
+                    <h4 className="font-bold text-slate-900 mb-4">Start Playing Now:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {GAMES.slice(8, 16).map(game => (
+                        <a 
+                          key={`terms-game-${game.id}`}
+                          href={`/game/${game.id}`}
+                          onClick={(e) => { e.preventDefault(); setSelectedGame(game); setActivePage(null); }}
+                          className="px-3 py-1 bg-black/5 hover:bg-brand-purple/10 text-slate-600 rounded-lg text-xs font-bold transition-all"
+                        >
+                          {game.title}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -1664,7 +1696,54 @@ export default function App() {
                 dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
               />
 
-              {/* Internal Links for Top 10 Game Blog */}
+              <div className="pt-12 mt-12 border-t border-black/5 space-y-8">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-2xl font-bold text-slate-900">Recommended Guides</h3>
+                  <a href="/blogs" onClick={(e) => { e.preventDefault(); setSelectedBlog(null); setActiveTab("Home"); }} className="text-brand-purple font-bold text-xs uppercase tracking-widest hover:underline">View All</a>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {BLOGS.filter(b => b.id !== selectedBlog.id).slice(0, 4).map(blog => (
+                    <a 
+                      key={blog.id} 
+                      href={`/blog/${blog.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSelectedBlog(blog);
+                        window.scrollTo({top: 0, behavior: 'smooth'});
+                      }}
+                      className="glass p-4 rounded-2xl flex items-center gap-4 hover:border-brand-purple/30 group transition-all"
+                    >
+                      <div className="w-10 h-10 bg-brand-purple/10 rounded-lg flex items-center justify-center text-brand-purple group-hover:scale-110 transition-transform">
+                        <BookOpen size={20} />
+                      </div>
+                      <span className="font-bold text-sm text-slate-700 group-hover:text-brand-purple transition-colors">{blog.title}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-8 space-y-6">
+                <h3 className="text-xl font-bold text-slate-900">Trending Unblocked Games</h3>
+                <div className="flex flex-wrap gap-2">
+                  {GAMES.slice(0, 10).map(game => (
+                    <a 
+                      key={`blog-game-${game.id}`}
+                      href={`/game/${game.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSelectedGame(game);
+                        setSelectedBlog(null);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="px-4 py-2 glass rounded-xl text-xs font-bold text-slate-500 hover:text-brand-purple hover:bg-brand-purple/5 transition-all"
+                    >
+                      {game.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Internal Links for Top 10 Game Blog (Keep for extra depth) */}
               {selectedBlog.id === 'top-10-classroom-6x' && (
                 <div className="pt-8 border-t border-black/5 space-y-6">
                   <h3 className="text-xl font-bold text-slate-900">Quick Links:</h3>
