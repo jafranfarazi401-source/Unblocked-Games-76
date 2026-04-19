@@ -10,6 +10,9 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Essential for accurate req.hostname and req.protocol when behind a proxy (like Cloud Run/Cloudflare)
+  app.set('trust proxy', true);
+
   // Domain Protection & Canonical 301 Redirection for SEO
   app.use((req, res, next) => {
     const host = req.get('host') || '';
