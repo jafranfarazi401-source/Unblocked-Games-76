@@ -12,11 +12,11 @@ import {
   X,
   Star,
   Loader2,
-  Linkedin,
   Youtube,
   BookOpen,
   ArrowLeft,
-  ShieldCheck
+  ShieldCheck,
+  Facebook
 } from 'lucide-react';
 
 // Mock Data
@@ -931,7 +931,7 @@ export default function App() {
                     </div>
                     <div className="glass p-8 rounded-3xl space-y-4 border-l-4 border-brand-purple">
                       <div className="flex items-center gap-3 text-brand-purple">
-                        <Linkedin size={20} />
+                        <ShieldCheck size={20} />
                         <h3 className="font-bold text-slate-900 uppercase tracking-widest text-sm">Business & Advertising</h3>
                       </div>
                       <p className="text-slate-500 text-sm">For partnerships, server sponsorships, and detailed advertising inquiries.</p>
@@ -988,7 +988,7 @@ export default function App() {
                         The "Classroom 6x" project began in the early 2020s as a small collection of optimized HTML5 mirrors. While other sites were cluttered with intrusive ads and slow-loading Flash files, we focused on "The 6x Standard": lightweight assets, zero installations, and immediate accessibility. 
                       </p>
                       <p className="text-slate-600 leading-relaxed">
-                        By 2026, we have expanded our infrastructure to support millions of monthly active users across the globe. Our engineering team, led by <strong>Likhon Farazi</strong>, continues to innovate with advanced CDN routing and edge-level mirroring to bypass restrictive school firewalls securely and responsibly.
+                        By 2026, we have expanded our infrastructure to support millions of monthly active users across the globe. Our engineering team, led by <strong>Azim Alam Jafran (Jafran Farazi)</strong>, continues to innovate with advanced CDN routing and edge-level mirroring to bypass restrictive school firewalls securely and responsibly.
                       </p>
                     </div>
                     <img src="https://picsum.photos/seed/about1/600/400" className="rounded-3xl shadow-2xl" alt="Classroom 6x team working on unblocked games infrastructure" />
@@ -2573,13 +2573,13 @@ export default function App() {
             </p>
             <div className="pt-2 flex flex-col gap-3">
               <a 
-                href="https://www.linkedin.com/in/likhon-farazi-b06893276/" 
+                href="https://www.facebook.com/jafran.farazi.1" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-brand-purple transition-all"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-[#1877F2] transition-all"
               >
-                <Linkedin size={16} />
-                Connect with Owner
+                <Facebook size={16} />
+                Connect with Jafran Farazi
               </a>
               <a 
                 href="https://www.youtube.com/watch?v=oDfa5Z8DCyU&pp=ygUPdW5ibG9ja2VkIGdhbWVz" 
