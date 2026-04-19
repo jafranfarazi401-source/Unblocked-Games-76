@@ -2369,13 +2369,13 @@ export default function App() {
                       "@type": "CollectionPage",
                       "name": "Classroom 6x Unblocked Games Collection",
                       "description": "The complete collection of classroom 6x unblocked games for school including Slope and Retro Bowl.",
-                      "url": "https://yourdomain.com/",
+                      "url": "https://classroom6x.store/",
                       "mainEntity": {
                         "@type": "ItemList",
                         "itemListElement": GAMES.slice(0, 10).map((game, i) => ({
                           "@type": "ListItem",
                           "position": i + 1,
-                          "url": `https://yourdomain.com/game/${game.id}`,
+                          "url": `https://classroom6x.store/game/${game.id}`,
                           "name": game.title
                         }))
                       }
