@@ -12,17 +12,23 @@ async function startServer() {
 
   // Domain Protection & Canonical 301 Redirection for SEO
   app.use((req, res, next) => {
+    const host = req.get('host') || '';
+    const protocol = req.get('x-forwarded-proto') || req.protocol;
     const hostname = req.hostname;
     
     // Safety check: Avoid redirecting in local development or AI studio preview environments
-    const isDevelopment = hostname === 'localhost' || 
-                         hostname === '127.0.0.1' || 
-                         hostname.includes('asia-east1.run.app') || 
-                         hostname.includes('webcontainer.io');
+    const isDevelopment = host.includes('localhost') || 
+                         host.includes('127.0.0.1') || 
+                         host.includes('asia-east1.run.app') || 
+                         host.includes('webcontainer.io');
 
-    if (!isDevelopment && hostname !== "classroom6x.store") {
+    // Logic: Redirect if (Not Dev) AND (hostname contains 'www' OR hostname is wrong OR protocol is http)
+    const needsDomainRedirect = hostname.startsWith('www.') || hostname !== "classroom6x.store";
+    const needsHttpsRedirect = protocol === 'http';
+
+    if (!isDevelopment && (needsDomainRedirect || needsHttpsRedirect)) {
       // Return a true HTTP 301 Moved Permanently redirect
-      console.log(`Redirecting from ${hostname} to classroom6x.store (SEO 301)`);
+      console.log(`[SEO 301] Redirecting ${protocol}://${host}${req.originalUrl} -> https://classroom6x.store${req.originalUrl}`);
       return res.redirect(301, `https://classroom6x.store${req.originalUrl}`);
     }
     next();
