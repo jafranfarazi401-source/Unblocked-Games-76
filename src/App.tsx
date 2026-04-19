@@ -1555,7 +1555,7 @@ export default function App() {
                     {GAMES.filter(g => g.category === selectedGame.category && g.id !== selectedGame.id).slice(0, 8).map(game => (
                       <a 
                         key={game.id} 
-                        href={`#game-${game.id}`}
+                        href={`/game/${game.id}`}
                         className="flex gap-4 group cursor-pointer items-center no-underline"
                         onClick={(e) => {
                           e.preventDefault();
@@ -1579,7 +1579,7 @@ export default function App() {
                     {GAMES.filter(g => g.category !== selectedGame.category).slice(0, 10).map(game => (
                       <a 
                         key={game.id} 
-                        href={`#game-${game.id}`}
+                        href={`/game/${game.id}`}
                         className="flex gap-4 group cursor-pointer items-center no-underline"
                         onClick={(e) => {
                           e.preventDefault();
@@ -1594,6 +1594,40 @@ export default function App() {
                             <Star size={10} fill="currentColor" /> {game.rating}
                           </div>
                         </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="glass rounded-3xl p-6 space-y-6">
+                  <h3 className="font-bold text-xl leading-tight">Quick Navigation</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {NAV_TABS.map(tab => (
+                      <a 
+                        key={`quick-${tab}`}
+                        href={`/category/${tab.toLowerCase()}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setActiveTab(tab);
+                          setSelectedGame(null);
+                        }}
+                        className="px-3 py-1 bg-black/5 hover:bg-brand-purple/10 text-slate-600 hover:text-brand-purple rounded-full text-[10px] font-bold uppercase tracking-widest transition-all"
+                      >
+                        {tab}
+                      </a>
+                    ))}
+                    {GAMES.filter(g => g.rating > 4.8).map(game => (
+                      <a 
+                        key={`trending-${game.id}`}
+                        href={`/game/${game.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setSelectedGame(game);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="px-3 py-1 bg-black/5 hover:bg-brand-purple/10 text-slate-600 hover:text-brand-purple rounded-full text-[10px] font-bold uppercase tracking-widest transition-all"
+                      >
+                        {game.title}
                       </a>
                     ))}
                   </div>
@@ -2259,11 +2293,31 @@ export default function App() {
           <div>
             <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Categories</h4>
             <ul className="space-y-3 text-sm text-slate-500">
-              <li><a href="#action" onClick={(e) => { e.preventDefault(); setActiveTab("Action"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Action Games</a></li>
-              <li><a href="#sports" onClick={(e) => { e.preventDefault(); setActiveTab("Sports"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Sports Games</a></li>
-              <li><a href="#racing" onClick={(e) => { e.preventDefault(); setActiveTab("Racing"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Racing Games</a></li>
-              <li><a href="#puzzle" onClick={(e) => { e.preventDefault(); setActiveTab("Puzzle"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Puzzle Games</a></li>
+              <li><a href="/category/action" onClick={(e) => { e.preventDefault(); setActiveTab("Action"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Action Games</a></li>
+              <li><a href="/category/sports" onClick={(e) => { e.preventDefault(); setActiveTab("Sports"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Sports Games</a></li>
+              <li><a href="/category/racing" onClick={(e) => { e.preventDefault(); setActiveTab("Racing"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Racing Games</a></li>
+              <li><a href="/category/puzzle" onClick={(e) => { e.preventDefault(); setActiveTab("Puzzle"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Puzzle Games</a></li>
             </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Popular Searches</h4>
+            <div className="flex flex-wrap gap-2 pr-4">
+              {['Slope', 'Retro Bowl', 'Run 3', 'Sniper', 'Soccer', 'Basketball', 'Driving', 'Car'].map(term => (
+                <a 
+                  key={term}
+                  href={`/?s=${term}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSearchQuery(term);
+                    document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-[10px] font-bold text-slate-400 hover:text-brand-purple border border-slate-200 px-2 py-0.5 rounded transition-colors uppercase tracking-tighter"
+                >
+                  {term}
+                </a>
+              ))}
+            </div>
           </div>
 
           <div>
