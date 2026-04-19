@@ -711,22 +711,44 @@ export default function App() {
       setIsPlaying(false); // Reset play state when changing games
       document.title = `${selectedGame.title} - Play Online Free at Classroom 6x`;
       const metaDesc = document.querySelector('meta[name="description"]');
+      const canonical = document.querySelector('link[rel="canonical"]');
       if (metaDesc) {
         const description = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Experience the best unblocked games on our platform. No downloads, unblocked for school and work.`;
         metaDesc.setAttribute('content', description);
       }
+      if (canonical) {
+        canonical.setAttribute('href', `https://classroom6x.store/game/${selectedGame.id}`);
+      }
     } else if (selectedBlog) {
       document.title = `${selectedBlog.title} - Classroom 6x Blog`;
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) {
+        canonical.setAttribute('href', `https://classroom6x.store/blog/${selectedBlog.id}`);
+      }
     } else if (activePage) {
       document.title = `${activePage} - Classroom 6x`;
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) {
+        canonical.setAttribute('href', `https://classroom6x.store/${activePage.toLowerCase()}`);
+      }
+    } else if (activeTab !== "Home") {
+      document.title = `${activeTab} Unblocked Games - Classroom 6x`;
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) {
+        canonical.setAttribute('href', `https://classroom6x.store/category/${activeTab.toLowerCase()}`);
+      }
     } else {
       document.title = "Classroom 6x - Play Free Unblocked Games Online";
       const metaDesc = document.querySelector('meta[name="description"]');
+      const canonical = document.querySelector('link[rel="canonical"]');
       if (metaDesc) {
-        metaDesc.setAttribute('content', "Play Classroom 6x for free! The best destination for unblocked games, including Ragdoll Archers, Snow Rider 3D, Retro Bowl, Slope, GTA San Andreas Unblocked, and more. Unblocked games for school and work. No downloads required.");
+        metaDesc.setAttribute('content', "Play free unblocked games on Classroom 6x. Enjoy popular games like Slope, Retro Bowl, Snow Rider 3D and more. No download needed.");
+      }
+      if (canonical) {
+        canonical.setAttribute('href', "https://classroom6x.store/");
       }
     }
-  }, [selectedGame, activePage, selectedBlog]);
+  }, [selectedGame, activePage, selectedBlog, activeTab]);
 
   const handleLogoClick = () => {
     setSelectedGame(null);
