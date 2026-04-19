@@ -25,14 +25,11 @@ async function startServer() {
                          host.includes('asia-east1.run.app') || 
                          host.includes('webcontainer.io');
 
-    // Logic: Redirect if (Not Dev) AND (hostname contains 'www' OR hostname is wrong OR protocol is http)
-    const needsDomainRedirect = hostname.startsWith('www.') || hostname !== "classroom6x.store";
-    const needsHttpsRedirect = protocol === 'http';
-
-    if (!isDevelopment && (needsDomainRedirect || needsHttpsRedirect)) {
-      // Return a true HTTP 301 Moved Permanently redirect
-      console.log(`[SEO 301] Redirecting ${protocol}://${host}${req.originalUrl} -> https://classroom6x.store${req.originalUrl}`);
-      return res.redirect(301, `https://classroom6x.store${req.originalUrl}`);
+    if (!isDevelopment) {
+      if (hostname !== "classroom6x.store" || protocol !== "https") {
+        console.log(`[SEO 301] Force Redirect: ${protocol}://${host}${req.originalUrl} -> https://classroom6x.store${req.originalUrl}`);
+        return res.redirect(301, `https://classroom6x.store${req.originalUrl}`);
+      }
     }
     next();
   });
