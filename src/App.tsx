@@ -23,12 +23,13 @@ import {
 const GAMES = [
   { 
     id: 'basket-random', 
-    title: "Basket Random Unblocked at Classroom 6x", 
+    title: "Basket Random Unblocked", 
     category: "Sports", 
     image: "https://taptapshots.net/uploads/2025/8/basket-random.webp", 
     rating: 4.9,
     url: "https://ubg98.github.io/BasketRandom/",
-    shortDesc: "Experience chaotic 2-player basketball physics with random courts and players."
+    shortDesc: "Experience chaotic 2-player basketball physics with random courts and players.",
+    description: "Basket Random Unblocked is a hilarious physics-based 2-player basketball game where every round brings new surprises. Whether you're looking for basket random unblocked 76, basket random unblocked 66, or unblocked games basket random on github, this version has it all. Experience the best unblocked basket random games with crazy 2 player physics and random courts. Play two player games unblocked basket random now and enjoy the zany action with friends! Keywords: basket random unblocked github, basket random unblocked games, unblocked games g+ basket random, basket random unblocked 2 player games."
   },
   {
     id: 'hoops-and-fruits',
@@ -143,11 +144,11 @@ const GAMES = [
     id: 'retro-bowl',
     title: "Retro Bowl Unblocked Classroom 6x",
     category: "Sports",
-    image: "https://mail.classroom6x.lol/public/upload/game/thumb-uD7sEUYq6p.png",
+    image: "https://ozogames.com/uploads/2025/11/Retro-Bowl-College-image.webp",
     rating: 4.9,
     url: "https://game316009.konggames.com/gamez/0031/6009/live/index.html",
     shortDesc: "The ultimate retro-style football management and quarterback simulation.",
-    description: "Retro Bowl is the perfect game for the armchair quarterback to finally prove a point. Presented in a glorious retro style, the game has simple roster management, including press duties and the handling of fragile egos, while on the field you get to call the shots."
+    description: "Retro Bowl Unblocked is the ultimate retro-style football management simulation. Whether you are searching for retro bowl college unblocked, retro bowl 25 unblocked, or unblocked retro bowl games on sites like retro bowl unblocked 76 and retro bowl unblocked games 66, Classroom 6x provides the best high-performance experience. Take control of your favorite team, manage your roster, and lead your squad to the ultimate victory. Experience the most reliable retro bowl unblocked 6x standard, perfect for school Chromebooks and restricted networks. Play college retro bowl unblocked and the classic NFL-style management game today!"
   },
   {
     id: 'slope',
@@ -218,6 +219,16 @@ const GAMES = [
     url: "https://bitlifeonline.github.io/ragdoll-archers/",
     shortDesc: "Intense physics-based archery battles with funny ragdoll mechanics.",
     description: "Ragdoll Archers Classroom 6x is a physics-based archery game where you control a ragdoll archer in intense battles. Aim carefully, account for gravity, and defeat your opponents in this addictive unblocked game. Play solo or with a friend in 2-player mode!"
+  },
+  {
+    id: 'big-shot-boxing',
+    title: "Big Shot Boxing Unblocked",
+    category: "Fighting",
+    image: "https://blockblastonline.com/upload/imgs/big-shot-boxing.jpeg",
+    rating: 4.8,
+    url: "https://htmlxm.github.io/h2/big-shot-boxing/",
+    shortDesc: "Step into the ring and become a legend in this classic retro-style boxing simulation.",
+    description: "Big Shot Boxing Unblocked is the ultimate retro-style boxing simulation game for school and work. Train your fighter, climb the rankings, and win the world championship belt. If you're looking for Big Shot Boxing unblocked 76, Big Shot Boxing 66, or the best boxing games on Classroom 6x, this is the perfect version for you. Master your jabs, hooks, and uppercuts while managing your stamina to survive every round. Experience high-octane fighting action with smooth performance on any school Chromebook. Keywords: big shot boxing hacks, big shot boxing cheats, unblocked fighting games classroom 6x, retro boxing unblocked."
   }
 ];
 
@@ -403,7 +414,7 @@ const BLOGS = [
 
 const FAQS = [
   {
-    question: "What is Basket Random Unblocked at Classroom 6x?",
+    question: "What is Basket Random Unblocked?",
     answer: "Basket Random Unblocked at <a href='/' class='text-brand-purple'>Classroom 6x</a> is a chaotic, physics-based 2-player basketball game where every round brings new surprises. You can play it directly in our <a href='/category/sports' class='text-brand-purple'>Sports Games</a> section."
   },
   {
@@ -435,6 +446,26 @@ const FAQS = [
     answer: "Absolutely! <a href='/game/retro-bowl' class='text-brand-purple font-bold'>Retro Bowl unblocked</a> is one of our most popular titles. You can manage your team and lead them to victory right now."
   },
   {
+    question: "How to play Retro Bowl Unblocked?",
+    answer: "To play <a href='/game/retro-bowl' class='text-brand-purple'>Retro Bowl Unblocked</a>, simply visit Classroom 6x, select the game, and use your mouse or touch controls to manage your team and lead the offense on the field. It's the perfect quarterback simulation!"
+  },
+  {
+    question: "How to get Retro Bowl Unblocked?",
+    answer: "You don't need to download anything to get <a href='/game/retro-bowl' class='text-brand-purple'>Retro Bowl Unblocked</a>. You can access the full version directly through your web browser on sites like Classroom 6x, which specialize in school-safe gaming mirrors."
+  },
+  {
+    question: "What is the best site for Retro Bowl Unblocked games?",
+    answer: "<a href='/' class='text-brand-purple'>Classroom 6x</a> is widely considered one of the best sites for Retro Bowl Unblocked games, offering a clean, high-performance experience that is optimized for school Chromebooks and restricted networks."
+  },
+  {
+    question: "How to unblock Retro Bowl?",
+    answer: "If the game is blocked at your institution, the easiest way to <a href='/game/retro-bowl' class='text-brand-purple'>unblock Retro Bowl</a> is to use a trusted mirror site like Classroom 6x. We utilize secure, lightweight hosting to provide accessible gaming mirrors."
+  },
+  {
+    question: "Where to play Retro Bowl Unblocked?",
+    answer: "You can play <a href='/game/retro-bowl' class='text-brand-purple'>Retro Bowl Unblocked</a> right here on Classroom 6x. Whether you are looking for Retro Bowl College Unblocked or the classic 25 edition, we maintain the most reliable links for students."
+  },
+  {
     question: "Is Slope unblocked available here?",
     answer: "Yes, <a href='/game/slope' class='text-brand-purple font-bold'>Slope unblocked</a> is a fan favorite. Test your reflexes and achieve a high score today."
   },
@@ -445,6 +476,10 @@ const FAQS = [
   {
     question: "Is Snow Rider 3D unblocked for school?",
     answer: "Absolutely. <a href='/game/snow-rider-3d' class='text-brand-purple'>Snow Rider 3D</a> is optimized for Classroom 6x, ensuring it's unblocked for your school Chromebook."
+  },
+  {
+    question: "How do I play Big Shot Boxing Unblocked on Classroom 6x?",
+    answer: "Step into the virtual ring by selecting <a href='/game/big-shot-boxing' class='text-brand-purple'>Big Shot Boxing Unblocked</a> from our Fighting category. This retro simulation is fully optimized to run on restricted networks without any downloads."
   },
   {
     question: "Is Classroom 6x safe for school use?",
