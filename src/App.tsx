@@ -1007,9 +1007,12 @@ export default function App() {
                   </section>
 
                   <section className="space-y-6">
-                    <h3 className="text-2xl font-bold text-slate-900">Looking Ahead</h3>
+                    <h3 className="text-2xl font-bold text-slate-900">Looking Ahead: The Road to 2027</h3>
                     <p className="text-slate-600 leading-relaxed">
-                      As we look toward the future of 2026 and beyond, Classroom 6x is committed to remaining the #1 destination for unblocked content. We are currently developing advanced social features and local-multiplayer enhancements that will make school breaks even more collaborative. Thank you for being a part of our journey.
+                      As we look toward the future of 2026 and beyond, Classroom 6x is committed to remaining the #1 destination for unblocked content. We are currently developing advanced social features and local-multiplayer enhancements that will make school breaks even more collaborative. Our goal is to expand into educational-adjacent categories, such as interactive logic puzzles and typing simulators, ensuring our library provides value beyond just entertainment.
+                    </p>
+                    <p className="text-slate-600 leading-relaxed">
+                      We are also investing heavily in "Privacy-First" server technology. By utilizing edge computing, we can deliver games without ever needing to store your personal data centrally. This ensures that your experience on Classroom 6x is not just fun, but the most secure way to enjoy unblocked games at school. Thank you for being a part of our journey as we redefine what browser gaming can be.
                     </p>
                   </section>
 
@@ -1051,7 +1054,10 @@ export default function App() {
                   <section className="space-y-6">
                     <h3 className="text-2xl font-bold text-slate-900 border-b border-black/5 pb-2">3. Third-Party Integrations & Advertising</h3>
                     <p>
-                      As an aggregator of unblocked content, Classroom 6x hosts games developed by various third-party creators. These developers and our advertising partners (such as Google AdSense) may utilize technical identifiers/cookies beyond our direct control. These are generally used to serve non-personalized, family-friendly advertisements that fund the free operation of our platform. We encourage users to consult the individual privacy policies of these providers for more detailed information.
+                      As an aggregator of unblocked content, Classroom 6x hosts games developed by various third-party creators. These developers and our advertising partners (such as Google AdSense and other family-friendly ad networks) may utilize technical identifiers, including cookies and pixel tags, which are beyond our direct technical control. These technologies are generally used to serve non-personalized, family-friendly advertisements that fund the free operation of our platform.
+                    </p>
+                    <p>
+                      We strictly mandate that our ad partners remain compliant with data protection standards. We encourage every user to consult the individual privacy policies of these providers for more detailed information. It is our policy to periodically audit our ad implementations to ensure that no overly intrusive tracking technologies are being deployed on the Classroom 6x domain, maintaining our commitment to a student-safe environment.
                     </p>
                   </section>
 
@@ -1127,9 +1133,19 @@ export default function App() {
                   </section>
 
                   <section className="space-y-6">
-                    <h3 className="text-2xl font-bold text-slate-900 border-b border-black/5 pb-2">5. Indemnification</h3>
+                    <h3 className="text-2xl font-bold text-slate-900 border-b border-black/5 pb-2">6. Governing Law and Jurisdiction</h3>
                     <p>
-                      You agree to indemnify and hold harmless Classroom 6x from any claims, damages, or expenses (including legal fees) arising from your use of the platform or your violation of these terms. We reserve the right to restrict or terminate access to any user found engaging in systematic abuse of our infrastructure.
+                      These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of your local jurisdiction. You agree that any legal action or proceeding between Classroom 6x and you for any purpose concerning these terms or the parties' obligations hereunder shall be brought exclusively in a court of competent jurisdiction.
+                    </p>
+                    <p>
+                      While we operate globally through various edge CDN locations, our core governance is designed to protect both the user and the platform from unauthorized exploitation. We reserve the right to modify these terms at any time without prior notice, and it is your responsibility to review them periodically to ensure continued compliance.
+                    </p>
+                  </section>
+
+                  <section className="space-y-6">
+                    <h3 className="text-2xl font-bold text-slate-900 border-b border-black/5 pb-2">7. Contact Information for Legal Matters</h3>
+                    <p>
+                      If you have any questions regarding these Terms or the Intellectual Property hosted on our platform, please contact our legal support team at legal@classroom6x.store. We are committed to responding to all legitimate inquiries regarding site governance and data integrity in a timely manner.
                     </p>
                   </section>
 
