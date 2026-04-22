@@ -229,6 +229,16 @@ const GAMES = [
     url: "https://htmlxm.github.io/h2/big-shot-boxing/",
     shortDesc: "Step into the ring and become a legend in this classic retro-style boxing simulation.",
     description: "Big Shot Boxing Unblocked is the ultimate retro-style boxing simulation game for school and work. Train your fighter, climb the rankings, and win the world championship belt. If you're looking for Big Shot Boxing unblocked 76, Big Shot Boxing 66, or the best boxing games on Classroom 6x, this is the perfect version for you. Master your jabs, hooks, and uppercuts while managing your stamina to survive every round. Experience high-octane fighting action with smooth performance on any school Chromebook. Keywords: big shot boxing hacks, big shot boxing cheats, unblocked fighting games classroom 6x, retro boxing unblocked."
+  },
+  {
+    id: 'super-mario-64',
+    title: "Super Mario 64 Unblocked Games Classroom 6x",
+    category: "Adventure",
+    image: "https://class-room.pages.dev/assets/upload/UCBGgames/super-mario-64.png",
+    rating: 5.0,
+    url: "https://script.google.com/macros/s/AKfycbyB8Cg09IyL5iA01VRMcp6GXWBsHJDyytzuovDyiHdgIUmtHuNM7x27VlBnJjYt26F-/exec",
+    shortDesc: "Experience the legendary 3D platformer where Mario explores Peach's castle to rescue her from Bowser.",
+    description: "Super Mario 64 Unblocked Games Classroom 6x brings the revolutionary 3D platformer directly to your browser for free. Whether you are looking for Super Mario 64 unblocked 76, Super Mario 64 unblocked 66, or the best version of Super Mario 64 unblocked games classroom 6x, our high-performance mirror ensures lag-free play on school Chromebooks. Explore Peach's castle, collect Power Stars, and defeat Bowser in this iconic adventure. Play Super Mario 64 online free with no download required. Keywords: super mario 64 unblocked github, super mario 64 unblocked 76, super mario 64 unblocked games, play super mario 64 unblocked at school."
   }
 ];
 
@@ -484,6 +494,18 @@ const FAQS = [
   {
     question: "Is Classroom 6x safe for school use?",
     answer: "Yes, <a href='/' class='text-brand-purple'>Classroom 6x</a> is designed to be a safe platform. We hand-pick our unblocked games to ensure a worry-free experience."
+  },
+  {
+    question: "How to play Super Mario 64 Unblocked Games Classroom 6x?",
+    answer: "To play <a href='/game/super-mario-64' class='text-brand-purple'>Super Mario 64 Unblocked</a>, simply select the game from our Adventure category. Use your keyboard to control Mario's 3D movements—exploring Peach's castle has never been easier on school networks!"
+  },
+  {
+    question: "What is the best site for Super Mario 64 unblocked?",
+    answer: "<a href='/' class='text-brand-purple'>Classroom 6x</a> is the premier destination for Super Mario 64 unblocked, providing a high-speed mirror that works perfectly on Chromebooks without any plugins or downloads."
+  },
+  {
+    question: "Can I save my progress in Super Mario 64 Unblocked?",
+    answer: "Yes! Our version of <a href='/game/super-mario-64' class='text-brand-purple'>Super Mario 64 unblocked games classroom 6x</a> utilizes browser local storage to save your stars and progress, so you can pick up right where you left off during your next break."
   }
 ];
 
@@ -1026,7 +1048,12 @@ export default function App() {
                         By 2026, we have expanded our infrastructure to support millions of monthly active users across the globe. Our engineering team, led by <strong>Azim Alam Jafran (Jafran Farazi)</strong>, continues to innovate with advanced CDN routing and edge-level mirroring to bypass restrictive school firewalls securely and responsibly.
                       </p>
                     </div>
-                    <img src="https://picsum.photos/seed/about1/600/400" className="rounded-3xl shadow-2xl" alt="Classroom 6x team working on unblocked games infrastructure" />
+                    <img 
+                      src="https://picsum.photos/seed/about1/600/400" 
+                      className="rounded-3xl shadow-2xl" 
+                      alt="Classroom 6x team working on unblocked games infrastructure" 
+                      referrerPolicy="no-referrer"
+                    />
                   </section>
 
                   <section className="space-y-6 glass p-8 rounded-[2rem] border-l-8 border-brand-purple">
@@ -1120,7 +1147,13 @@ export default function App() {
                           onClick={(e) => { e.preventDefault(); setSelectedGame(game); setActivePage(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                           className="glass p-4 rounded-xl flex flex-col items-center gap-3 hover:border-brand-purple/30 group transition-all"
                         >
-                          <img src={game.image} className="w-12 h-12 rounded-lg object-cover group-hover:scale-105 transition-transform" alt={game.title} />
+                          <img 
+                            src={game.image} 
+                            className="w-12 h-12 rounded-lg object-cover group-hover:scale-105 transition-transform" 
+                            alt={game.title} 
+                            referrerPolicy="no-referrer"
+                            onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/game/100/100"; }}
+                          />
                           <span className="text-[10px] font-bold text-slate-600 group-hover:text-brand-purple transition-colors text-center truncate w-full">{game.title.split(' ')[0]}</span>
                         </a>
                       ))}
@@ -1194,7 +1227,13 @@ export default function App() {
                           onClick={(e) => { e.preventDefault(); setSelectedGame(game); setActivePage(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                           className="glass p-4 rounded-xl flex flex-col items-center gap-3 hover:border-brand-purple/30 group transition-all"
                         >
-                          <img src={game.image} className="w-12 h-12 rounded-lg object-cover group-hover:scale-105 transition-transform" alt={game.title} />
+                          <img 
+                            src={game.image} 
+                            className="w-12 h-12 rounded-lg object-cover group-hover:scale-105 transition-transform" 
+                            alt={game.title} 
+                            referrerPolicy="no-referrer"
+                            onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/game/100/100"; }}
+                          />
                           <span className="text-[10px] font-bold text-slate-600 group-hover:text-brand-purple transition-colors text-center truncate w-full">{game.title.split(' ')[0]}</span>
                         </a>
                       ))}
@@ -1231,7 +1270,13 @@ export default function App() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <img src={selectedGame.image} className="w-12 h-12 rounded-xl object-cover shadow-lg" alt="" />
+                  <img 
+                    src={selectedGame.image} 
+                    className="w-12 h-12 rounded-xl object-cover shadow-lg" 
+                    alt="" 
+                    referrerPolicy="no-referrer"
+                    onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/game/100/100"; }}
+                  />
                   <div>
                     <h1 className="text-3xl font-bold">{selectedGame.title}</h1>
                     <p className="text-slate-500 text-sm">{selectedGame.category} • {selectedGame.rating} Rating</p>
@@ -1311,6 +1356,7 @@ export default function App() {
                        selectedGame.id === 'bitlife' ? 'BitLife Unblocked: Experience a Life of Infinite Possibilities' :
                        selectedGame.id === '1v1-lol' ? '1v1.LOL Unblocked: Master the Art of Competitive Building and Combat' :
                        selectedGame.id === 'geometry-dash-og' ? 'Geometry Dash OG Unblocked: Rhythm, Precision, and Geometric Chaos' :
+                       selectedGame.id === 'super-mario-64' ? 'Super Mario 64 Unblocked Games Classroom 6x: The 3D Adventure That Changed Gaming' :
                        `The Chaotic Joy of ${selectedGame.title}`}
                     </h1>
                     <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
@@ -1705,6 +1751,26 @@ export default function App() {
                             Put your reflexes to the test in <strong>Geometry Dash OG Unblocked</strong>. With no downloads required, you can enjoy this world-class platformer directly in your browser. Can you conquer the rhythm?
                           </p>
                         </>
+                      ) : selectedGame.id === 'super-mario-64' ? (
+                        <>
+                          <p>
+                            Step into the shoes of the world's most famous plumber in <strong>Super Mario 64 Unblocked Games Classroom 6x</strong>. Originally released as the pioneer of 3D platforming, this game is now instantly accessible in your browser. Journey through Princess Peach’s castle, dive into magical paintings, and collect Power Stars to thwart Bowser's latest scheme.
+                          </p>
+                          <p>
+                            In <strong>Super Mario 64 Unblocked</strong>, you have complete freedom of movement in large, open levels. From the rolling hills of Bob-omb Battlefield to the treacherous depths of Hazy Maze Cave, every stage is packed with secrets, challenges, and iconic enemies. The fluid movement system, including jumps, flips, and punches, makes every moment of exploration a delight.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">A Masterpiece of Level Design</h3>
+                          <p>
+                            What marks <strong>Super Mario 64</strong> as a masterpiece is its innovative level design. Each world is a playground designed to be revisited multiple times to collect different stars. Whether you're racing a giant penguin or scaling a volcano, the variety of gameplay keeps the experience fresh. Our <strong>Classroom 6x</strong> version provides an ultra-smooth emulator experience that preserves every detail of the original game.
+                          </p>
+                          <p>
+                            We have optimized the controls for keyboard play, ensuring that Mario's classic moves—like the triple jump and the backflip—translate perfectly to your school Chromebook. No additional plugins or heavy downloads are required; simply hit play and start your adventure through the Mushroom Kingdom.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Unblocked 3D Adventure</h3>
+                          <p>
+                            Play <strong>Super Mario 64 Unblocked</strong> today and rediscover the game that defined a generation. It’s the perfect choice for students looking for a deep, engaging adventure during their free time. With full support for browser saving, you can work your way towards all 120 Power Stars right here on Classroom 6x.
+                          </p>
+                        </>
                       ) : (
                         <>
                           <p>
@@ -1787,7 +1853,13 @@ export default function App() {
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                       >
-                        <img src={game.image} className="w-16 h-16 rounded-xl object-cover group-hover:scale-105 transition-transform shadow-sm" alt={game.title} />
+                        <img 
+                          src={game.image} 
+                          className="w-16 h-16 rounded-xl object-cover group-hover:scale-105 transition-transform shadow-sm" 
+                          alt={game.title} 
+                          referrerPolicy="no-referrer"
+                          onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/game/100/100"; }}
+                        />
                         <div>
                           <h4 className="font-bold text-sm group-hover:text-brand-purple transition-colors text-slate-900 leading-snug">{game.title}</h4>
                           <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold font-sans">Play {game.id === 'slope' ? 'Slope' : game.id === 'retro-bowl' ? 'Retro Bowl' : 'Unblocked'}</p>
@@ -1811,7 +1883,13 @@ export default function App() {
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                       >
-                        <img src={game.image} className="w-12 h-12 rounded-lg object-cover group-hover:scale-105 transition-transform" alt={game.title} />
+                        <img 
+                          src={game.image} 
+                          className="w-12 h-12 rounded-lg object-cover group-hover:scale-105 transition-transform" 
+                          alt={game.title} 
+                          referrerPolicy="no-referrer"
+                          onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/game/100/100"; }}
+                        />
                         <div>
                           <h4 className="font-bold text-xs group-hover:text-brand-purple transition-colors text-slate-900 truncate w-32">{game.title}</h4>
                           <div className="flex items-center gap-1 text-[10px] text-yellow-500 font-bold">
@@ -2184,6 +2262,7 @@ export default function App() {
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             referrerPolicy="no-referrer"
                             loading="lazy"
+                            onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/game/200/150"; }}
                           />
                           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <div className="w-10 h-10 bg-brand-purple rounded-full flex items-center justify-center purple-glow scale-0 group-hover:scale-100 transition-transform">
@@ -2363,6 +2442,7 @@ export default function App() {
                           src="https://picsum.photos/seed/seo1/400/250" 
                           alt="Classroom 6x gaming lifestyle unblocked games dashboard" 
                           className="w-full md:w-1/3 rounded-xl shadow-lg"
+                          referrerPolicy="no-referrer"
                         />
                         <div className="flex-1">
                           <h4 className="text-xl font-bold text-brand-purple mb-2">School-Safe & Mirror Updated</h4>
@@ -2398,6 +2478,7 @@ export default function App() {
                              src="https://picsum.photos/seed/seo2/400/200" 
                              alt="Student playing Retro Bowl unblocked in classroom" 
                              className="rounded-xl object-cover h-full"
+                             referrerPolicy="no-referrer"
                            />
                         </div>
                       </article>
@@ -2444,7 +2525,12 @@ export default function App() {
                     }}
                     className="glass p-6 rounded-2xl flex flex-col items-center text-center space-y-4 group cursor-pointer hover:bg-white/40 transition-all"
                   >
-                    <img src="https://picsum.photos/seed/nav1/100/100" alt="New Games Section Icon Classroom 6x" className="w-16 h-16 rounded-full group-hover:scale-110 transition-transform" />
+                    <img 
+                      src="https://picsum.photos/seed/nav1/100/100" 
+                      alt="New Games Section Icon Classroom 6x" 
+                      className="w-16 h-16 rounded-full group-hover:scale-110 transition-transform" 
+                      referrerPolicy="no-referrer"
+                    />
                     <h3 className="font-bold">New Releases</h3>
                     <p className="text-xs text-slate-500">The latest school-friendly mirrors added today.</p>
                   </div>
@@ -2456,7 +2542,12 @@ export default function App() {
                     }}
                     className="glass p-6 rounded-2xl flex flex-col items-center text-center space-y-4 group cursor-pointer hover:bg-white/40 transition-all"
                   >
-                    <img src="https://picsum.photos/seed/nav2/100/100" alt="Popular Games Section Icon Classroom 6x" className="w-16 h-16 rounded-full group-hover:scale-110 transition-transform" />
+                    <img 
+                      src="https://picsum.photos/seed/nav2/100/100" 
+                      alt="Popular Games Section Icon Classroom 6x" 
+                      className="w-16 h-16 rounded-full group-hover:scale-110 transition-transform" 
+                      referrerPolicy="no-referrer"
+                    />
                     <h3 className="font-bold">Trending Now</h3>
                     <p className="text-xs text-slate-500">What everyone is playing in the classroom right now.</p>
                   </div>
@@ -2468,7 +2559,12 @@ export default function App() {
                     }}
                     className="glass p-6 rounded-2xl flex flex-col items-center text-center space-y-4 group cursor-pointer hover:bg-white/40 transition-all"
                   >
-                    <img src="https://picsum.photos/seed/nav3/100/100" alt="Top Rated Games Section Icon Classroom 6x" className="w-16 h-16 rounded-full group-hover:scale-110 transition-transform" />
+                    <img 
+                      src="https://picsum.photos/seed/nav3/100/100" 
+                      alt="Top Rated Games Section Icon Classroom 6x" 
+                      className="w-16 h-16 rounded-full group-hover:scale-110 transition-transform" 
+                      referrerPolicy="no-referrer"
+                    />
                     <h3 className="font-bold">Top Rated</h3>
                     <p className="text-xs text-slate-500">Highest rated unblocked titles by the community.</p>
                   </div>
