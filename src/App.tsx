@@ -728,8 +728,8 @@ export default function App() {
       {/* Navbar - Redesigned for a cleaner, more premium look */}
       <nav className="sticky top-0 z-50 px-6 py-4 mx-4 mt-4 glass rounded-2xl border border-black/10 flex items-center justify-between">
         {/* Left: Logo */}
-        <div className="flex items-center gap-3 cursor-pointer group" onClick={handleLogoClick}>
-          <div className="w-10 h-10 bg-brand-purple rounded-xl flex items-center justify-center purple-glow group-hover:scale-110 transition-transform">
+        <div className="flex items-center gap-3 cursor-pointer group shrink-0" onClick={handleLogoClick}>
+          <div className="w-10 h-10 bg-brand-purple rounded-xl flex items-center justify-center shrink-0 purple-glow group-hover:scale-110 transition-transform">
             <Gamepad2 className="text-white" size={24} />
           </div>
           <div className="flex flex-col leading-none">
@@ -891,6 +891,15 @@ export default function App() {
             className="fixed inset-x-4 top-24 z-40 glass rounded-2xl p-6 md:hidden"
           >
             <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3 px-4 py-2 mb-2 border-b border-black/5 pb-4">
+                <div className="w-10 h-10 bg-brand-purple rounded-xl flex items-center justify-center purple-glow">
+                  <Gamepad2 className="text-white" size={24} />
+                </div>
+                <div className="flex flex-col leading-none">
+                  <span className="font-display text-xl tracking-wider text-slate-900">CLASSROOM</span>
+                  <span className="font-display text-sm tracking-[0.2em] text-brand-purple">6X</span>
+                </div>
+              </div>
               <button 
                 onClick={() => {
                   setSelectedGame(null);
