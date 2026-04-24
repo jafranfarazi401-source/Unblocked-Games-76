@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   Play, 
   Search, 
@@ -571,6 +572,9 @@ const AdBanner = () => {
 };
 
 export default function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [activeTab, setActiveTab] = useState("Home");
   const [activePage, setActivePage] = useState<string | null>(null);
   const [selectedBlog, setSelectedBlog] = useState<any>(null);
@@ -601,7 +605,7 @@ export default function App() {
 
   // SEO: Pseudo-Router to handle deep links for Games and Blogs
   useEffect(() => {
-    const path = window.location.pathname.toLowerCase();
+    const path = location.pathname.toLowerCase();
     
     // Check for Game paths (/game/run-3 or /run-3)
     const gameMatch = path.match(/^\/(game\/)?([a-z0-9-]+)$/);
@@ -610,6 +614,8 @@ export default function App() {
       const game = GAMES.find(g => g.id === id);
       if (game) {
         setSelectedGame(game);
+        setSelectedBlog(null);
+        setActivePage(null);
         return;
       }
     }
@@ -621,20 +627,58 @@ export default function App() {
       const blog = BLOGS.find(b => b.id === id);
       if (blog) {
         setSelectedBlog(blog);
+        setSelectedGame(null);
+        setActivePage(null);
         return;
       }
     }
 
-    // Check for Categories via URL (optional but helpful)
+    // Check for Categories via URL
     const categoryMatch = path.match(/^\/category\/([a-z0-9-]+)$/);
     if (categoryMatch) {
       const catId = categoryMatch[1];
       const category = NAV_TABS.find(t => t.toLowerCase() === catId);
       if (category) {
         setActiveTab(category);
+        setSelectedGame(null);
+        setSelectedBlog(null);
+        setActivePage(null);
+        return;
       }
     }
-  }, []);
+
+    // Handle pages Mapping
+    const pagesMap: Record<string, string> = {
+      '/contact-us': 'Contact Us',
+      '/about-us': 'About Us',
+      '/privacy-policy': 'Privacy Policy',
+      '/terms-of-service': 'Terms of Service',
+      '/blogs': 'Blogs'
+    };
+
+    if (pagesMap[path]) {
+      if (pagesMap[path] === 'Blogs') {
+        setActiveTab('Blogs');
+        setSelectedGame(null);
+        setSelectedBlog(null);
+        setActivePage(null);
+      } else {
+        setActivePage(pagesMap[path]);
+        setSelectedGame(null);
+        setSelectedBlog(null);
+      }
+      return;
+    }
+
+    // Default to Home
+    if (path === '/' || path === '') {
+      setSelectedGame(null);
+      setSelectedBlog(null);
+      setActivePage(null);
+      setActiveTab("Home");
+    }
+
+  }, [location.pathname]);
 
   // Filtered games based on activeTab and searchQuery
   const filteredGames = GAMES.filter(game => {
@@ -707,11 +751,8 @@ export default function App() {
   }, [selectedGame, activePage, selectedBlog, activeTab]);
 
   const handleLogoClick = () => {
-    setSelectedGame(null);
-    setSelectedBlog(null);
+    navigate('/');
     setIsPlaying(false);
-    setActiveTab("Home");
-    setActivePage(null);
   };
 
   return (
@@ -759,11 +800,7 @@ export default function App() {
             href="#directory"
             onClick={(e) => {
               e.preventDefault();
-              setSelectedGame(null);
-              setIsPlaying(false);
-              setActiveTab("Home");
-              setActivePage(null);
-              setSearchQuery("");
+              navigate('/');
               setTimeout(() => {
                 document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
               }, 100);
@@ -797,12 +834,10 @@ export default function App() {
                     {NAV_TABS.filter(tab => !["Home", "Blogs"].includes(tab)).map((tab) => (
                       <a
                         key={tab}
-                        href="#"
+                        href={`/category/${tab.toLowerCase()}`}
                         onClick={(e) => {
                           e.preventDefault();
-                          setActiveTab(tab);
-                          setSelectedGame(null);
-                          setSelectedBlog(null);
+                          navigate(`/category/${tab.toLowerCase()}`);
                           setIsCategoriesOpen(false);
                         }}
                         className={`px-3 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all text-left ${
@@ -821,13 +856,10 @@ export default function App() {
           </div>
 
           <a
-            href="#blogs"
+            href="/blogs"
             onClick={(e) => {
               e.preventDefault();
-              setSelectedGame(null);
-              setSelectedBlog(null);
-              setActiveTab("Blogs");
-              setActivePage(null);
+              navigate('/blogs');
             }}
             className={`px-4 py-2 rounded-xl transition-all ${
               activeTab === "Blogs"
@@ -902,11 +934,7 @@ export default function App() {
               </div>
               <button 
                 onClick={() => {
-                  setSelectedGame(null);
-                  setIsPlaying(false);
-                  setActiveTab("Home");
-                  setActivePage(null);
-                  setSearchQuery("");
+                  navigate('/');
                   setIsMenuOpen(false);
                   setTimeout(() => {
                     document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
@@ -925,8 +953,7 @@ export default function App() {
                       : "text-slate-500 hover:text-slate-900 hover:bg-black/5"
                   }`}
                   onClick={() => {
-                    setActiveTab(tab);
-                    setSelectedGame(null);
+                    navigate(tab === "Home" ? "/" : tab === "Blogs" ? "/blogs" : `/category/${tab.toLowerCase()}`);
                     setIsMenuOpen(false);
                   }}
                 >
@@ -943,8 +970,7 @@ export default function App() {
                       : "text-slate-400 hover:text-slate-900 hover:bg-black/5"
                   }`}
                   onClick={() => {
-                    setActivePage(page);
-                    setSelectedGame(null);
+                    navigate(`/${page.toLowerCase().replace(/ /g, '-')}`);
                     setIsMenuOpen(false);
                   }}
                 >
@@ -969,7 +995,7 @@ export default function App() {
                 {activePage}
               </h1>
               <button 
-                onClick={() => setActivePage(null)}
+                onClick={() => navigate('/')}
                 className="p-3 glass rounded-2xl hover:bg-black/5 transition-all"
               >
                 <X size={24} />
@@ -1089,7 +1115,7 @@ export default function App() {
 
                   <div className="pt-12 mt-12 border-t border-black/5 flex justify-center">
                     <button 
-                       onClick={() => { setActivePage(null); setActiveTab("Home"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                       onClick={() => { navigate('/'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                        className="px-10 py-4 bg-brand-purple text-white font-bold rounded-2xl shadow-xl shadow-brand-purple/20 hover:scale-105 transition-all uppercase tracking-widest text-xs"
                     >
                       Back to Gaming Hub
@@ -1153,7 +1179,7 @@ export default function App() {
                         <a 
                           key={`privacy-game-${game.id}`}
                           href={`/game/${game.id}`}
-                          onClick={(e) => { e.preventDefault(); setSelectedGame(game); setActivePage(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                          onClick={(e) => { e.preventDefault(); navigate(`/game/${game.id}`); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                           className="glass p-4 rounded-xl flex flex-col items-center gap-3 hover:border-brand-purple/30 group transition-all"
                         >
                           <img 
@@ -1233,7 +1259,7 @@ export default function App() {
                         <a 
                           key={`terms-game-${game.id}`}
                           href={`/game/${game.id}`}
-                          onClick={(e) => { e.preventDefault(); setSelectedGame(game); setActivePage(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                          onClick={(e) => { e.preventDefault(); navigate(`/game/${game.id}`); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                           className="glass p-4 rounded-xl flex flex-col items-center gap-3 hover:border-brand-purple/30 group transition-all"
                         >
                           <img 
@@ -1258,15 +1284,15 @@ export default function App() {
             <nav className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
               <a 
                 href="/" 
-                onClick={(e) => { e.preventDefault(); setSelectedGame(null); }}
+                onClick={(e) => { e.preventDefault(); navigate('/'); }}
                 className="hover:text-brand-purple transition-colors"
               >
                 Home
               </a>
               <ChevronRight size={10} />
               <a 
-                href={`#${selectedGame.category}`} 
-                onClick={(e) => { e.preventDefault(); setActiveTab(selectedGame.category); setSelectedGame(null); }}
+                href={`/category/${selectedGame.category.toLowerCase()}`} 
+                onClick={(e) => { e.preventDefault(); navigate(`/category/${selectedGame.category.toLowerCase()}`); }}
                 className="hover:text-brand-purple transition-colors"
               >
                 {selectedGame.category} Games
@@ -1293,8 +1319,7 @@ export default function App() {
                 </div>
                 <button 
                   onClick={() => {
-                    setSelectedGame(null);
-                    setIsPlaying(false);
+                    navigate('/');
                   }}
                   className="px-6 py-2 glass rounded-xl hover:bg-black/10 transition-all flex items-center gap-2"
                 >
@@ -1858,7 +1883,7 @@ export default function App() {
                         className="flex gap-4 group cursor-pointer items-center no-underline"
                         onClick={(e) => {
                           e.preventDefault();
-                          setSelectedGame(game);
+                          navigate(`/game/${game.id}`);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                       >
@@ -1888,7 +1913,7 @@ export default function App() {
                         className="flex gap-4 group cursor-pointer items-center no-underline"
                         onClick={(e) => {
                           e.preventDefault();
-                          setSelectedGame(game);
+                          navigate(`/game/${game.id}`);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                       >
@@ -1919,8 +1944,7 @@ export default function App() {
                         href={`/category/${tab.toLowerCase()}`}
                         onClick={(e) => {
                           e.preventDefault();
-                          setActiveTab(tab);
-                          setSelectedGame(null);
+                          navigate(`/category/${tab.toLowerCase()}`);
                         }}
                         className="px-3 py-1 bg-black/5 hover:bg-brand-purple/10 text-slate-600 hover:text-brand-purple rounded-full text-[10px] font-bold uppercase tracking-widest transition-all"
                       >
@@ -1933,7 +1957,7 @@ export default function App() {
                         href={`/game/${game.id}`}
                         onClick={(e) => {
                           e.preventDefault();
-                          setSelectedGame(game);
+                          navigate(`/game/${game.id}`);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                         className="px-3 py-1 bg-black/5 hover:bg-brand-purple/10 text-slate-600 hover:text-brand-purple rounded-full text-[10px] font-bold uppercase tracking-widest transition-all"
@@ -1953,7 +1977,7 @@ export default function App() {
             className="max-w-4xl mx-auto space-y-12 py-8"
           >
             <button 
-              onClick={() => setSelectedBlog(null)}
+              onClick={() => navigate('/')}
               className="flex items-center gap-2 text-slate-500 hover:text-brand-purple transition-colors font-bold uppercase tracking-widest text-xs"
             >
               <ArrowLeft size={16} /> Back to Home
@@ -1978,47 +2002,46 @@ export default function App() {
               <div className="pt-12 mt-12 border-t border-black/5 space-y-8">
                 <div className="flex items-center justify-between">
                   <h3 className="text-2xl font-bold text-slate-900">Recommended Guides</h3>
-                  <a href="/blogs" onClick={(e) => { e.preventDefault(); setSelectedBlog(null); setActiveTab("Home"); }} className="text-brand-purple font-bold text-xs uppercase tracking-widest hover:underline">View All</a>
+                  <a href="/blogs" onClick={(e) => { e.preventDefault(); navigate('/blogs'); }} className="text-brand-purple font-bold text-xs uppercase tracking-widest hover:underline">View All</a>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {BLOGS.filter(b => b.id !== selectedBlog.id).slice(0, 4).map(blog => (
-                    <a 
-                      key={blog.id} 
-                      href={`/blog/${blog.id}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setSelectedBlog(blog);
-                        window.scrollTo({top: 0, behavior: 'smooth'});
-                      }}
-                      className="glass p-4 rounded-2xl flex items-center gap-4 hover:border-brand-purple/30 group transition-all"
-                    >
-                      <div className="w-10 h-10 bg-brand-purple/10 rounded-lg flex items-center justify-center text-brand-purple group-hover:scale-110 transition-transform">
-                        <BookOpen size={20} />
-                      </div>
-                      <span className="font-bold text-sm text-slate-700 group-hover:text-brand-purple transition-colors">{blog.title}</span>
-                    </a>
-                  ))}
+                    {BLOGS.filter(b => b.id !== selectedBlog.id).slice(0, 4).map(blog => (
+                      <a 
+                        key={blog.id} 
+                        href={`/blog/${blog.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate(`/blog/${blog.id}`);
+                          window.scrollTo({top: 0, behavior: 'smooth'});
+                        }}
+                        className="glass p-4 rounded-2xl flex items-center gap-4 hover:border-brand-purple/30 group transition-all"
+                      >
+                        <div className="w-10 h-10 bg-brand-purple/10 rounded-lg flex items-center justify-center text-brand-purple group-hover:scale-110 transition-transform">
+                          <BookOpen size={20} />
+                        </div>
+                        <span className="font-bold text-sm text-slate-700 group-hover:text-brand-purple transition-colors">{blog.title}</span>
+                      </a>
+                    ))}
                 </div>
               </div>
 
               <div className="pt-8 space-y-6">
                 <h3 className="text-xl font-bold text-slate-900">Trending Unblocked Games</h3>
                 <div className="flex flex-wrap gap-2">
-                  {GAMES.slice(0, 10).map(game => (
-                    <a 
-                      key={`blog-game-${game.id}`}
-                      href={`/game/${game.id}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setSelectedGame(game);
-                        setSelectedBlog(null);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                      className="px-4 py-2 glass rounded-xl text-xs font-bold text-slate-500 hover:text-brand-purple hover:bg-brand-purple/5 transition-all"
-                    >
-                      {game.title}
-                    </a>
-                  ))}
+                    {GAMES.slice(0, 10).map(game => (
+                      <a 
+                        key={`blog-game-${game.id}`}
+                        href={`/game/${game.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate(`/game/${game.id}`);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="px-4 py-2 glass rounded-xl text-xs font-bold text-slate-500 hover:text-brand-purple hover:bg-brand-purple/5 transition-all"
+                      >
+                        {game.title}
+                      </a>
+                    ))}
                 </div>
               </div>
 
@@ -2034,8 +2057,7 @@ export default function App() {
                         <button
                           key={gameId}
                           onClick={() => {
-                            setSelectedGame(game);
-                            setSelectedBlog(null);
+                            navigate(`/game/${gameId}`);
                           }}
                           className="glass p-4 rounded-2xl flex items-center gap-4 hover:scale-105 transition-transform text-left group"
                         >
@@ -2077,14 +2099,11 @@ export default function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {BLOGS.map((blog, idx) => (
-                <motion.div
-                  key={blog.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: idx * 0.1 }}
-                  onClick={() => setSelectedBlog(blog)}
-                  className="glass rounded-[2rem] overflow-hidden group cursor-pointer border border-black/5 hover:border-brand-purple/20 transition-all p-8 flex flex-col h-full"
-                >
+                  <button
+                    key={blog.id}
+                    onClick={() => navigate(`/blog/${blog.id}`)}
+                    className="glass rounded-[2rem] overflow-hidden group cursor-pointer border border-black/5 hover:border-brand-purple/20 transition-all p-8 flex flex-col h-full"
+                  >
                   <div className="flex-grow space-y-4">
                     <div className="flex items-center gap-3 text-brand-purple font-bold uppercase tracking-widest text-[10px]">
                       <BookOpen size={14} />
@@ -2097,7 +2116,7 @@ export default function App() {
                     <span className="text-brand-purple font-bold uppercase tracking-widest text-[10px]">Read More</span>
                     <ChevronRight size={16} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
                   </div>
-                </motion.div>
+                </button>
               ))}
             </div>
           </div>
@@ -2124,8 +2143,7 @@ export default function App() {
                     
                     <button 
                       onClick={() => {
-                        const gta = GAMES.find(g => g.id === 'gta-san-andreas');
-                        if (gta) setSelectedGame(gta);
+                        navigate('/game/gta-san-andreas');
                       }}
                       className="relative z-10 px-8 py-4 bg-brand-purple text-white rounded-xl font-bold uppercase tracking-widest purple-glow hover:scale-110 transition-all shadow-2xl shadow-brand-purple/20 translate-y-40"
                     >
@@ -2186,7 +2204,7 @@ export default function App() {
                         key={game.id}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => setSelectedGame(game)}
+                        onClick={() => navigate(`/game/${game.id}`)}
                         className="aspect-square rounded-xl overflow-hidden cursor-pointer group relative border border-black/5 hover:border-brand-purple/50 transition-all shadow-sm bg-white"
                       >
                         <img 
@@ -2224,9 +2242,7 @@ export default function App() {
                     </h2>
                     <button 
                       onClick={() => {
-                        setActiveTab("Home");
-                        setSearchQuery("");
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        navigate('/');
                       }}
                       className="text-sm text-slate-500 hover:text-brand-purple flex items-center gap-1 transition-colors"
                     >
@@ -2259,7 +2275,7 @@ export default function App() {
                         transition={{ delay: idx * 0.1 }}
                         onClick={(e) => {
                           e.preventDefault();
-                          setSelectedGame(game);
+                          navigate(`/game/${game.id}`);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                         className="glass rounded-xl overflow-hidden group cursor-pointer hover:border-brand-purple/30 transition-all block"
@@ -2317,7 +2333,7 @@ export default function App() {
                         href={`/category/${cat.toLowerCase()}`}
                         onClick={(e) => {
                           e.preventDefault();
-                          setActiveTab(cat);
+                          navigate(`/category/${cat.toLowerCase()}`);
                           document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
                         }}
                         className="glass p-4 rounded-2xl text-center group transition-all hover:bg-brand-purple/10 border-transparent hover:border-brand-purple/20"
@@ -2340,7 +2356,7 @@ export default function App() {
                       href={`/game/${game.id}`}
                       onClick={(e) => {
                         e.preventDefault();
-                        setSelectedGame(game);
+                        navigate(`/game/${game.id}`);
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
                       className="text-[11px] font-bold text-slate-500 hover:text-brand-purple transition-colors truncate"
@@ -2384,16 +2400,16 @@ export default function App() {
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                           {BLOGS.slice(0, 6).map(blog => (
-                            <a 
-                              key={blog.id} 
-                              href={`/blog/${blog.id}`}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setSelectedBlog(blog);
-                                window.scrollTo({top: 0, behavior: 'smooth'});
-                              }}
-                              className="glass p-6 rounded-2xl group transition-all block hover:border-brand-purple/30"
-                            >
+                          <a 
+                            key={blog.id} 
+                            href={`/blog/${blog.id}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              navigate(`/blog/${blog.id}`);
+                              window.scrollTo({top: 0, behavior: 'smooth'});
+                            }}
+                            className="glass p-6 rounded-2xl group transition-all block hover:border-brand-purple/30"
+                          >
                               <div className="flex items-center gap-2 mb-3 text-brand-purple">
                                 <BookOpen size={14} />
                                 <span className="text-[10px] font-bold uppercase tracking-widest">Guide</span>
@@ -2440,7 +2456,7 @@ export default function App() {
                         </p>
                         <ul className="list-disc pl-6 space-y-2">
                           <li><strong>Action & Survival:</strong> Experience high-stakes gameplay in titles like <em>Ragdoll Archers</em> or <em>1v1.LOL</em>.</li>
-                          <li><strong>Sports Classics:</strong> Manage your dream team in <button onClick={() => { const s = GAMES.find(g => g.id === 'retro-bowl'); if(s) setSelectedGame(s); }} className="text-brand-purple font-semibold hover:underline">Retro Bowl Unblocked Classroom 6x</button>, arguably the most popular sports title in our collection.</li>
+                          <li><strong>Sports Classics:</strong> Manage your dream team in <button onClick={() => navigate('/game/retro-bowl')} className="text-brand-purple font-semibold hover:underline">Retro Bowl Unblocked Classroom 6x</button>, arguably the most popular sports title in our collection.</li>
                           <li><strong>Precision Racing:</strong> Master the physics of gravity in the legendary <strong>Slope Game</strong> or 2D classics like <em>Hill Climb Racing</em>.</li>
                           <li><strong>Multiplayer Arenas:</strong> Battle friends or strangers in real-time IO games that are perfectly scoped for school network speeds.</li>
                         </ul>
@@ -2752,10 +2768,10 @@ export default function App() {
           <div>
             <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Categories</h4>
             <ul className="space-y-3 text-sm text-slate-500">
-              <li><a href="/category/action" onClick={(e) => { e.preventDefault(); setActiveTab("Action"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Action Games</a></li>
-              <li><a href="/category/sports" onClick={(e) => { e.preventDefault(); setActiveTab("Sports"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Sports Games</a></li>
-              <li><a href="/category/racing" onClick={(e) => { e.preventDefault(); setActiveTab("Racing"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Racing Games</a></li>
-              <li><a href="/category/puzzle" onClick={(e) => { e.preventDefault(); setActiveTab("Puzzle"); setSelectedGame(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Puzzle Games</a></li>
+              <li><a href="/category/action" onClick={(e) => { e.preventDefault(); navigate('/category/action'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Action Games</a></li>
+              <li><a href="/category/sports" onClick={(e) => { e.preventDefault(); navigate('/category/sports'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Sports Games</a></li>
+              <li><a href="/category/racing" onClick={(e) => { e.preventDefault(); navigate('/category/racing'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Racing Games</a></li>
+              <li><a href="/category/puzzle" onClick={(e) => { e.preventDefault(); navigate('/category/puzzle'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Puzzle Games</a></li>
             </ul>
           </div>
 
