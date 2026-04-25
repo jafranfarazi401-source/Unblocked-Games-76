@@ -37,6 +37,18 @@ async function startServer() {
         return res.redirect(301, safePath + query);
       }
 
+      // Specific SEO Fixes for reported issues
+      const pathFixes: Record<string, string> = {
+        '/contact': '/contact-us',
+        '/classroom6x.store': '/',
+        '/classroom6x.store/': '/'
+      };
+      
+      if (pathFixes[req.path]) {
+        console.log(`[SEO 301] Path Fix: ${req.path} -> ${pathFixes[req.path]}`);
+        return res.redirect(301, pathFixes[req.path]);
+      }
+
       if (hostname !== "classroom6x.store" || protocol !== "https") {
         console.log(`[SEO 301] Force Redirect: ${protocol}://${host}${req.originalUrl} -> https://classroom6x.store${req.originalUrl}`);
         return res.redirect(301, `https://classroom6x.store${req.originalUrl}`);

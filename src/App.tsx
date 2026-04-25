@@ -708,12 +708,13 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    const updateMeta = (title: string, desc: string, path: string) => {
+    const updateMeta = (title: string, desc: string, path: string, noIndex: boolean = false) => {
       document.title = title;
       const url = `https://classroom6x.store${path === '/' ? '' : path}`;
       
       const selectors = {
         description: 'meta[name="description"]',
+        robots: 'meta[name="robots"]',
         ogTitle: 'meta[property="og:title"]',
         ogUrl: 'meta[property="og:url"]',
         ogDesc: 'meta[property="og:description"]',
@@ -722,6 +723,21 @@ export default function App() {
         twitterDesc: 'meta[property="twitter:description"]',
         canonical: 'link[rel="canonical"]'
       };
+
+      // Handle robots meta (noindex)
+      let robots = document.querySelector(selectors.robots);
+      if (noIndex) {
+        if (!robots) {
+          robots = document.createElement('meta');
+          robots.setAttribute('name', 'robots');
+          document.head.appendChild(robots);
+        }
+        robots.setAttribute('content', 'noindex, nofollow');
+      } else {
+        if (robots) {
+          robots.setAttribute('content', 'index, follow');
+        }
+      }
 
       // Ensure canonical exists
       let canonical = document.querySelector(selectors.canonical);
@@ -777,9 +793,11 @@ export default function App() {
     } else {
       const title = "Classroom 6x - Best Unblocked Games for School [2026]";
       const desc = "Play free unblocked games on Classroom 6x. Enjoy popular games like Slope, Retro Bowl, Snow Rider 3D and more. No download needed.";
-      updateMeta(title, desc, "/");
+      // Add noindex if it's a search result page (has query params)
+      const isSearch = location.search.includes('s=') || location.search.length > 0;
+      updateMeta(title, desc, "/", isSearch);
     }
-  }, [selectedGame, selectedBlog, activePage, activeTab]);
+  }, [selectedGame, selectedBlog, activePage, activeTab, location.search]);
 
   const handleLogoClick = () => {
     navigate('/');
