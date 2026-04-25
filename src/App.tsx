@@ -707,48 +707,79 @@ export default function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    const updateMeta = (title: string, desc: string, path: string) => {
+      document.title = title;
+      const url = `https://classroom6x.store${path === '/' ? '' : path}`;
+      
+      const selectors = {
+        description: 'meta[name="description"]',
+        ogTitle: 'meta[property="og:title"]',
+        ogUrl: 'meta[property="og:url"]',
+        ogDesc: 'meta[property="og:description"]',
+        twitterTitle: 'meta[property="twitter:title"]',
+        twitterUrl: 'meta[property="twitter:url"]',
+        twitterDesc: 'meta[property="twitter:description"]',
+        canonical: 'link[rel="canonical"]'
+      };
+
+      // Ensure canonical exists
+      let canonical = document.querySelector(selectors.canonical);
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute('href', url);
+
+      // Update basic meta
+      const descMeta = document.querySelector(selectors.description);
+      if (descMeta) descMeta.setAttribute('content', desc);
+
+      // Update OG & Twitter
+      const ogTitle = document.querySelector(selectors.ogTitle);
+      if (ogTitle) ogTitle.setAttribute('content', title);
+      
+      const ogUrl = document.querySelector(selectors.ogUrl);
+      if (ogUrl) ogUrl.setAttribute('content', url);
+
+      const ogDesc = document.querySelector(selectors.ogDesc);
+      if (ogDesc) ogDesc.setAttribute('content', desc);
+
+      const twTitle = document.querySelector(selectors.twitterTitle);
+      if (twTitle) twTitle.setAttribute('content', title);
+
+      const twUrl = document.querySelector(selectors.twitterUrl);
+      if (twUrl) twUrl.setAttribute('content', url);
+
+      const twDesc = document.querySelector(selectors.twitterDesc);
+      if (twDesc) twDesc.setAttribute('content', desc);
+    };
+
     if (selectedGame) {
-      setIsPlaying(false); // Reset play state when changing games
-      document.title = `${selectedGame.title} Unblocked - Play on Classroom 6x`;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (metaDesc) {
-        const description = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Experience the best unblocked games on our platform. No downloads, unblocked for school and work.`;
-        metaDesc.setAttribute('content', description);
-      }
-      if (canonical) {
-        canonical.setAttribute('href', `https://classroom6x.store/game/${selectedGame.id}`);
-      }
+      setIsPlaying(false);
+      const title = `${selectedGame.title} Unblocked - Play on Classroom 6x`;
+      const desc = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Fast, unblocked gaming hub.`;
+      updateMeta(title, desc, `/game/${selectedGame.id}`);
     } else if (selectedBlog) {
-      document.title = `${selectedBlog.title} | Classroom 6x Guides`;
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) {
-        canonical.setAttribute('href', `https://classroom6x.store/blog/${selectedBlog.id}`);
-      }
+      const title = `${selectedBlog.title} | Classroom 6x Guides`;
+      const desc = selectedBlog.excerpt || `Read our guide about ${selectedBlog.title} on Classroom 6x.`;
+      updateMeta(title, desc, `/blog/${selectedBlog.id}`);
     } else if (activePage) {
-      document.title = `${activePage} | Classroom 6x`;
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) {
-        canonical.setAttribute('href', `https://classroom6x.store/${activePage.toLowerCase()}`);
-      }
+      const slug = activePage.toLowerCase().replace(/\s+/g, '-');
+      const title = `${activePage} | Classroom 6x`;
+      const desc = `Learn more about our ${activePage} on Classroom 6x.`;
+      updateMeta(title, desc, `/${slug}`);
     } else if (activeTab !== "Home") {
-      document.title = `Best ${activeTab} Unblocked Games | Classroom 6x`;
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) {
-        canonical.setAttribute('href', `https://classroom6x.store/category/${activeTab.toLowerCase()}`);
-      }
+      const title = `Best ${activeTab} Unblocked Games | Classroom 6x`;
+      const desc = `Explore the best collection of ${activeTab} unblocked games on Classroom 6x.`;
+      updateMeta(title, desc, `/category/${activeTab.toLowerCase()}`);
     } else {
-      document.title = "Classroom 6x - Best Unblocked Games for School [2026]";
-      const metaDesc = document.querySelector('meta[name="description"]');
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (metaDesc) {
-        metaDesc.setAttribute('content', "Play free unblocked games on Classroom 6x. Enjoy popular games like Slope, Retro Bowl, Snow Rider 3D and more. No download needed.");
-      }
-      if (canonical) {
-        canonical.setAttribute('href', "https://classroom6x.store/");
-      }
+      const title = "Classroom 6x - Best Unblocked Games for School [2026]";
+      const desc = "Play free unblocked games on Classroom 6x. Enjoy popular games like Slope, Retro Bowl, Snow Rider 3D and more. No download needed.";
+      updateMeta(title, desc, "/");
     }
-  }, [selectedGame, activePage, selectedBlog, activeTab]);
+  }, [selectedGame, selectedBlog, activePage, activeTab]);
 
   const handleLogoClick = () => {
     navigate('/');

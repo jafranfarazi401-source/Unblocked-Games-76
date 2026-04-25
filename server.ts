@@ -29,6 +29,14 @@ async function startServer() {
       // HSTS (HTTP Strict Transport Security) - Ensures browsers only use HTTPS
       res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
 
+      // Canonical 301 Redirection to non-trailing slash URLs (except home)
+      if (req.path.length > 1 && req.path.endsWith('/')) {
+        const query = req.url.slice(req.path.length);
+        const safePath = req.path.slice(0, -1);
+        console.log(`[SEO 301] Trailing Slash Redirect: ${req.url} -> ${safePath}${query}`);
+        return res.redirect(301, safePath + query);
+      }
+
       if (hostname !== "classroom6x.store" || protocol !== "https") {
         console.log(`[SEO 301] Force Redirect: ${protocol}://${host}${req.originalUrl} -> https://classroom6x.store${req.originalUrl}`);
         return res.redirect(301, `https://classroom6x.store${req.originalUrl}`);
