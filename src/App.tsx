@@ -728,7 +728,7 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    const updateMeta = (title: string, desc: string, path: string, noIndex: boolean = false) => {
+    const updateMeta = (title: string, desc: string, path: string, noIndex: boolean = false, schema?: any) => {
       document.title = title;
       const url = `https://classroom6x.store${path === '/' ? '' : path}`;
       
@@ -741,7 +741,8 @@ export default function App() {
         twitterTitle: 'meta[property="twitter:title"]',
         twitterUrl: 'meta[property="twitter:url"]',
         twitterDesc: 'meta[property="twitter:description"]',
-        canonical: 'link[rel="canonical"]'
+        canonical: 'link[rel="canonical"]',
+        schema: 'script[type="application/ld+json"].dynamic-schema'
       };
 
       // Handle robots meta (noindex)
@@ -757,6 +758,20 @@ export default function App() {
         if (robots) {
           robots.setAttribute('content', 'index, follow');
         }
+      }
+
+      // Handle JSON-LD Schema
+      let schemaScript = document.querySelector(selectors.schema);
+      if (schema) {
+        if (!schemaScript) {
+          schemaScript = document.createElement('script');
+          schemaScript.setAttribute('type', 'application/ld+json');
+          schemaScript.classList.add('dynamic-schema');
+          document.head.appendChild(schemaScript);
+        }
+        schemaScript.textContent = JSON.stringify(schema);
+      } else if (schemaScript) {
+        schemaScript.remove();
       }
 
       // Ensure canonical exists
@@ -796,11 +811,52 @@ export default function App() {
       setIsPlaying(false);
       const title = `${selectedGame.title} Unblocked - Play on Classroom 6x`;
       const desc = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Fast, unblocked gaming hub.`;
-      updateMeta(title, desc, `/game/${selectedGame.id}`);
+      
+      const gameSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": selectedGame.title,
+        "operatingSystem": "Web Browser",
+        "applicationCategory": "GameApplication",
+        "genre": selectedGame.category,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": selectedGame.rating || "4.8",
+          "ratingCount": "1250"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      };
+
+      updateMeta(title, desc, `/game/${selectedGame.id}`, false, gameSchema);
     } else if (selectedBlog) {
       const title = `${selectedBlog.title} | Classroom 6x Guides`;
       const desc = selectedBlog.excerpt || `Read our guide about ${selectedBlog.title} on Classroom 6x.`;
-      updateMeta(title, desc, `/blog/${selectedBlog.id}`);
+      
+      const blogSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": selectedBlog.title,
+        "description": desc,
+        "author": {
+          "@type": "Organization",
+          "name": "Classroom 6x Team"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Classroom 6x",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://classroom6x.store/logo.png"
+          }
+        },
+        "url": `https://classroom6x.store/blog/${selectedBlog.id}`
+      };
+
+      updateMeta(title, desc, `/blog/${selectedBlog.id}`, false, blogSchema);
     } else if (activePage) {
       const slug = activePage.toLowerCase().replace(/\s+/g, '-');
       const title = `${activePage} | Classroom 6x`;
@@ -809,7 +865,16 @@ export default function App() {
     } else if (activeTab !== "Home") {
       const title = `Best ${activeTab} Unblocked Games | Classroom 6x`;
       const desc = `Explore the best collection of ${activeTab} unblocked games on Classroom 6x.`;
-      updateMeta(title, desc, `/category/${activeTab.toLowerCase()}`);
+      
+      const categorySchema = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": `${activeTab} Unblocked Games`,
+        "description": desc,
+        "url": `https://classroom6x.store/category/${activeTab.toLowerCase()}`
+      };
+
+      updateMeta(title, desc, `/category/${activeTab.toLowerCase()}`, false, categorySchema);
     } else {
       const title = "Classroom 6x - Best Unblocked Games for School [2026]";
       const desc = "Play free unblocked games on Classroom 6x. Enjoy popular games like Slope, Retro Bowl, Snow Rider 3D and more. No download needed.";
@@ -2939,6 +3004,15 @@ export default function App() {
                   className="hover:text-brand-purple cursor-pointer transition-colors"
                 >
                   Terms of Service
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/sitemap.xml"
+                  target="_blank"
+                  className="hover:text-brand-purple cursor-pointer transition-colors"
+                >
+                  Sitemap
                 </a>
               </li>
             </ul>
