@@ -738,9 +738,11 @@ export default function App() {
         ogTitle: 'meta[property="og:title"]',
         ogUrl: 'meta[property="og:url"]',
         ogDesc: 'meta[property="og:description"]',
+        ogImage: 'meta[property="og:image"]',
         twitterTitle: 'meta[property="twitter:title"]',
         twitterUrl: 'meta[property="twitter:url"]',
         twitterDesc: 'meta[property="twitter:description"]',
+        twitterImage: 'meta[property="twitter:image"]',
         canonical: 'link[rel="canonical"]',
         schema: 'script[type="application/ld+json"].dynamic-schema'
       };
@@ -805,6 +807,12 @@ export default function App() {
 
       const twDesc = document.querySelector(selectors.twitterDesc);
       if (twDesc) twDesc.setAttribute('content', desc);
+
+      const ogImage = document.querySelector(selectors.ogImage);
+      const twImage = document.querySelector(selectors.twitterImage);
+      const imageUrl = schema?.image || schema?.logo || "https://classroom6x.store/logo.svg";
+      if (ogImage) ogImage.setAttribute('content', imageUrl);
+      if (twImage) twImage.setAttribute('content', imageUrl);
     };
 
     if (selectedGame) {
@@ -850,7 +858,7 @@ export default function App() {
           "name": "Classroom 6x",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://classroom6x.store/logo.png"
+            "url": "https://classroom6x.store/logo.svg"
           }
         },
         "url": `https://classroom6x.store/blog/${selectedBlog.id}`
@@ -880,7 +888,19 @@ export default function App() {
       const desc = "Play free unblocked games on Classroom 6x. Enjoy popular games like Slope, Retro Bowl, Snow Rider 3D and more. No download needed.";
       // Add noindex if it's a search result page (has query params)
       const isSearch = location.search.includes('s=') || location.search.length > 0;
-      updateMeta(title, desc, "/", isSearch);
+      
+      const homeSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Classroom 6x",
+        "url": "https://classroom6x.store/",
+        "logo": "https://classroom6x.store/logo.svg",
+        "sameAs": [
+          "https://facebook.com/classroom6x"
+        ]
+      };
+
+      updateMeta(title, desc, "/", isSearch, homeSchema);
     }
   }, [selectedGame, selectedBlog, activePage, activeTab, location.search]);
 
