@@ -440,6 +440,49 @@ const BLOGS = [
 
       <p>At <strong>Classroom 6x</strong>, we take pride in offering games that aren't just fun, but are also mentally stimulating. Whether you're looking for a quick <a href="/category/arcade" class="text-brand-purple">arcade break</a> or a deep dive into an <a href="/category/adventure" class="text-brand-purple">adventure</a>, you're giving your brain a genuine workout. Dive into our <a href="/" class="text-brand-purple">latest collection</a> and see how sharp you can become!</p>
     `
+  },
+  {
+    id: 'classroom-6x-horror-story-no-one-could-exit',
+    title: "Classroom 6x: The Horror Game No One Could Exit",
+    excerpt: "A chilling urban legend about a hidden game on Classroom 6x that blurs the line between reality and the screen.",
+    content: `
+      <h2>The Urban Legend of 'Exit the Classroom'</h2>
+      <p>It was around 1 AM. Rain was hitting the window, and thunder kept shaking the room. I couldn’t sleep, so I opened my laptop to waste some time online. Then I remembered my friends talking about a website called <a href="/" class="text-brand-purple">Classroom 6x</a>. They said it had tons of unblocked games you could play anywhere.</p>
+      
+      <p>I smirked. “Just a game site,” I said to myself. I opened the website. The homepage loaded slowly, filled with colorful game icons—racing, puzzles, shooters, action. But one game instantly caught my attention: <strong>Exit the Classroom</strong>.</p>
+
+      <h3>The Warning</h3>
+      <p>The thumbnail showed a dark classroom with broken desks. On the blackboard, written in red chalk, were the words: <strong>DON’T LOOK BACK</strong>. I clicked it. The screen turned black. Then white text appeared: <em>“Once you enter, you must finish.”</em></p>
+
+      <h3>The Experiment Begins</h3>
+      <p>I laughed nervously. “Nice intro.” The game began. I was standing inside an empty classroom. The lights flickered above me. Desks were overturned. Papers moved across the floor even though there was no wind. At the far end of the room was a locked door. The controls were simple: WASD to move, mouse to look around.</p>
+      
+      <p>I walked toward the door. A message popped up: <strong>“Find the 3 keys.”</strong> Classic horror puzzle stuff. I searched the room. First key—inside a drawer. Second key—under a broken chair. Easy. Then I heard something behind me. <strong>Tap... tap... tap...</strong></p>
+
+      <h3>The Whispers</h3>
+      <p>I froze. I slowly turned around. Nothing. Just rows of desks. I laughed again, but quieter this time. I kept searching for the third key. Suddenly my laptop speakers crackled. A child’s voice whispered: <em>“Don’t turn around.”</em></p>
+      
+      <p>My hands went cold. I checked if another tab was open. Nothing. The game character was breathing heavily now. I hadn’t noticed that before. Then the lights inside the game went out completely. My real room still had power. Only the laptop screen glowed.</p>
+
+      <h3>The Figure in the Darkness</h3>
+      <p>When the lights in the game came back, every desk had turned to face me. I pushed back from the table. “Nope.” I moved to close the tab. It wouldn’t close. I hit Alt + F4. Nothing. The browser froze. On screen, the classroom door slowly opened by itself. Inside the darkness beyond it stood a tall figure. Too tall to be human. Its head bent sideways like a broken doll. Its fingers scraped the doorway.</p>
+      
+      <p>Then text appeared: <strong>“You looked back.”</strong></p>
+
+      <h3>The Reality Breach</h3>
+      <p>My webcam light turned on. I slammed the laptop shut. Silence. My heart pounded so hard it hurt. After a minute, I opened the laptop again. The game was still running. But now it wasn’t showing the classroom. It was showing <strong>my room</strong>. Live. From the webcam.</p>
+      
+      <p>I saw myself sitting there, pale and terrified. Then I noticed something else. Behind me, near the bedroom door, stood the same tall figure from the game. I spun around. Nothing there. I looked back at the screen.</p>
+
+      <p>It was closer now. Its face was just a dark blur, but I could see one white eye staring straight into the camera. I grabbed the charger and yanked it out. The laptop battery died instantly. Black screen. I sat in darkness, breathing hard.</p>
+
+      <h3>The Final Key</h3>
+      <p>Then from the hallway outside my room came three slow knocks. <strong>Knock. Knock. Knock.</strong> My bedroom door was locked. I didn’t move. A whisper slid under the door: <em>“Final key.”</em></p>
+      
+      <p>I stayed frozen until sunrise. When morning came, I opened the door. Nothing. No footprints. No marks. I told myself it was stress. Lack of sleep. Some weird prank game with webcam permissions. Later that day, I searched for the site again. <a href="/" class="text-brand-purple">Classroom 6x</a> loaded normally. But the game <strong>Exit the Classroom</strong> was gone. No category, no thumbnail. Nothing.</p>
+
+      <p>I almost believed it had all been a nightmare. Then I checked my desktop. There was a new folder named: <strong>DO NOT LOOK BACK</strong>. Inside was one image file. I opened it. It was a photo of me sitting at my desk last night. Taken from behind.</p>
+    `
   }
 ];
 
