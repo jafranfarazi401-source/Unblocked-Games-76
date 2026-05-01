@@ -301,6 +301,16 @@ const GAMES = [
     url: "https://play.gamepix.com/revolution-idle/embed?sid=VCOSN",
     shortDesc: "Experience the ultimate incremental progress in this addictive idle game.",
     description: "Revolution Idle 6x is an abstract incremental game where your goal is to fill up circles and trigger powerful resets. Specially optimized for the unblocked games 6x hub, revolution idle 6x is a top choice for students."
+  },
+  {
+    id: 'kirka-io',
+    title: "Kirka.io Unblocked",
+    category: "Shooter",
+    image: "https://imgs.crazygames.com/kirka-io_1x1/20260116015838/kirka-io_1x1-cover?format=auto&quality=100&metadata=none&width=1200",
+    rating: 4.9,
+    url: "https://kirka.io/",
+    shortDesc: "Competitive pixelated FPS with fast-paced action and multiple game modes.",
+    description: "Kirka.io unblocked is the ultimate competitive FPS you can play on the Classroom 6x Hub. Whether you are looking for kirka.io, kirka io, or kirka io., we provide the most stable version for school. Master your aim with kirka.io aimbot compatible settings and experience lag-free kirka.io unblocked gameplay. This version is also known as back-to-school-shopping.ml kirka.io among pro players. Jump into the arena and dominate Kirka.io today!"
   }
 ];
 
@@ -3029,6 +3039,14 @@ export default function App() {
             <div className="glass p-6 rounded-2xl">
               <h3 className="font-bold text-slate-900 mb-2">Are unblocked games 6x safe to play?</h3>
               <p className="text-slate-600 text-sm leading-relaxed">Yes! At the <strong>Classroom 6x Hub</strong>, safety is our priority. Every <strong>unblocked6x</strong> game is checked for malicious code. Our <strong>unblocked games 6x</strong> library is the safest <strong>classroom 6x hub</strong> on the internet, providing <strong>unblocked6x</strong> fun for everyone.</p>
+            </div>
+            <div className="glass p-6 rounded-2xl">
+              <h3 className="font-bold text-slate-900 mb-2">Where can I play Kirka.io unblocked?</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">You can play <strong>kirka.io unblocked</strong> right here on the <strong>Classroom 6x Hub</strong>. We host the best version of <strong>kirka io</strong> that is compatible with school Chromebooks. Whether you call it <strong>kirka io.</strong> or <strong>back-to-school-shopping.ml kirka.io</strong>, we have the fastest connection available.</p>
+            </div>
+            <div className="glass p-6 rounded-2xl">
+              <h3 className="font-bold text-slate-900 mb-2">Is Kirka.io aimbot allowed?</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">While many search for <strong>kirka.io aimbot</strong>, we recommend mastering the game's mechanics for the best experience. Our <strong>kirka.io unblocked</strong> version provides smooth frame rates to help you improve your natural aim without needing external tools.</p>
             </div>
           </div>
         </div>
