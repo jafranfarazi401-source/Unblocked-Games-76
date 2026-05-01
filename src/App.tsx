@@ -311,6 +311,16 @@ const GAMES = [
     url: "https://kirka.io/",
     shortDesc: "Competitive pixelated FPS with fast-paced action and multiple game modes.",
     description: "Kirka.io unblocked is the ultimate competitive FPS you can play on the Classroom 6x Hub. Whether you are looking for kirka.io, kirka io, or kirka io., we provide the most stable version for school. Master your aim with kirka.io aimbot compatible settings and experience lag-free kirka.io unblocked gameplay. This version is also known as back-to-school-shopping.ml kirka.io among pro players. Jump into the arena and dominate Kirka.io today!"
+  },
+  {
+    id: 'baseball-9',
+    title: "Baseball 9 Unblocked",
+    category: "Sports",
+    image: "https://play-lh.googleusercontent.com/Y9GghCslNNk-nWccWvxgCDYvd7yLSwkw0hZ3NVTkSJqigY0ZozK3lv85jR02XOJSDPQ",
+    rating: 4.8,
+    url: "https://nealfun.app/game/baseball-bros/",
+    shortDesc: "Experience the thrill of home runs in this immersive unblocked baseball simulation.",
+    description: "Baseball 9 unblocked is the most exciting sports game available on the Classroom 6x Hub. Whether you're searching for baseball 9 unblocked 76 or baseball 9 unblocked games, we have the fastest version. Play baseball 9 unblocked free with no download required, perfect for school breaks. Experience unblocked baseball 9 or 9 inning baseball unblocked today. This baseball 9 online unblocked version is optimized for school Chromebooks, making baseball 9 unblocked at school a breeze."
   }
 ];
 
@@ -3047,6 +3057,14 @@ export default function App() {
             <div className="glass p-6 rounded-2xl">
               <h3 className="font-bold text-slate-900 mb-2">Is Kirka.io aimbot allowed?</h3>
               <p className="text-slate-600 text-sm leading-relaxed">While many search for <strong>kirka.io aimbot</strong>, we recommend mastering the game's mechanics for the best experience. Our <strong>kirka.io unblocked</strong> version provides smooth frame rates to help you improve your natural aim without needing external tools.</p>
+            </div>
+            <div className="glass p-6 rounded-2xl">
+              <h3 className="font-bold text-slate-900 mb-2">How can I play baseball 9 unblocked free?</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">You can play <strong>baseball 9 unblocked free</strong> right here on the Classroom 6x Hub. We offer <strong>baseball 9 online unblocked</strong> with no download required. Searching for <strong>baseball 9 unblocked games</strong> or <strong>9 inning baseball unblocked</strong>? Our platform ensures you can access <strong>baseball 9 unblocked at school</strong> without any filters blocking your fun.</p>
+            </div>
+            <div className="glass p-6 rounded-2xl">
+              <h3 className="font-bold text-slate-900 mb-2">Is there a baseball 9 unblocked 76 version?</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">Yes, we provide an experience equivalent to <strong>baseball 9 unblocked 76</strong> but with faster loading times and better performance. Our <strong>unblocked baseball 9</strong> mirror is optimized for the best <strong>baseball 9 unblocked free no download</strong> experience available on any browser.</p>
             </div>
           </div>
         </div>
