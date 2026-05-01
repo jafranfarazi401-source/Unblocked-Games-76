@@ -222,6 +222,56 @@ const GAMES = [
     description: "Ragdoll Archers Classroom 6x is a physics-based archery game where you control a ragdoll archer in intense battles. Aim carefully, account for gravity, and defeat your opponents in this addictive unblocked game. Play solo or with a friend in 2-player mode!"
   },
   {
+    id: 'duck-duck-clicker',
+    title: "Duck Duck Clicker Classroom 6x",
+    category: "Arcade",
+    image: "https://img.gamepix.com/games/duck-duck-clicker/icon/duck-duck-clicker.png?w=200",
+    rating: 4.8,
+    url: "https://play.gamepix.com/duck-duck-clicker/embed?sid=VCOSN",
+    shortDesc: "The ultimate clicker experience where you hatch and upgrade ducks.",
+    description: "Duck Duck Clicker Classroom 6x is the addictive clicking game everyone is searching for. Hatch thousands of ducks, upgrade your duck production, and become the ultimate duck tycoon. Whether you call it duck duck clicker unblocked or duck duck clicker classroom 6x, we have the fastest, unblocked version here."
+  },
+  {
+    id: 'golf-orbit',
+    title: "Golf Orbit Unblocked Classroom 6x",
+    category: "Sports",
+    image: "https://img.gamepix.com/games/golf-orbit/icon/golf-orbit.png?w=200",
+    rating: 4.7,
+    url: "https://play.gamepix.com/golf-orbit/embed?sid=VCOSN",
+    shortDesc: "Hit the ball into orbit in this over-the-top arcade golf challenge.",
+    description: "Golf Orbit Unblocked Classroom 6x is a one-button arcade golf game that takes you to the stars. Aim your shot, power up, and send your golf ball out of this world. Perfect for quick sessions at school, golf orbit unblocked 6x is optimized for high performance."
+  },
+  {
+    id: 'survivor-io',
+    title: "Survivor.io Unblocked Classroom 6x",
+    category: "Action",
+    image: "https://img.gamepix.com/games/survivor-io/icon/survivor-io.png?w=200",
+    rating: 4.9,
+    url: "https://play.gamepix.com/survivor-io/embed?sid=VCOSN",
+    shortDesc: "Battle infinite waves of zombies in this Roguelike survival masterpiece.",
+    description: "Survivor.io Unblocked Classroom 6x brings the hit mobile roguelike to your browser. Fight off thousands of zombies, collect power-ups, and survive as long as possible. Also known as survivor io unblocked 6x, this is the ultimate version for school play."
+  },
+  {
+    id: 'obby-climb',
+    title: "Classroom 6x Obby Climb",
+    category: "Adventure",
+    image: "https://play-lh.googleusercontent.com/I6PZpT1P9X7Gq5_0V9G_f7I8O-Z6o8S6V6X4V6X4V6X4V6X4V6X4V6X4V6X4V6X=w240-h480-rw",
+    rating: 4.7,
+    url: "https://play.gamepix.com/obby-climb/embed?sid=VCOSN",
+    shortDesc: "Master the obstacle course and climb to new heights in this 3D challenge.",
+    description: "Classroom 6x Obby Climb is the premier parkour and obstacle course simulator. Test your agility and precision as you climb higher and higher. Searching for classroom 6x obby climb? You've found the unblocked hub for the best parkour action."
+  },
+  {
+    id: 'slice-master',
+    title: "Slice Master Classroom 6x",
+    category: "Arcade",
+    image: "https://img.gamepix.com/games/slice-master/icon/slice-master.png?w=200",
+    rating: 4.8,
+    url: "https://play.gamepix.com/slice-master/embed?sid=VCOSN",
+    shortDesc: "Flip the knife and slice through everything in this satisfying arcade game.",
+    description: "Slice Master Classroom 6x is a satisfying physics-based game where you flip a blade to cut through fruits, obstacles, and more. Master the timing and achieve the highest scores on slice master classroom 6x unblocked, the ultimate browser version."
+  },
+  {
     id: 'big-shot-boxing',
     title: "Big Shot Boxing Unblocked",
     category: "Fighting",
@@ -927,17 +977,18 @@ export default function App() {
 
       updateMeta(title, desc, `/category/${activeTab.toLowerCase()}`, false, categorySchema);
     } else {
-      const title = "Classroom 6x - Best Unblocked Games for School [2026]";
-      const desc = "Play free unblocked games on Classroom 6x. Enjoy popular games like Slope, Retro Bowl, Snow Rider 3D and more. No download needed.";
+      const title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
+      const desc = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and golf orbit unblocked classroom 6x with zero lag.";
       // Add noindex if it's a search result page (has query params)
       const isSearch = location.search.includes('s=') || location.search.length > 0;
       
       const homeSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Classroom 6x",
+        "name": "Classroom 6x Hub",
         "url": "https://classroom6x.store/",
         "logo": "https://classroom6x.store/logo.svg",
+        "description": "The ultimate unblocked games 6x hub for school students.",
         "sameAs": [
           "https://facebook.com/classroom6x"
         ]
