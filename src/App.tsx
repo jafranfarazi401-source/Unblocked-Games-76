@@ -732,11 +732,11 @@ const FAQS = [
   },
   {
     question: "What is classroom 6x fun ragdoll arena?",
-    answer: "The <strong>classroom 6x fun ragdoll arena</strong> refers to the high-performance unblocked version of <strong>Ragdoll Archers</strong> hosted on our hub. It provides smooth physics and intense 2-player combat, making <strong>classroom 6x fun ragdoll arena</strong> a top choice for school breaks. Find every <strong>classroom 6x fun ragdoll arena</strong> challenge right here!"
+    answer: "The <strong>classroom 6x fun ragdoll arena</strong> refers to the high-performance unblocked version of <strong>Ragdoll Archers</strong> hosted on our hub. It provides smooth physics and intense 2-player combat, making <strong>classroom 6x fun ragdoll arena</strong> a top choice for school breaks. Find every <strong>classroom 6x fun ragdoll arena</strong> challenge right here! Our platform is the primary host for the <strong>classroom 6x fun ragdoll arena</strong> experience, ensuring that <strong>classroom 6x fun ragdoll arena</strong> remains unblocked for all students seeking <strong>classroom 6x fun ragdoll arena</strong> action."
   }
 ];
 
-const NAV_TABS = ["Home", "Blogs", "Action", "Multiplayer", "Sports", "Shooter", "Drawing", "Arcade", "Fighting", "Racing", "Adventure"];
+const NAV_TABS = ["Home", "Blogs", "Action", "Multiplayer", "Sports", "Shooter", "Drawing", "Arcade", "Fighting", "Racing", "Adventure", "Puzzle"];
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   "Action": "Dive into the heart-pounding world of Action Unblocked Games on Classroom 6x. Our collection features high-speed challenges, strategic combat, and platforming adventures that test your reflexes and timing. From intense battles to fast-paced survival missions, these games are perfectly optimized for school Chromebooks and restricted networks, providing a safe yet thrilling experience during your breaks.",
@@ -747,7 +747,8 @@ const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   "Arcade": "Rediscover the classics and explore modern hits in our Arcade Unblocked Games section. This category is the home of high-score chasing, infinite runners, and quick-session titles like Slope and Tunnel Rush. Classroom 6x ensures these arcade experiences are instantly accessible, providing the perfect 'mental reboot' for students who need a quick, engaging break between study sessions.",
   "Fighting": "Enter the arena with our Fighting Unblocked Games at Classroom 6x. Featuring everything from stickman brawlers to strategic samurai combat like Samurai Brawling, this category tests your combo mastery and defensive timing. Every title is vetted for school safety and browser performance, ensuring you can engage in pixel-perfect combat without triggering restricted access warnings on your device.",
   "Racing": "Burn rubber with our high-speed Racing Unblocked Games collection. From the neon-lit gravity of Slope to the physics-based challenges of Moto X3M and Drive Mad, Classroom 6x is the premier destination for virtual speedsters. Our racing games are optimized for minimal loading times and high frame rates, providing a professional racing experience that fits perfectly within a school browser environment.",
-  "Adventure": "Embark on epic quests and explore mysterious worlds with Adventure Unblocked Games on Classroom 6x. This category features long-form narratives, exploration-based puzzles, and immersive 3D journeys like GTA San Andreas Unblocked. We provide secure, browser-based portals to these expansive worlds, allowing you to progress through deep storylines and complex environments without any administrative installation requirements."
+  "Adventure": "Embark on epic quests and explore mysterious worlds with Adventure Unblocked Games on Classroom 6x. This category features long-form narratives, exploration-based puzzles, and immersive 3D journeys like GTA San Andreas Unblocked. We provide secure, browser-based portals to these expansive worlds, allowing you to progress through deep storylines and complex environments without any administrative installation requirements.",
+  "Puzzle": "Challenge your intellect with our curated collection of Puzzle Unblocked Games on Classroom 6x. From AI-powered context puzzles like Contexto to classic logic brain-teasers, this category is designed to sharpen your vocabulary, spatial reasoning, and critical thinking. Our puzzle games provide an educational yet deeply engaging break, making them highly recommended by students for both fun and cognitive development at school."
 };
 
 const AdBanner = () => {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main Hubs -->
   <url>
     <loc>https://classroom6x.store/</loc>
     <priority>1.0</priority>
@@ -10,7 +11,13 @@
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
-  
+
+  <!-- Static Information Pages -->
+  <url><loc>https://classroom6x.store/about-us</loc><priority>0.5</priority></url>
+  <url><loc>https://classroom6x.store/contact-us</loc><priority>0.5</priority></url>
+  <url><loc>https://classroom6x.store/privacy-policy</loc><priority>0.5</priority></url>
+  <url><loc>https://classroom6x.store/terms-of-service</loc><priority>0.5</priority></url>
+
   <!-- Categories -->
   <url><loc>https://classroom6x.store/category/action</loc><priority>0.7</priority></url>
   <url><loc>https://classroom6x.store/category/multiplayer</loc><priority>0.7</priority></url>
@@ -21,8 +28,9 @@
   <url><loc>https://classroom6x.store/category/fighting</loc><priority>0.7</priority></url>
   <url><loc>https://classroom6x.store/category/racing</loc><priority>0.7</priority></url>
   <url><loc>https://classroom6x.store/category/adventure</loc><priority>0.7</priority></url>
+  <url><loc>https://classroom6x.store/category/puzzle</loc><priority>0.7</priority></url>
 
-  <!-- Popular Games -->
+  <!-- Games (Full Library) -->
   <url><loc>https://classroom6x.store/game/basket-random</loc><priority>0.9</priority></url>
   <url><loc>https://classroom6x.store/game/slope</loc><priority>0.9</priority></url>
   <url><loc>https://classroom6x.store/game/retro-bowl</loc><priority>0.9</priority></url>
@@ -44,8 +52,18 @@
   <url><loc>https://classroom6x.store/game/snow-rider-3d</loc><priority>0.8</priority></url>
   <url><loc>https://classroom6x.store/game/its-taxi</loc><priority>0.8</priority></url>
   <url><loc>https://classroom6x.store/game/ragdoll-archers</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/duck-duck-clicker</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/golf-orbit</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/survivor-io</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/obby-climb</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/slice-master</loc><priority>0.8</priority></url>
   <url><loc>https://classroom6x.store/game/big-shot-boxing</loc><priority>0.8</priority></url>
   <url><loc>https://classroom6x.store/game/super-mario-64</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/revolution-idle</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/kirka-io</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/baseball-9</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/contexto</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/game/geometry-dash</loc><priority>0.8</priority></url>
 
   <!-- Blog Articles -->
   <url><loc>https://classroom6x.store/blog/what-are-unblocked-games</loc><priority>0.6</priority></url>
@@ -61,20 +79,8 @@
   <url><loc>https://classroom6x.store/blog/how-to-play-classroom-6x-2026</loc><priority>0.6</priority></url>
   <url><loc>https://classroom6x.store/blog/top-10-classroom-6x</loc><priority>0.6</priority></url>
   <url><loc>https://classroom6x.store/blog/cognitive-benefits-online-gaming</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/blog/classroom-6x-horror-story-no-one-could-exit</loc><priority>0.6</priority></url>
-  <url><loc>https://classroom6x.store/blog/ultimate-guide-to-unblocked-games-6x</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/blog/mastering-context-clues-games-contexto</loc><priority>0.7</priority></url>
-  <url><loc>https://classroom6x.store/game/duck-duck-clicker</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/golf-orbit</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/survivor-io</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/slice-master</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/obby-climb</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/revolution-idle</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/funny-shooter-2</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/kirka-io</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/baseball-9</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/contexto</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/geometry-dash</loc><priority>0.8</priority></url>
-  <url><loc>https://classroom6x.store/game/ragdoll-archers</loc><priority>0.8</priority></url>
+  <url><loc>https://classroom6x.store/blog/ultimate-guide-to-unblocked-games-6x</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/mastering-context-clues-games-contexto</loc><priority>0.6</priority></url>
   <url><loc>https://classroom6x.store/blog/trending-unblocked-games-2026</loc><priority>0.6</priority></url>
+  <url><loc>https://classroom6x.store/blog/classroom-6x-horror-story-no-one-could-exit</loc><priority>0.6</priority></url>
 </urlset>
