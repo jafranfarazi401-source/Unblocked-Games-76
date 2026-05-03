@@ -937,7 +937,8 @@ export default function App() {
     
     const updateMeta = (title: string, desc: string, path: string, noIndex: boolean = false, schema?: any) => {
       document.title = title;
-      const url = `https://classroom6x.store${path === '/' ? '' : path}`;
+      const normalizedPath = path === '/' ? '/' : path.replace(/\/$/, '');
+      const url = `https://classroom6x.store${normalizedPath}`;
       
       const selectors = {
         description: 'meta[name="description"]',
