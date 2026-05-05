@@ -30,7 +30,7 @@ const GAMES = [
     rating: 4.9,
     url: "https://ubg98.github.io/BasketRandom/",
     shortDesc: "Experience chaotic 2-player basketball physics with random courts and players.",
-    description: "Basket Random Unblocked is a hilarious physics-based 2-player basketball game where every round brings new surprises. Whether you're looking for basket random unblocked 76, basket random unblocked 66, or unblocked games basket random on github, this version has it all. Experience the best unblocked basket random games with crazy 2 player physics and random courts. Play two player games unblocked basket random now and enjoy the zany action with friends! Keywords: basket random unblocked github, basket random unblocked games, unblocked games g+ basket random, basket random unblocked 2 player games."
+    description: "Basket Random Unblocked is a hilarious physics-based 2-player basketball game where every round brings new surprises. Whether you're looking for basket random unblocked 76, basket random unblocked 66, or unblocked games basket random, our hub provides the ultimate experience. Play unblocked basket random with crazy physics, changing courts, and random players. Our version is fully optimized for school, making unblocked basket random a top choice for students globally. Join the zany action now and see why everyone is playing basket random unblocked 76 and basket random unblocked 66 today! Keywords: basket random unblocked github, basket random unblocked games, unblocked basket random, basket random unblocked 76, basket random unblocked 66."
   },
   {
     id: 'hoops-and-fruits',
@@ -747,6 +747,10 @@ const FAQS = [
   {
     question: "Is classroom 6x safe for playing games at school?",
     answer: "Yes, <strong>is classroom 6x safe?</strong> is a common question, and the answer is a resounding yes. We strictly vet every title to ensure there are no malicious scripts or inappropriate content. When students ask <strong>is classroom 6x safe?</strong>, they can be confident that our hub provides a secure environment for all <strong>unblocked games 6x</strong>."
+  },
+  {
+    question: "Where can I find basket random unblocked 76 and basket random unblocked 66?",
+    answer: "You can find <strong>basket random unblocked 76</strong> and <strong>basket random unblocked 66</strong> right here on the Classroom 6x Hub. We provide the most stable version of <strong>unblocked basket random</strong> and <strong>unblocked games basket random</strong> for school use, ensuring you never miss a game."
   }
 ];
 
