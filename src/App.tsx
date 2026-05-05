@@ -341,6 +341,16 @@ const GAMES = [
     url: "https://geometry-dash.io/game/geometry-dash-lite/",
     shortDesc: "Jump and fly your way through danger in this rhythm-based action platformer.",
     description: "Classroom 6x geometry dash unblocked is the ultimate rhythm-based platformer available on the Classroom 6x Hub. Test your reflexes as you jump, fly, and flip your way through dangerous passages and spiky obstacles. If you're looking for classroom 6x geometry dash unblocked, you've found the best and most stable version. Master every level in classroom 6x geometry dash unblocked today!"
+  },
+  {
+    id: 'adofai',
+    title: "A Dance of Fire and Ice Unblocked Classroom 6x",
+    category: "Arcade",
+    image: "https://play-lh.googleusercontent.com/L-kE5N6u4i8m8e8i8e8i8e8i8e8i8e8i8e8i8e8i8e8i8e8i8e8i8e8i8e8i8e8=w240-h480-rw",
+    rating: 4.8,
+    url: "https://adofai.gg/",
+    shortDesc: "A strict one-button rhythm game about two revolving planets.",
+    description: "A dance of fire and ice unblocked classroom 6x represents the pinnacle of one-button rhythm precision. Navigate two orbiting planets through increasingly complex geometric paths on the Classroom 6x Hub. If you are looking for a dance of fire and ice unblocked classroom 6x, you won't find a better mirror. Master the beat of a dance of fire and ice unblocked classroom 6x today!"
   }
 ];
 
@@ -733,6 +743,10 @@ const FAQS = [
   {
     question: "What is classroom 6x fun ragdoll arena?",
     answer: "The <strong>classroom 6x fun ragdoll arena</strong> refers to the high-performance unblocked version of <strong>Ragdoll Archers</strong> hosted on our hub. It provides smooth physics and intense 2-player combat, making <strong>classroom 6x fun ragdoll arena</strong> a top choice for school breaks. Find every <strong>classroom 6x fun ragdoll arena</strong> challenge right here! Our platform is the primary host for the <strong>classroom 6x fun ragdoll arena</strong> experience, ensuring that <strong>classroom 6x fun ragdoll arena</strong> remains unblocked for all students seeking <strong>classroom 6x fun ragdoll arena</strong> action."
+  },
+  {
+    question: "Is classroom 6x safe for playing games at school?",
+    answer: "Yes, <strong>is classroom 6x safe?</strong> is a common question, and the answer is a resounding yes. We strictly vet every title to ensure there are no malicious scripts or inappropriate content. When students ask <strong>is classroom 6x safe?</strong>, they can be confident that our hub provides a secure environment for all <strong>unblocked games 6x</strong>."
   }
 ];
 
