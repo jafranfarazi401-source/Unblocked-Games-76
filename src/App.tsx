@@ -240,7 +240,7 @@ const GAMES = [
     rating: 4.7,
     url: "https://play.gamepix.com/golf-orbit/embed?sid=VCOSN",
     shortDesc: "Hit the ball into orbit in this over-the-top arcade golf challenge.",
-    description: "Golf Orbit Unblocked Classroom 6x is a one-button arcade golf game that takes you to the stars. Aim your shot, power up, and send your golf ball out of this world. Perfect for quick sessions at school, golf orbit unblocked 6x is optimized for high performance."
+    description: "Golf Orbit Unblocked Classroom 6x is a one-button arcade golf game that takes you to the stars. Aim your shot, power up, and send your golf ball out of this world. Perfect for quick sessions at school, classroom 6x golf orbit is optimized for high performance. Find the best golf orbit unblocked 6x mirror here."
   },
   {
     id: 'survivor-io',
