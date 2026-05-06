@@ -266,11 +266,11 @@ const GAMES = [
     id: 'slice-master',
     title: "Slice Master Classroom 6x",
     category: "Arcade",
-    image: "https://img.gamepix.com/games/slice-master/icon/slice-master.png?w=200",
+    image: "https://ouazgames.com/wp-content/uploads/2026/03/Slice-Master.webp",
     rating: 4.8,
-    url: "https://play.gamepix.com/slice-master/embed?sid=VCOSN",
+    url: "https://slice-master.io/game/slice-master/",
     shortDesc: "Flip the knife and slice through everything in this satisfying arcade game.",
-    description: "Slice Master Classroom 6x is a satisfying physics-based game where you flip a blade to cut through fruits, obstacles, and more. Master the timing and achieve the highest scores on slice master classroom 6x unblocked, the ultimate browser version."
+    description: "Slice Master Classroom 6x is a satisfying physics-based game where you flip a blade to cut through fruits, obstacles, and more. Master the timing and achieve the highest scores on slice master classroom 6x unblocked, the ultimate browser version. Experience the best slice master 6x action right here with smooth performance and no lag."
   },
   {
     id: 'big-shot-boxing',
