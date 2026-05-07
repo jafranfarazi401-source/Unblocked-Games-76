@@ -351,6 +351,16 @@ const GAMES = [
     url: "https://adofai.gg/",
     shortDesc: "A strict one-button rhythm game about two revolving planets.",
     description: "A dance of fire and ice unblocked classroom 6x represents the pinnacle of one-button rhythm precision. Navigate two orbiting planets through increasingly complex geometric paths on the Classroom 6x Hub. If you are looking for a dance of fire and ice unblocked classroom 6x, you won't find a better mirror. Master the beat of a dance of fire and ice unblocked classroom 6x today!"
+  },
+  {
+    id: 'ragdoll-hit',
+    title: "Ragdoll Hit Unblocked Games 6x",
+    category: "Action",
+    image: "https://ragdoll-hit-game.github.io/uploads/2025/5/ragdoll-hit-3.png",
+    rating: 4.8,
+    url: "https://freetoplayz.github.io/ragdoll-hit/",
+    shortDesc: "Master the art of ragdoll combat in this physics-based fighting challenge.",
+    description: "Ragdoll Hit Unblocked Games 6x brings intense physics-based combat to the Classroom 6x Hub. Master the unique movement and striking mechanics of your ragdoll fighter to defeat opponents in various arenas. Whether you are looking for ragdoll hit unblocked games 6x or the best ragdoll hit mirror, we provide a smooth, lag-free experience perfect for school. Play ragdoll hit unblocked games 6x today and dominate the arena!"
   }
 ];
 
@@ -751,6 +761,10 @@ const FAQS = [
   {
     question: "Where can I find basket random unblocked 76 and basket random unblocked 66?",
     answer: "You can find <strong>basket random unblocked 76</strong> and <strong>basket random unblocked 66</strong> right here on the Classroom 6x Hub. We provide the most stable version of <strong>unblocked basket random</strong> and <strong>unblocked games basket random</strong> for school use, ensuring you never miss a game."
+  },
+  {
+    question: "How to play ragdoll hit unblocked games 6x?",
+    answer: "To play <strong>ragdoll hit unblocked games 6x</strong>, simply select the game from our Action category. Use your mouse or touch controls to swing your character's limbs and strike your opponents. <strong>Ragdoll hit unblocked games 6x</strong> is optimized for all school devices, ensuring you have the best fighting experience."
   }
 ];
 
