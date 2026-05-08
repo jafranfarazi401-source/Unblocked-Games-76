@@ -2496,7 +2496,48 @@ export default function App() {
               <p className="text-slate-500 text-lg">Master the art of unblocked gaming with our exclusive guides and news.</p>
             </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Top Games in Guides & Insights - Moved to top */}
+            <div className="pt-12 mt-12 space-y-12">
+              <div className="text-center space-y-4">
+                <h2 className="text-4xl md:text-5xl font-display uppercase tracking-tight text-gradient">Featured Games for You</h2>
+                <p className="text-slate-500 text-lg">Discover the most stable unblocked6x games mentioned in our guides.</p>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                {GAMES.slice(0, 12).map((game, idx) => (
+                  <motion.div
+                    key={`insight-game-${game.id}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                  >
+                    <button
+                      onClick={() => {
+                        navigate(`/game/${game.id}`);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="w-full text-left group"
+                    >
+                      <div className="relative aspect-square rounded-2xl overflow-hidden glass mb-3 border border-black/5 group-hover:border-brand-purple/30 group-hover:scale-[1.02] transition-all duration-300">
+                        <img 
+                          src={game.image} 
+                          alt={game.title}
+                          className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                          <Play size={20} className="text-white bg-brand-purple rounded-full p-1 shadow-lg" />
+                        </div>
+                      </div>
+                      <h4 className="font-bold text-xs text-slate-800 group-hover:text-brand-purple transition-colors truncate">{game.title}</h4>
+                      <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mt-0.5">{game.category}</p>
+                    </button>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-12 border-t border-black/5">
               {BLOGS.map((blog, idx) => (
                   <button
                     key={blog.id}
@@ -2518,6 +2559,19 @@ export default function App() {
                 </button>
               ))}
             </div>
+
+            <div className="text-center pt-8">
+              <button
+                onClick={() => {
+                  setActiveTab("Home");
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="px-8 py-4 bg-brand-purple/10 text-brand-purple rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-brand-purple/20 transition-all border border-brand-purple/10"
+              >
+                Back to All Games <ChevronRight size={14} className="inline ml-1" />
+              </button>
+            </div>
+
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-8">
