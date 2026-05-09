@@ -1794,6 +1794,9 @@ export default function App() {
                        selectedGame.id === '1v1-lol' ? '1v1.LOL Unblocked: Master the Art of Competitive Building and Combat' :
                        selectedGame.id === 'geometry-dash-og' ? 'Geometry Dash OG Unblocked: Rhythm, Precision, and Geometric Chaos' :
                        selectedGame.id === 'super-mario-64' ? 'Super Mario 64 Unblocked Games Classroom 6x: The 3D Adventure That Changed Gaming' :
+                       selectedGame.id === 'kirka-io' ? 'Kirka.io Unblocked: Skill-Based Competitive FPS Action (back-to-school-shopping.ml kirka.io)' :
+                       selectedGame.id === 'golf-orbit' ? 'Golf Orbit Unblocked Classroom 6x: Master the Ultimate Long Drive (classroom 6x golf orbit)' :
+                       selectedGame.id === 'ragdoll/hit/unblocked/games-6x' ? 'Ragdoll Hit Unblocked Games 6x: Physics-Based Combat Mayhem' :
                        `The Chaotic Joy of ${selectedGame.title}`}
                     </h1>
                     <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
@@ -2206,6 +2209,61 @@ export default function App() {
                           <h3 className="text-2xl font-bold text-slate-900 mt-8">Unblocked 3D Adventure</h3>
                           <p>
                             Play <strong>Super Mario 64 Unblocked</strong> today and rediscover the game that defined a generation. It’s the perfect choice for students looking for a deep, engaging adventure during their free time. With full support for browser saving, you can work your way towards all 120 Power Stars right here on Classroom 6x.
+                          </p>
+                        </>
+                      ) : selectedGame.id === 'kirka-io' ? (
+                        <>
+                          <p>
+                            Experience the intense, fast-paced world of <strong>Kirka.io Unblocked</strong>, the premier skill-based competitive first-person shooter available directly in your browser. Often searched as <strong>back-to-school-shopping.ml kirka.io</strong>, this game delivers a polished FPS experience that rivals many desktop titles, all while remaining accessible on limited school and office networks.
+                          </p>
+                          <p>
+                            In <strong>Kirka.io</strong>, you step into stylized arenas where reflexes and tactical positioning are the keys to victory. Whether you're playing solo or joining a clan, the game offers a variety of modes and maps that keep the combat fresh and engaging. The lightweight nature of <strong>back-to-school-shopping.ml kirka.io</strong> means you get high frame rates and low latency, which are crucial for competitive play.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Master the Mechanics of back-to-school-shopping.ml kirka.io</h3>
+                          <p>
+                            What sets <strong>Kirka.io Unblocked</strong> apart is its focus on movement and gunplay. You can customize your loadout with a wide array of weapons, from rapid-fire SMGs to high-precision sniper rifles. The integration of <strong>back-to-school-shopping.ml kirka.io</strong> ensures that fans can find and play their favorite shooter even when standard links are restricted.
+                          </p>
+                          <p>
+                            As you progress, you can earn rewards, unlock new skins, and climb the global leaderboards. The community is active and competitive, providing a continuous challenge for players of all skill levels. If you're looking for the best unblocked FPS experience, <strong>back-to-school-shopping.ml kirka.io</strong> is the definitive choice on our platform.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Why Play Kirka.io on Classroom 6x?</h3>
+                          <p>
+                            Our version of <strong>Kirka.io Unblocked</strong> is specifically tuned for browser performance. We understand the importance of the <strong>back-to-school-shopping.ml kirka.io</strong> keyword for our users, and we've optimized this page to ensure it's easy to find and fast to load. No downloads, no installations—just pure, skill-based shooter action at your fingertips.
+                          </p>
+                          <p>
+                            Join the battle today and see why <strong>back-to-school-shopping.ml kirka.io</strong> has become a favorite among the unblocked gaming community. Whether you're sharpening your aim during a break or competing in a high-stakes clan match, <strong>Kirka.io</strong> delivers the goods.
+                          </p>
+                        </>
+                      ) : selectedGame.id === 'golf-orbit' ? (
+                        <>
+                          <p>
+                            Blast your way to the stars in <strong>Golf Orbit Unblocked Classroom 6x</strong>, the addictive one-tap golf game where distance is the only metric that matters. Often searched by fans as <strong>classroom 6x golf orbit</strong>, this game takes the traditional sport of golf and turns it into a high-powered, physics-defying challenge.
+                          </p>
+                          <p>
+                            The objective in <strong>Golf Orbit</strong> is simple: hit the ball as far as you possibly can. By timing your tap or click perfectly, you can launch the ball through the stratosphere and even into outer space. As you progress, you'll earn gold that can be used to upgrade your strength, speed, and bounce, allowing you to reach even more ridiculous distances. The <strong>classroom 6x golf orbit</strong> keyword represents the dedicated community of players who enjoy this game in restricted environments.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Mastering the Long Drive in classroom 6x golf orbit</h3>
+                          <p>
+                            What makes <strong>Golf Orbit Unblocked</strong> so compelling is the satisfying sense of progression. Each upgrade noticeably improves your performance, turning your humble golfer into a planet-hopping powerhouse. The game features various wacky environments, from standard golf courses to alien planets, ensuring that the <strong>classroom 6x golf orbit</strong> experience never gets old.
+                          </p>
+                          <p>
+                            Optimized for the <strong>Classroom 6x</strong> platform, this version of Golf Orbit ensures zero lag and instant response times. Whether you're trying to beat your own record or competing for the top spot on our featured lists, <strong>classroom 6x golf orbit</strong> provides the perfect blend of casual fun and strategic upgrading.
+                          </p>
+                        </>
+                      ) : selectedGame.id === 'ragdoll/hit/unblocked/games-6x' ? (
+                        <>
+                          <p>
+                            Enter the arena of chaotic physics with <strong>Ragdoll Hit Unblocked Games 6x</strong>. This intense, hilarious combat game challenges you to defeat your opponents using a variety of weapons and pure ragdoll momentum. If you're looking for <strong>Ragdoll Hit Unblocked Games 6x</strong>, you've found the definitive version here.
+                          </p>
+                          <p>
+                            In <strong>Ragdoll Hit</strong>, every movement is unpredictable. You'll need to master the awkward, physics-based controls to strike your enemies while avoiding their attacks. Whether you're using your bare fists or a arsenal of weapons, the goal is always the same: knock out your opponent and emerge as the last ragdoll standing. <strong>Ragdoll Hit Unblocked Games 6x</strong> is designed to provide maximum entertainment without the need for complex installations.
+                          </p>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Why Play Ragdoll Hit Unblocked Games 6x?</h3>
+                          <p>
+                            The beauty of <strong>Ragdoll Hit</strong> lies in its simplicity and the emergent comedy of its physics engine. No two fights are ever the same, as the ragdolls tumble and fly across the screen in unpredictable ways. Our <strong>Ragdoll Hit Unblocked Games 6x</strong> version is fully optimized for browser play, ensuring you can enjoy the carnage at school, work, or home.
+                          </p>
+                          <p>
+                            Challenge your reflexes and embrace the chaos today. <strong>Ragdoll Hit Unblocked Games 6x</strong> is more than just a fighter; it's a test of your ability to adapt to the unexpected. Join the thousands of players who make <strong>Ragdoll Hit Unblocked Games 6x</strong> their go-to choice for a quick gaming break.
                           </p>
                         </>
                       ) : (
