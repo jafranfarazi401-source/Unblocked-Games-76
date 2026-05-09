@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
@@ -19,329 +19,12 @@ import {
   ShieldCheck,
   Facebook
 } from 'lucide-react';
+import SEO from './components/SEO';
+import { GAMES as GAMES_DATA, BLOGS as BLOGS_DATA, FAQS as FAQS_DATA, NAV_TABS as NAV_TABS_DATA, CATEGORY_DESCRIPTIONS as CATEGORY_DESCRIPTIONS_DATA } from './data';
 
-// Mock Data
-const GAMES = [
-  { 
-    id: 'basket-random', 
-    title: "Basket Random Unblocked", 
-    category: "Sports", 
-    image: "https://taptapshots.net/uploads/2025/8/basket-random.webp", 
-    rating: 4.9,
-    url: "https://ubg98.github.io/BasketRandom/",
-    shortDesc: "Experience chaotic 2-player basketball physics with random courts and players.",
-    description: "Basket Random Unblocked is a hilarious physics-based 2-player basketball game where every round brings new surprises. Whether you're looking for basket random unblocked 76, basket random unblocked 66, or unblocked games basket random, our hub provides the ultimate experience. Play unblocked basket random with crazy physics, changing courts, and random players. Our version is fully optimized for school, making unblocked basket random a top choice for students globally. Join the zany action now and see why everyone is playing basket random unblocked 76 and basket random unblocked 66 today! Keywords: basket random unblocked github, basket random unblocked games, unblocked basket random, basket random unblocked 76, basket random unblocked 66."
-  },
-  {
-    id: 'hoops-and-fruits',
-    title: "Hoops & Fruits Classroom 6x",
-    category: "Drawing",
-    image: "https://img.gamepix.com/games/hoops-and-fruits/icon/hoops-and-fruits.png?w=105",
-    rating: 4.8,
-    url: "https://play.gamepix.com/hoops-and-fruits/embed?sid=VCOSN",
-    shortDesc: "A whimsical arcade game where you toss hoops to catch colorful, fruity targets."
-  },
-  {
-    id: 'funny-shooter-2',
-    title: "Funny Shooter 2 Classroom 6x",
-    category: "Shooter",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReRQw36C3zJ2i13AdaEkJniN4NCTvig3nM-w&s",
-    rating: 4.7,
-    url: "https://play.gamepix.com/funny-shooter-2/embed?sid=VCOSN",
-    shortDesc: "Zany first-person shooter featuring quirky enemies and whimsical action.",
-    description: "Funny Shooter 2 Classroom 6x is the ultimate upgrade to the hit FPS game. Battle weird enemies, upgrade your arsenal, and enjoy smooth performance on any school device. If you're looking for funny shooter 2 classroom 6x unblocked, you've found the best version."
-  },
-  {
-    id: 'epic-duck',
-    title: "Epic Duck Unblocked Classroom 6x",
-    category: "Arcade",
-    image: "https://play-lh.googleusercontent.com/4btOwsNG-fLmSqmbpjmDEdJQDlRCmKWcnV2CRYI23-O-_U88IB_QqQhgE9k56vVwBwjmbRMx1ZIJ3I8MFXum",
-    rating: 4.6,
-    url: "https://play.gamepix.com/epic-duck/embed?sid=VCOSN",
-    shortDesc: "Adventurous duck quest through charming levels filled with keys and secrets."
-  },
-  {
-    id: 'stickman-street-fighting',
-    title: "Stickman Street Fighting 3D Unblocked Classroom 6x",
-    category: "Fighting",
-    image: "https://www.friv2online.com/files/images/ba/ba980ba53e51b6b64db4fb2340ccfbe2.jpg",
-    rating: 4.8,
-    url: "https://play.gamepix.com/stickman-street-fighting/embed?sid=VCOSN",
-    shortDesc: "Fearless stickman brawler with strategic 3D street combat and power-ups."
-  },
-  {
-    id: 'penalty-kick-wiz',
-    title: "Penalty Kick Wiz Unblocked Classroom 6x",
-    category: "Sports",
-    image: "https://eazegames.com/_next/image?url=https%3A%2F%2Feazegames.com%2Fstorage%2Fgames%2Fcommon%2FFree_Kick_Shooter%2Fpreview%2Fmobile-thumbnail%402x.webp&w=384&q=85",
-    rating: 4.8,
-    url: "https://play.gamepix.com/penalty-kick-wiz/embed?sid=VCOSN",
-    shortDesc: "Precision sports game testing your skills as shooter and goalkeeper."
-  },
-  {
-    id: 'moto-x3m-spooky-land',
-    title: "Moto X3M: Spooky Land Unblocked Classroom 6x",
-    category: "Racing",
-    image: "https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/3f8a297822df891a1c158576b6461014/moto-x3m-spooky-land.png",
-    rating: 4.9,
-    url: "https://play.gamepix.com/moto-x3m-spooky-land/embed?sid=VCOSN",
-    shortDesc: "Spooky bike racing through supernatural tracks filled with stunts and flips."
-  },
-  {
-    id: 'merge-mine-idle-clicker',
-    title: "Merge Mine - Idle Clicker Unblocked Classroom 6x",
-    category: "Adventure",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4pwoUFYJ3RCEHfZh8RrVUgNmk6EYcBtP-Gg&s",
-    rating: 4.7,
-    url: "https://play.gamepix.com/merge-mine-idle-clicker/embed?sid=VCOSN",
-    shortDesc: "Addictive mining clicker where you merge tools to build a massive diamond empire."
-  },
-  {
-    id: 'evil-invader',
-    title: "Evil Invader Classroom 6x",
-    category: "Arcade",
-    image: "https://img.gamepix.com/games/evil-invader/icon/evil-invader.png?w=105",
-    rating: 4.7,
-    url: "https://play.gamepix.com/evil-invader/embed?sid=VCOSN",
-    shortDesc: "Dystopian survival shooter against relentless monsters and powerful weapons."
-  },
-  {
-    id: 'hoop-world',
-    title: "Hoop World Unblocked Classroom 6x",
-    category: "Sports",
-    image: "https://play-lh.googleusercontent.com/b0MjOypDwP6KNeXyGX253avRT8cfRmxwv-RSy7rmQYt4f21lE4OqwgBjNkE5TAeIGqo",
-    rating: 4.8,
-    url: "https://play.gamepix.com/hoop-world/embed?sid=VCOSN",
-    shortDesc: "Dynamic 3D basketball with aerial acrobatics and spectacular flipping dunks."
-  },
-  {
-    id: 'goal-skibidi-goal',
-    title: "Goal Skibidi Goal Classroom 6x",
-    category: "Sports",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlj5I8XPSSFtWZmDixk15POYBMne2P51HsQg&s",
-    rating: 4.8,
-    url: "https://play.gamepix.com/goal-skibidi-goal/embed?sid=VCOSN",
-    shortDesc: "Zany head-motion soccer duels with physics-based unpredictability."
-  },
-  {
-    id: 'samurai-brawling',
-    title: "Samurai Brawling Unblocked Classroom 6x",
-    category: "Fighting",
-    image: "https://imgcdn.stablediffusionweb.com/2024/10/20/9a451112-66fa-4549-b2cf-c5ff9c41afe2.jpg",
-    rating: 4.9,
-    url: "https://play.gamepix.com/samurai-brawling/embed?sid=VCOSN",
-    shortDesc: "Strategic action adventure following a fierce Yakuza warrior's journey."
-  },
-  {
-    id: 'gta-san-andreas',
-    title: "Grand Theft Auto: San Andreas Unblocked Classroom 6x",
-    category: "Multiplayer",
-    image: "https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTASABOX.jpg/250px-GTASABOX.jpg",
-    rating: 5.0,
-    url: "https://st.8games.net/10/igra-gta-san-andreas/",
-    shortDesc: "Classic open-world action adventure featuring Carl Johnson's iconic story.",
-    description: "Grand Theft Auto: San Andreas (2004) is an open-world action-adventure game developed by Rockstar North. Set in 1992, players control Carl \"CJ\" Johnson, who returns to the fictional state of San Andreas to restore his street gang to power, fight corrupt cops, and solve his mother's murder. The game is acclaimed for its massive, diverse map covering three major cities, deep character customization, and iconic 90s-themed gameplay."
-  },
-  {
-    id: 'retro-bowl',
-    title: "Retro Bowl Unblocked Google Classroom 6x",
-    category: "Sports",
-    image: "https://ozogames.com/uploads/2025/11/Retro-Bowl-College-image.webp",
-    rating: 4.9,
-    url: "https://game316009.konggames.com/gamez/0031/6009/live/index.html",
-    shortDesc: "The ultimate retro-style football management and quarterback simulation.",
-    description: "Retro Bowl Unblocked Google Classroom 6x is the classic football management game you love, now optimized for the Classroom 6x hub. Manage your roster, call the plays, and win the big game. Whether you call it classroom 6x retrobowl or retro bowl unblocked google classroom 6x, we provide the smoothest experience. Classroom 6x retrobowl is perfect for school Chromebooks."
-  },
-  {
-    id: 'slope',
-    title: "Slope Unblocked Classroom 6x",
-    category: "Racing",
-    image: "https://play-lh.googleusercontent.com/Mh8fn59cPlFcqNOop1KllhKCIw1id8ZkvupMTM8-1Q7u8HSD58sEXmUIMjfJrRZtC0E",
-    rating: 4.8,
-    url: "https://kdata1.com/2020/05/slope/",
-    shortDesc: "High-speed 3D ball runner through neon tunnels and complex obstacles.",
-    description: "Slope Unblocked Classroom 6x is the definitive 3D space-running game. Test your reflexes as you navigate a high-speed ball through a neon-lit futuristic world. Avoid obstacles, master the tilt, and achieve the highest score in this addictive, school-friendly unblocked game."
-  },
-  {
-    id: 'tunnel-rush',
-    title: "Tunnel Rush Unblocked Classroom 6x",
-    category: "Arcade",
-    image: "https://play-lh.googleusercontent.com/KwF38WdLVxmnEC3FgMN3GpWY16XhZGu6fkLAPInrltPvUXnycG5IjTvazosfhtGmA_OPYV3O-PfoVSKYOApGbA=w526-h296-rw",
-    rating: 4.7,
-    url: "https://play.gamepix.com/tunnel-rush/embed?sid=VCOSN",
-    shortDesc: "Heart-pounding 3D tunnel racer with intense neon obstacles and reflexes.",
-    description: "Tunnel Rush Unblocked Classroom 6x is a high-speed, heart-pounding 3D racing game where you navigate through a neon tunnel of infinite obstacles. Test your reflexes and agility in this addictive arcade title, perfectly optimized for school and work browsers."
-  },
-  {
-    id: 'drive-mad',
-    title: "Drive Mad Unblocked Classroom 6x",
-    category: "Racing",
-    image: "https://drivemad3.io/data/image/game/drive-mad-unblocked.png",
-    rating: 4.8,
-    url: "https://play.fancade.com/5F084A0BCE06B710?max_w=999999&max_h=9999999&istart=1",
-    shortDesc: "Physics-based driving challenge across creative tracks and monster trucks.",
-    description: "Drive Mad Unblocked Classroom 6x is a physics-based car racing game where you test your driving skills across increasingly difficult tracks. Experience unique vehicle mechanics, massive wheels, and mind-bending obstacles in this school-safe arcade classic."
-  },
-  {
-    id: 'snow-rider-3d',
-    title: "Snowrider Classroom 6x",
-    category: "Racing",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_DVKF0NH5HT4lbRiRCv4_ey4q3gUXQS0zEQ&s",
-    rating: 4.9,
-    url: "https://itsvijaysingh.github.io/Snow-Rider3D/",
-    shortDesc: "Immersive 3D winter sledding adventure with high-speed slope action.",
-    description: "Snowrider Classroom 6x (also known as Snow Rider 3D) is an exhilarating 3D racing game where you slide down snowy slopes, dodge obstacles, and collect gifts. Experience the thrill of high-speed sledding with stunning graphics and smooth gameplay. Snowrider classroom 6x unblocked is optimized for school keyboards and Chromebooks."
-  },
-  {
-    id: 'its-taxi',
-    title: "Its taxi by artast Unblocked Classroom 6x",
-    category: "Racing",
-    image: "https://play-lh.googleusercontent.com/eme5H81HUS8hGMIKLdI8nxxDbM8vWkbtjYmkNuAE9U7PK0yyxSVLGsfTW-s_6_yCONxI8iNPBllk5tD8dm1qqw",
-    rating: 4.8,
-    url: "https://play.fancade.com/622C3C5036AF773F?max_w=999999&max_h=9999999&istart=1",
-    shortDesc: "Isometric city taxi simulator featuring pixel-perfect driving physics.",
-    description: "Its taxi by artast Unblocked Classroom 6x is a charming and challenging taxi simulator where you navigate isometric city streets. Master the art of picking up passengers and delivering them safely in this pixel-perfect puzzle-racer, optimized for school and work browsers."
-  },
-  {
-    id: 'run-3',
-    title: "Run 3 Unblocked Classroom 6x",
-    category: "Arcade",
-    image: "https://www.virlan.co/unblocked-games/wp-content/uploads/2022/03/Run-3-1.jpg",
-    rating: 4.9,
-    url: "https://play.gamepix.com/run-3/embed?sid=VCOSN",
-    shortDesc: "Classic gravity-defying endless runner in a vast space tunnel system.",
-    description: "Run 3 Unblocked Classroom 6x is the ultimate gravity-defying endless runner. Navigate through a vast tunnel system in space, switching gravity to run on walls and ceilings. A classic unblocked game perfect for school and home play."
-  },
-  {
-    id: 'ragdoll-archers',
-    title: "Ragdoll Archers Classroom 6x",
-    category: "Action",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQChhAQo9os5fZ3QLUY5gILDlhWrf-jYgwDIA&s",
-    rating: 4.9,
-    url: "https://bitlifeonline.github.io/ragdoll-archers/",
-    shortDesc: "Intense physics-based archery battles with funny ragdoll mechanics.",
-    description: "Ragdoll Archers Classroom 6x is a physics-based archery game where you control a ragdoll archer in intense battles. Experience the best classroom 6x fun ragdoll arena with funny physics. Aim carefully, account for gravity, and defeat your opponents in this addictive unblocked game. Play solo or with a friend in 2-player mode on the most stable classroom 6x fun ragdoll arena version available."
-  },
-  {
-    id: 'duck-duck-clicker',
-    title: "Duck Duck Clicker Classroom 6x",
-    category: "Arcade",
-    image: "https://img.gamepix.com/games/duck-duck-clicker/icon/duck-duck-clicker.png?w=200",
-    rating: 4.8,
-    url: "https://play.gamepix.com/duck-duck-clicker/embed?sid=VCOSN",
-    shortDesc: "The ultimate clicker experience where you hatch and upgrade ducks.",
-    description: "Duck Duck Clicker Classroom 6x is the addictive clicking game everyone is searching for. Hatch thousands of ducks, upgrade your duck production, and become the ultimate duck tycoon. Whether you call it duck duck clicker unblocked or duck duck clicker classroom 6x, we have the fastest, unblocked version here."
-  },
-  {
-    id: 'golf-orbit',
-    title: "Golf Orbit Unblocked Classroom 6x",
-    category: "Sports",
-    image: "https://img.gamepix.com/games/golf-orbit/icon/golf-orbit.png?w=200",
-    rating: 4.7,
-    url: "https://play.gamepix.com/golf-orbit/embed?sid=VCOSN",
-    shortDesc: "Hit the ball into orbit in this over-the-top arcade golf challenge.",
-    description: "Golf Orbit Unblocked Classroom 6x is a one-button arcade golf game that takes you to the stars. Aim your shot, power up, and send your golf ball out of this world. Perfect for quick sessions at school, classroom 6x golf orbit is optimized for high performance. For those searching for classroom 6x golf orbit, we provide the most stable and unblocked mirror available. Master every shot in classroom 6x golf orbit today and hit it out of the atmosphere! Keywords: classroom 6x golf orbit, golf orbit unblocked 6x, classroom 6x sports games."
-  },
-  {
-    id: 'survivor-io',
-    title: "Survivor.io Unblocked Classroom 6x",
-    category: "Action",
-    image: "https://img.gamepix.com/games/survivor-io/icon/survivor-io.png?w=200",
-    rating: 4.9,
-    url: "https://play.gamepix.com/survivor-io/embed?sid=VCOSN",
-    shortDesc: "Battle infinite waves of zombies in this Roguelike survival masterpiece.",
-    description: "Survivor io unblocked classroom 6x brings the hit mobile roguelike survival game to your browser. Face off against thousands of dangerous zombies and find the best weapon combinations on our classroom 6x hub. If you need survivor io unblocked classroom 6x, this is the most reliable unblocked games 6x version available."
-  },
-  {
-    id: 'obby-climb',
-    title: "Classroom 6x Obby Climb",
-    category: "Adventure",
-    image: "https://play-lh.googleusercontent.com/I6PZpT1P9X7Gq5_0V9G_f7I8O-Z6o8S6V6X4V6X4V6X4V6X4V6X4V6X4V6X4V6X=w240-h480-rw",
-    rating: 4.7,
-    url: "https://play.gamepix.com/obby-climb/embed?sid=VCOSN",
-    shortDesc: "Master the obstacle course and climb to new heights in this 3D challenge.",
-    description: "Classroom 6x Obby Climb is the premier parkour and obstacle course simulator. Test your agility and precision as you climb higher and higher. Searching for classroom 6x obby climb? You've found the unblocked hub for the best parkour action."
-  },
-  {
-    id: 'slice-master',
-    title: "Slice Master Classroom 6x",
-    category: "Arcade",
-    image: "https://ouazgames.com/wp-content/uploads/2026/03/Slice-Master.webp",
-    rating: 4.8,
-    url: "https://slice-master.io/game/slice-master/",
-    shortDesc: "Flip the knife and slice through everything in this satisfying arcade game.",
-    description: "Slice Master Classroom 6x is a satisfying physics-based game where you flip a blade to cut through fruits, obstacles, and more. Master the timing and achieve the highest scores on slice master classroom 6x unblocked, the ultimate browser version. Experience the best slice master 6x action right here with smooth performance and no lag."
-  },
-  {
-    id: 'big-shot-boxing',
-    title: "Big Shot Boxing Unblocked",
-    category: "Fighting",
-    image: "https://blockblastonline.com/upload/imgs/big-shot-boxing.jpeg",
-    rating: 4.8,
-    url: "https://htmlxm.github.io/h2/big-shot-boxing/",
-    shortDesc: "Step into the ring and become a legend in this classic retro-style boxing simulation.",
-    description: "Big Shot Boxing Unblocked is the ultimate retro-style boxing simulation game for school and work. Train your fighter, climb the rankings, and win the world championship belt. If you're looking for Big Shot Boxing unblocked 76, Big Shot Boxing 66, or the best boxing games on Classroom 6x, this is the perfect version for you. Master your jabs, hooks, and uppercuts while managing your stamina to survive every round. Experience high-octane fighting action with smooth performance on any school Chromebook. Keywords: big shot boxing hacks, big shot boxing cheats, unblocked fighting games classroom 6x, retro boxing unblocked."
-  },
-  {
-    id: 'super-mario-64',
-    title: "Super Mario 64 Unblocked Games Classroom 6x",
-    category: "Adventure",
-    image: "https://class-room.pages.dev/assets/upload/UCBGgames/super-mario-64.png",
-    rating: 5.0,
-    url: "https://script.google.com/macros/s/AKfycbyB8Cg09IyL5iA01VRMcp6GXWBsHJDyytzuovDyiHdgIUmtHuNM7x27VlBnJjYt26F-/exec",
-    shortDesc: "Experience the legendary 3D platformer where Mario explores Peach's castle to rescue her from Bowser.",
-    description: "Super Mario 64 Unblocked Games Classroom 6x brings the revolutionary 3D platformer directly to your browser for free. Whether you are looking for Super Mario 64 unblocked 76, Super Mario 64 unblocked 66, or the best version of Super Mario 64 unblocked games classroom 6x, our high-performance mirror ensures lag-free play on school Chromebooks. Explore Peach's castle, collect Power Stars, and defeat Bowser in this iconic adventure. Play Super Mario 64 online free with no download required. Keywords: super mario 64 unblocked github, super mario 64 unblocked 76, super mario 64 unblocked games, play super mario 64 unblocked at school."
-  },
-  {
-    id: 'revolution-idle',
-    title: "Revolution Idle 6x",
-    category: "Arcade",
-    image: "https://play-lh.googleusercontent.com/9v8X9_7_7X_7_7X_7_7X_7_7X_7_7X_7_7X_7_7X_7_7X_7_7X_7_7X_7_7X_7_7=w240-h480-rw",
-    rating: 4.7,
-    url: "https://play.gamepix.com/revolution-idle/embed?sid=VCOSN",
-    shortDesc: "Experience the ultimate incremental progress in this addictive idle game.",
-    description: "Revolution Idle 6x is an abstract incremental game where your goal is to fill up circles and trigger powerful resets. Specially optimized for the unblocked games 6x hub, revolution idle 6x is a top choice for students."
-  },
-  {
-    id: 'kirka-io',
-    title: "Kirka.io Unblocked",
-    category: "Shooter",
-    image: "https://imgs.crazygames.com/kirka-io_1x1/20260116015838/kirka-io_1x1-cover?format=auto&quality=100&metadata=none&width=1200",
-    rating: 4.9,
-    url: "https://kirka.io/",
-    shortDesc: "Competitive pixelated FPS. Also known as back-to-school-shopping.ml kirka.io unblocked.",
-    description: "Kirka.io unblocked is the ultimate competitive FPS you can play on the Classroom 6x Hub. Whether you are looking for kirka.io, kirka io, or kirka io., we provide the most stable version for school. Master your aim with kirka.io aimbot compatible settings and experience lag-free kirka.io unblocked gameplay. This version is also known as back-to-school-shopping.ml kirka.io among pro players. Jump into the arena and dominate Kirka.io today!"
-  },
-  {
-    id: 'baseball-9',
-    title: "Baseball 9 Unblocked",
-    category: "Sports",
-    image: "https://play-lh.googleusercontent.com/Y9GghCslNNk-nWccWvxgCDYvd7yLSwkw0hZ3NVTkSJqigY0ZozK3lv85jR02XOJSDPQ",
-    rating: 4.8,
-    url: "https://nealfun.app/game/baseball-bros/",
-    shortDesc: "Experience the thrill of home runs in this immersive unblocked baseball simulation.",
-    description: "Baseball 9 unblocked is the most exciting sports game available on the Classroom 6x Hub. Whether you're searching for baseball 9 unblocked 76 or baseball 9 unblocked games, we have the fastest version. Play baseball 9 unblocked free with no download required, perfect for school breaks. Experience unblocked baseball 9 or 9 inning baseball unblocked today. This baseball 9 online unblocked version is optimized for school Chromebooks, making baseball 9 unblocked at school a breeze."
-  },
-  {
-    id: 'contexto',
-    title: "Context Clues Games",
-    category: "Puzzle",
-    image: "https://play-lh.googleusercontent.com/NzNAuWG_MAkM1Evy1fSbt5lUDST9RqINPGt3EY7iwSvMQ2OPBoKv4sqmuJZVXA6w8xg",
-    rating: 4.8,
-    url: "https://contexto.me/en/daily",
-    shortDesc: "A brain-teasing puzzle where you find the secret word using AI-powered context clues.",
-    description: "Experience the viral sensation with context clues games right here. If you enjoy games like contexto, our platform offers the best contexto games experience. Challenge your vocabulary with the daily context clue game and see how you rank. No need for a contexto game download—play context clues online games directly in your browser. Master every context clue games level and find the daily contexto game answer on the Classroom 6x Hub."
-  },
-  {
-    id: 'geometry-dash',
-    title: "Classroom 6x Geometry Dash Unblocked",
-    category: "Arcade",
-    image: "https://play-lh.googleusercontent.com/yO_Y96Zf5X4X5X4X5X4X5X4X5X4X5X4X5X4X5X4X5X4X5X4X5X4X5X4X5X4X5X4X=w240-h480-rw",
-    rating: 4.9,
-    url: "https://geometry-dash.io/game/geometry-dash-lite/",
-    shortDesc: "Jump and fly your way through danger in this rhythm-based action platformer.",
-    description: "Classroom 6x geometry dash unblocked is the ultimate rhythm-based platformer available on the Classroom 6x Hub. Test your reflexes as you jump, fly, and flip your way through dangerous passages and spiky obstacles. If you're looking for classroom 6x geometry dash unblocked, you've found the best and most stable version. Master every level in classroom 6x geometry dash unblocked today!"
-  },
+// Data moved to data.ts
+const GAMES = GAMES_DATA;
+/*
   {
     id: 'adofai',
     title: "A Dance of Fire and Ice Unblocked Classroom 6x",
@@ -364,9 +47,8 @@ const GAMES = [
   }
 ];
 
-const BLOGS = [
-  {
-    id: 'what-are-unblocked-games',
+// BLOGS moved
+const BLOGS_PART_2 = [
     title: "What are Unblocked Games? (Complete Guide)",
     excerpt: "Everything you need to know about the world of unblocked gaming and why they are so popular in schools.",
     content: `
@@ -791,6 +473,12 @@ const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   "Puzzle": "Challenge your intellect with our curated collection of Puzzle Unblocked Games on Classroom 6x. From AI-powered context puzzles like Contexto to classic logic brain-teasers, this category is designed to sharpen your vocabulary, spatial reasoning, and critical thinking. Our puzzle games provide an educational yet deeply engaging break, making them highly recommended by students for both fun and cognitive development at school."
 };
 
+*/
+const BLOGS = BLOGS_DATA;
+const FAQS = FAQS_DATA;
+const NAV_TABS = NAV_TABS_DATA;
+const CATEGORY_DESCRIPTIONS = CATEGORY_DESCRIPTIONS_DATA;
+
 const AdBanner = () => {
   const adContent = `
     <html>
@@ -974,183 +662,166 @@ export default function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [selectedGame, selectedBlog, activePage, activeTab, location.search]);
+
+  const seoData = useMemo(() => {
+    const baseUrl = "https://classroom6x.store";
+    const siteName = "Classroom6x";
     
-    const updateMeta = (title: string, desc: string, path: string, noIndex: boolean = false, schema?: any) => {
-      document.title = title;
-      const normalizedPath = path === '/' ? '/' : path.replace(/\/$/, '');
-      const url = `https://classroom6x.store${normalizedPath}`;
-      
-      const selectors = {
-        description: 'meta[name="description"]',
-        robots: 'meta[name="robots"]',
-        ogTitle: 'meta[property="og:title"]',
-        ogUrl: 'meta[property="og:url"]',
-        ogDesc: 'meta[property="og:description"]',
-        ogImage: 'meta[property="og:image"]',
-        twitterTitle: 'meta[property="twitter:title"]',
-        twitterUrl: 'meta[property="twitter:url"]',
-        twitterDesc: 'meta[property="twitter:description"]',
-        twitterImage: 'meta[property="twitter:image"]',
-        canonical: 'link[rel="canonical"]',
-        schema: 'script[type="application/ld+json"].dynamic-schema'
-      };
+    let title = "";
+    let description = "";
+    let canonicalPath = "/";
+    let type: 'website' | 'article' | 'game' | 'collection' = 'website';
+    let image = "https://classroom6x.store/logo.png";
+    let noindex = false;
+    let schemas: any[] = [];
 
-      // Handle robots meta (noindex)
-      let robots = document.querySelector(selectors.robots);
-      if (noIndex) {
-        if (!robots) {
-          robots = document.createElement('meta');
-          robots.setAttribute('name', 'robots');
-          document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'noindex, nofollow');
-      } else {
-        if (robots) {
-          robots.setAttribute('content', 'index, follow');
-        }
-      }
-
-      // Handle JSON-LD Schema
-      let schemaScript = document.querySelector(selectors.schema);
-      if (schema) {
-        if (!schemaScript) {
-          schemaScript = document.createElement('script');
-          schemaScript.setAttribute('type', 'application/ld+json');
-          schemaScript.classList.add('dynamic-schema');
-          document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify(schema);
-      } else if (schemaScript) {
-        schemaScript.remove();
-      }
-
-      // Ensure canonical exists
-      let canonical = document.querySelector(selectors.canonical);
-      if (!canonical) {
-        canonical = document.createElement('link');
-        canonical.setAttribute('rel', 'canonical');
-        document.head.appendChild(canonical);
-      }
-      canonical.setAttribute('href', url);
-
-      // Update basic meta
-      const descMeta = document.querySelector(selectors.description);
-      if (descMeta) descMeta.setAttribute('content', desc);
-
-      // Update OG & Twitter
-      const ogTitle = document.querySelector(selectors.ogTitle);
-      if (ogTitle) ogTitle.setAttribute('content', title);
-      
-      const ogUrl = document.querySelector(selectors.ogUrl);
-      if (ogUrl) ogUrl.setAttribute('content', url);
-
-      const ogDesc = document.querySelector(selectors.ogDesc);
-      if (ogDesc) ogDesc.setAttribute('content', desc);
-
-      const twTitle = document.querySelector(selectors.twitterTitle);
-      if (twTitle) twTitle.setAttribute('content', title);
-
-      const twUrl = document.querySelector(selectors.twitterUrl);
-      if (twUrl) twUrl.setAttribute('content', url);
-
-      const twDesc = document.querySelector(selectors.twitterDesc);
-      if (twDesc) twDesc.setAttribute('content', desc);
-
-      const ogImage = document.querySelector(selectors.ogImage);
-      const twImage = document.querySelector(selectors.twitterImage);
-      const imageUrl = schema?.image || schema?.logo || "https://classroom6x.store/logo.svg";
-      if (ogImage) ogImage.setAttribute('content', imageUrl);
-      if (twImage) twImage.setAttribute('content', imageUrl);
+    // Base Organization Schema
+    const orgSchema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Classroom6x",
+      "url": baseUrl,
+      "logo": `${baseUrl}/logo.png`,
+      "sameAs": ["https://facebook.com/classroom6x"]
     };
 
     if (selectedGame) {
-      setIsPlaying(false);
-      const title = `${selectedGame.title} Unblocked - Play on Classroom 6x`;
-      const desc = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Fast, unblocked gaming hub.`;
+      title = `${selectedGame.title} Unblocked - Play on Classroom 6x`;
+      description = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Fast, unblocked gaming hub.`;
+      canonicalPath = `/game/${selectedGame.id}`;
+      type = 'game';
+      image = selectedGame.image;
       
       const gameSchema = {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
+        "@type": "VideoGame",
         "name": selectedGame.title,
-        "operatingSystem": "Web Browser",
-        "applicationCategory": "GameApplication",
+        "description": description,
         "genre": selectedGame.category,
+        "operatingSystem": "Browser",
+        "applicationCategory": "Game",
+        "image": selectedGame.image,
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": selectedGame.rating || "4.8",
           "ratingCount": "1250"
         },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       };
 
-      updateMeta(title, desc, `/game/${selectedGame.id}`, false, gameSchema);
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+          { "@type": "ListItem", "position": 2, "name": selectedGame.category, "item": `${baseUrl}/category/${selectedGame.category.toLowerCase()}` },
+          { "@type": "ListItem", "position": 3, "name": selectedGame.title, "item": `${baseUrl}${canonicalPath}` }
+        ]
+      };
+      
+      schemas = [gameSchema, breadcrumbSchema];
     } else if (selectedBlog) {
-      const title = `${selectedBlog.title} | Classroom 6x Guides`;
-      const desc = selectedBlog.excerpt || `Read our guide about ${selectedBlog.title} on Classroom 6x.`;
+      title = `${selectedBlog.title} | Classroom 6x Guides`;
+      description = selectedBlog.excerpt || `Read our guide about ${selectedBlog.title} on Classroom 6x.`;
+      canonicalPath = `/blog/${selectedBlog.id}`;
+      type = 'article';
       
       const blogSchema = {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
+        "@type": "Article",
         "headline": selectedBlog.title,
-        "description": desc,
-        "author": {
-          "@type": "Organization",
-          "name": "Classroom 6x Team"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Classroom 6x",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://classroom6x.store/logo.svg"
-          }
-        },
-        "url": `https://classroom6x.store/blog/${selectedBlog.id}`
+        "description": description,
+        "author": { "@type": "Organization", "name": "Classroom 6x Team" },
+        "publisher": orgSchema,
+        "datePublished": "2026-04-19T08:00:00Z",
+        "image": image,
+        "url": `${baseUrl}${canonicalPath}`
       };
 
-      updateMeta(title, desc, `/blog/${selectedBlog.id}`, false, blogSchema);
-    } else if (activePage) {
-      const slug = activePage.toLowerCase().replace(/\s+/g, '-');
-      const title = `${activePage} | Classroom 6x`;
-      const desc = `Learn more about our ${activePage} on Classroom 6x.`;
-      updateMeta(title, desc, `/${slug}`);
-    } else if (activeTab !== "Home") {
-      const title = `Best ${activeTab} Unblocked Games | Classroom 6x`;
-      const desc = `Explore the best collection of ${activeTab} unblocked games on Classroom 6x.`;
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+          { "@type": "ListItem", "position": 2, "name": "Blogs", "item": `${baseUrl}/blogs` },
+          { "@type": "ListItem", "position": 3, "name": selectedBlog.title, "item": `${baseUrl}${canonicalPath}` }
+        ]
+      };
       
-      const categorySchema = {
+      schemas = [blogSchema, breadcrumbSchema];
+    } else if (activePage) {
+      title = `${activePage} | Classroom 6x`;
+      description = `Learn more about our ${activePage} on Classroom 6x.`;
+      canonicalPath = `/${activePage.toLowerCase().replace(/\s+/g, '-')}`;
+      
+      const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+          { "@type": "ListItem", "position": 2, "name": activePage, "item": `${baseUrl}${canonicalPath}` }
+        ]
+      };
+      schemas = [breadcrumbSchema];
+    } else if (activeTab !== "Home") {
+      title = `Best ${activeTab} Unblocked Games | Classroom 6x`;
+      description = CATEGORY_DESCRIPTIONS[activeTab] || `Explore the best collection of ${activeTab} unblocked games on Classroom 6x.`;
+      canonicalPath = `/category/${activeTab.toLowerCase()}`;
+      type = 'collection';
+      
+      const collectionSchema = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": `${activeTab} Unblocked Games`,
-        "description": desc,
-        "url": `https://classroom6x.store/category/${activeTab.toLowerCase()}`
+        "description": description,
+        "url": `${baseUrl}${canonicalPath}`
       };
 
-      updateMeta(title, desc, `/category/${activeTab.toLowerCase()}`, false, categorySchema);
-    } else {
-      const title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
-      const desc = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and golf orbit unblocked classroom 6x with zero lag.";
-      // Add noindex if it's a search result page (has query params)
-      const isSearch = location.search.includes('s=') || location.search.length > 0;
-      
-      const homeSchema = {
+      const breadcrumbSchema = {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Classroom 6x Hub",
-        "url": "https://classroom6x.store/",
-        "logo": "https://classroom6x.store/logo.svg",
-        "description": "The ultimate unblocked games 6x hub for school students.",
-        "sameAs": [
-          "https://facebook.com/classroom6x"
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+          { "@type": "ListItem", "position": 2, "name": activeTab, "item": `${baseUrl}${canonicalPath}` }
         ]
       };
+      schemas = [collectionSchema, breadcrumbSchema];
+    } else {
+      title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
+      description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and more with zero lag.";
+      noindex = location.search.includes('s=');
+      canonicalPath = "/";
+      
+      const webSiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": siteName,
+        "url": baseUrl,
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": `${baseUrl}/?s={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
+      };
 
-      updateMeta(title, desc, "/", isSearch, homeSchema);
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": FAQS.slice(0, 10).map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer.replace(/<[^>]*>?/gm, "")
+          }
+        }))
+      };
+      
+      schemas = [webSiteSchema, orgSchema, faqSchema];
     }
+
+    return { title, description, canonicalPath, type, image, noindex, schemas };
   }, [selectedGame, selectedBlog, activePage, activeTab, location.search]);
 
   const handleLogoClick = () => {
@@ -1160,6 +831,15 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-x-hidden">
+      <SEO 
+        title={seoData.title}
+        description={seoData.description}
+        canonicalPath={seoData.canonicalPath}
+        type={seoData.type as any}
+        image={seoData.image}
+        noindex={seoData.noindex}
+        schema={seoData.schemas}
+      />
       {/* Mouse Follower Object */}
       <div 
         className="mouse-follower hidden lg:block"

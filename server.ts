@@ -1,7 +1,9 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
+import { GAMES, BLOGS, FAQS } from "./src/data";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,7 +12,7 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Essential for accurate req.hostname and req.protocol when behind a proxy (like Cloud Run/Cloudflare)
+  // Essential for accurate req.hostname and req.protocol when behind a proxy
   app.set('trust proxy', true);
 
   // Domain Protection & Canonical 301 Redirection for SEO
@@ -26,18 +28,17 @@ async function startServer() {
                          host.includes('webcontainer.io');
 
     if (!isDevelopment) {
-      // HSTS (HTTP Strict Transport Security) - Ensures browsers only use HTTPS
+      // HSTS
       res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
 
-      // Canonical 301 Redirection to non-trailing slash URLs (except home)
+      // Canonical 301 Redirection to non-trailing slash URLs
       if (req.path.length > 1 && req.path.endsWith('/')) {
         const query = req.url.slice(req.path.length);
         const safePath = req.path.slice(0, -1);
-        console.log(`[SEO 301] Trailing Slash Redirect: ${req.url} -> ${safePath}${query}`);
         return res.redirect(301, safePath + query);
       }
 
-      // Specific SEO Fixes for reported issues
+      // Specific SEO Fixes
       const pathFixes: Record<string, string> = {
         '/contact': '/contact-us',
         '/classroom6x.store': '/',
@@ -45,34 +46,212 @@ async function startServer() {
       };
       
       if (pathFixes[req.path]) {
-        console.log(`[SEO 301] Path Fix: ${req.path} -> ${pathFixes[req.path]}`);
         return res.redirect(301, pathFixes[req.path]);
       }
 
       if (hostname !== "classroom6x.store" || protocol !== "https") {
-        console.log(`[SEO 301] Force Redirect: ${protocol}://${host}${req.originalUrl} -> https://classroom6x.store${req.originalUrl}`);
         return res.redirect(301, `https://classroom6x.store${req.originalUrl}`);
       }
     }
     next();
   });
 
+  let vite: any;
   if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
+    vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
     });
     app.use(vite.middlewares);
   } else {
-    // Serve static files in production
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    
-    // SPA Fallback
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
-    });
   }
+
+  // SEO Injection Logic
+  app.get('*', async (req, res) => {
+    try {
+      const url = req.originalUrl;
+      const baseUrl = "https://classroom6x.store";
+      const fullUrl = `${baseUrl}${url.split('?')[0]}`;
+      
+      let html: string;
+      if (process.env.NODE_ENV !== "production") {
+        html = fs.readFileSync(path.resolve(__dirname, "index.html"), "utf-8");
+        html = await vite.transformIndexHtml(url, html);
+      } else {
+        html = fs.readFileSync(path.resolve(__dirname, "dist/index.html"), "utf-8");
+      }
+
+      // Determine content based on path
+      let title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
+      let description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and more with zero lag.";
+      let schema: any[] = [];
+      let breadcrumbs: any = null;
+
+      // Base Schemas
+      const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Classroom 6x",
+        "url": baseUrl,
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": `${baseUrl}/?s={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
+      };
+
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Classroom 6x",
+        "url": baseUrl,
+        "logo": `${baseUrl}/logo.png`,
+        "description": "Play free unblocked browser games online at school or anywhere.",
+        "sameAs": ["https://facebook.com/classroom6x"]
+      };
+
+      schema.push(websiteSchema, organizationSchema);
+
+      // Path based logic
+      const gameMatch = url.match(/^\/(game\/)?([a-z0-9-/-]+)$/);
+      const blogMatch = url.match(/^\/blog\/([a-z0-9-]+)$/);
+      const catMatch = url.match(/^\/category\/([a-z0-9-]+)$/);
+
+      if (gameMatch) {
+        const id = gameMatch[2];
+        const game = GAMES.find(g => g.id === id);
+        if (game) {
+          title = `${game.title} Unblocked - Play on Classroom 6x`;
+          description = game.description || `Play ${game.title} unblocked for free on Classroom 6x. The best school-friendly mirror for ${game.category} games.`;
+          
+          schema.push({
+            "@context": "https://schema.org",
+            "@type": "VideoGame",
+            "name": game.title,
+            "description": description,
+            "genre": game.category,
+            "operatingSystem": "Browser",
+            "applicationCategory": "Game",
+            "image": game.image,
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": game.rating || "4.8",
+              "ratingCount": "1250",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          });
+
+          breadcrumbs = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+              { "@type": "ListItem", "position": 2, "name": game.category, "item": `${baseUrl}/category/${game.category.toLowerCase()}` },
+              { "@type": "ListItem", "position": 3, "name": game.title, "item": fullUrl }
+            ]
+          };
+        }
+      } else if (blogMatch) {
+        const id = blogMatch[1];
+        const blog = BLOGS.find(b => b.id === id);
+        if (blog) {
+          title = `${blog.title} | Classroom 6x Guides`;
+          description = blog.excerpt;
+          schema.push({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": blog.title,
+            "description": blog.excerpt,
+            "author": { "@type": "Organization", "name": "Classroom 6x Team" },
+            "publisher": organizationSchema,
+            "datePublished": "2026-04-19T08:00:00Z",
+            "dateModified": "2026-05-09T19:00:00Z",
+            "image": "https://classroom6x.store/logo.png"
+          });
+
+          breadcrumbs = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+              { "@type": "ListItem", "position": 2, "name": "Blogs", "item": `${baseUrl}/blogs` },
+              { "@type": "ListItem", "position": 3, "name": blog.title, "item": fullUrl }
+            ]
+          };
+        }
+      } else if (catMatch) {
+        const cat = catMatch[1];
+        title = `Best ${cat.charAt(0).toUpperCase() + cat.slice(1)} Unblocked Games | Classroom 6x`;
+        description = `Explore our curated selection of the best ${cat} unblocked games. Play online for free at school on Classroom 6x.`;
+        breadcrumbs = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+            { "@type": "ListItem", "position": 2, "name": cat.charAt(0).toUpperCase() + cat.slice(1), "item": fullUrl }
+          ]
+        };
+      } else if (req.path === '/') {
+        // FAQ Schema for homepage
+        const faqSchema = {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": FAQS.slice(0, 10).map(f => ({
+            "@type": "Question",
+            "name": f.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": f.answer.replace(/<[^>]*>?/gm, '') // Strip HTML for schema
+            }
+          }))
+        };
+        schema.push(faqSchema);
+      }
+
+      if (breadcrumbs) schema.push(breadcrumbs);
+
+      // Construct injection string
+      const seoInjections = `
+    <title>${title}</title>
+    <meta name="description" content="${description}" />
+    <link rel="canonical" href="${fullUrl}" />
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${description}" />
+    <meta property="og:url" content="${fullUrl}" />
+    <meta property="twitter:title" content="${title}" />
+    <meta property="twitter:description" content="${description}" />
+    <meta property="twitter:url" content="${fullUrl}" />
+    ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n    ')}
+  `;
+
+      // Replace existing head blocks if they were placeholders
+      // Simple string replacement for SEO tags
+      html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
+      html = html.replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${description}" \/>`);
+      html = html.replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${fullUrl}" \/>`);
+      
+      // Since index.html has a lot of static meta, we might want to just inject our block before </head>
+      // and remove the duplicates if possible, or just let them be overridden.
+      // But cleaner is to replace. 
+      // For this turn, I'll inject before </head> after cleaning up index.html or just replacing the whole head block if I could.
+      // Let's just find </head> and insert before it.
+      
+      html = html.replace('</head>', `${seoInjections}\n  </head>`);
+
+      res.status(200).set({ "Content-Type": "text/html" }).end(html);
+    } catch (e: any) {
+      vite?.ssrFixStacktrace(e);
+      res.status(500).end(e.message);
+    }
+  });
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on port ${PORT}`);
