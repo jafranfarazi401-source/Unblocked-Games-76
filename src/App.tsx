@@ -562,10 +562,12 @@ export default function App() {
   useEffect(() => {
     const path = location.pathname.toLowerCase();
     
-    // Check for Game paths (/game/run-3 or /run-3)
-    const gameMatch = path.match(/^\/(game\/)?([a-z0-9-/-]+)$/);
-    if (gameMatch) {
-      const id = gameMatch[2];
+    // Check for Game paths (/game/id or /id)
+    const gameMatch = path.match(/^\/game\/([a-z0-9-]+)$/) || path.match(/^\/([a-z0-9-]+)$/);
+    const staticPages = ["contact-us", "about-us", "privacy-policy", "terms-of-service", "blogs"];
+
+    if (gameMatch && !staticPages.includes(gameMatch[1])) {
+      const id = gameMatch[1];
       const game = GAMES.find(g => g.id === id);
       if (game) {
         setSelectedGame(game);

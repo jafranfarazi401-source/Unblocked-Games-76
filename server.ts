@@ -115,12 +115,16 @@ async function startServer() {
       schema.push(websiteSchema, organizationSchema);
 
       // Path based logic
-      const gameMatch = url.match(/^\/(game\/)?([a-z0-9-/-]+)$/);
-      const blogMatch = url.match(/^\/blog\/([a-z0-9-]+)$/);
-      const catMatch = url.match(/^\/category\/([a-z0-9-]+)$/);
+      const pathOnly = url.split('?')[0].toLowerCase();
+      const gameMatch = pathOnly.match(/^\/game\/([a-z0-9-]+)$/i) || pathOnly.match(/^\/([a-z0-9-]+)$/i);
+      const blogMatch = pathOnly.match(/^\/blog\/([a-z0-9-]+)$/i);
+      const catMatch = pathOnly.match(/^\/category\/([a-z0-9-]+)$/i);
 
-      if (gameMatch) {
-        const id = gameMatch[2];
+      // List of static pages to exclude from game matching if using the root /id format
+      const staticPages = ["contact-us", "about-us", "privacy-policy", "terms-of-service", "blogs"];
+
+      if (gameMatch && !staticPages.includes(gameMatch[1])) {
+        const id = gameMatch[1];
         const game = GAMES.find(g => g.id === id);
         if (game) {
           title = `${game.title} Unblocked - Play on Classroom 6x`;
@@ -199,6 +203,21 @@ async function startServer() {
             { "@type": "ListItem", "position": 2, "name": cat.charAt(0).toUpperCase() + cat.slice(1), "item": fullUrl }
           ]
         };
+      } else if (req.path === '/contact-us') {
+        title = "Contact Us | Classroom 6x";
+        description = "Get in touch with the Classroom 6x team for support, game requests, or feedback.";
+      } else if (req.path === '/about-us') {
+        title = "About Us | Classroom 6x Hub";
+        description = "Learn more about the mission behind Classroom 6x and how we provide the best unblocked games.";
+      } else if (req.path === '/privacy-policy') {
+        title = "Privacy Policy | Classroom 6x";
+        description = "Read our privacy policy to understand how we protect your data while you enjoy unblocked games.";
+      } else if (req.path === '/terms-of-service') {
+        title = "Terms of Service | Classroom 6x";
+        description = "Review the terms and conditions for using the Classroom 6x unblocked games platform.";
+      } else if (req.path === '/blogs') {
+        title = "Unblocked Games Blog & Guides | Classroom 6x";
+        description = "Stay updated with the latest gaming trends, school-safe tips, and unblocked game reviews on our official blog.";
       } else if (req.path === '/') {
         // FAQ Schema for homepage
         const faqSchema = {
@@ -232,18 +251,7 @@ async function startServer() {
     ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n    ')}
   `;
 
-      // Replace existing head blocks if they were placeholders
-      // Simple string replacement for SEO tags
-      html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
-      html = html.replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${description}" \/>`);
-      html = html.replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${fullUrl}" \/>`);
-      
-      // Since index.html has a lot of static meta, we might want to just inject our block before </head>
-      // and remove the duplicates if possible, or just let them be overridden.
-      // But cleaner is to replace. 
-      // For this turn, I'll inject before </head> after cleaning up index.html or just replacing the whole head block if I could.
-      // Let's just find </head> and insert before it.
-      
+      // Since index.html is now empty of these tags, we just inject before </head>
       html = html.replace('</head>', `${seoInjections}\n  </head>`);
 
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
