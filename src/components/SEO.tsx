@@ -26,7 +26,7 @@ const SEO: React.FC<SEOProps> = ({
   const defaultTitle = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
   const defaultDesc = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and more with zero lag.";
   
-  const displayTitle = title ? `${title} | ${siteName}` : defaultTitle;
+  const displayTitle = title ? title : defaultTitle;
   const displayDesc = description || defaultDesc;
 
   return (

@@ -563,12 +563,12 @@ export default function App() {
     const path = location.pathname.toLowerCase();
     
     // Check for Game paths (/game/id or /id)
-    const gameMatch = path.match(/^\/game\/([a-z0-9-]+)$/) || path.match(/^\/([a-z0-9-]+)$/);
+    const gameMatch = path.match(/^\/game\/(.+)$/) || path.match(/^\/([a-z0-9-/]+)$/);
     const staticPages = ["contact-us", "about-us", "privacy-policy", "terms-of-service", "blogs"];
 
     if (gameMatch && !staticPages.includes(gameMatch[1])) {
       const id = gameMatch[1];
-      const game = GAMES.find(g => g.id === id);
+      const game = GAMES.find(g => g.id.toLowerCase() === id.toLowerCase());
       if (game) {
         setSelectedGame(game);
         setSelectedBlog(null);
@@ -689,9 +689,9 @@ export default function App() {
     };
 
     if (selectedGame) {
-      title = `${selectedGame.title} Unblocked - Play on Classroom 6x`;
+      title = `${selectedGame.title} Unblocked - Play Online | Classroom 6x`;
       description = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Fast, unblocked gaming hub.`;
-      canonicalPath = `/game/${selectedGame.id}`;
+      canonicalPath = `/game/${selectedGame.id.toLowerCase()}`;
       type = 'game';
       image = selectedGame.image;
       

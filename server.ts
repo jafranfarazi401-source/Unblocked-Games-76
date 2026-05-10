@@ -116,7 +116,7 @@ async function startServer() {
 
       // Path based logic
       const pathOnly = url.split('?')[0].toLowerCase();
-      const gameMatch = pathOnly.match(/^\/game\/([a-z0-9-]+)$/i) || pathOnly.match(/^\/([a-z0-9-]+)$/i);
+      const gameMatch = pathOnly.match(/^\/game\/(.+)$/i) || pathOnly.match(/^\/([a-z0-9-/]+)$/i);
       const blogMatch = pathOnly.match(/^\/blog\/([a-z0-9-]+)$/i);
       const catMatch = pathOnly.match(/^\/category\/([a-z0-9-]+)$/i);
 
@@ -125,10 +125,13 @@ async function startServer() {
 
       if (gameMatch && !staticPages.includes(gameMatch[1])) {
         const id = gameMatch[1];
-        const game = GAMES.find(g => g.id === id);
+        const game = GAMES.find(g => g.id.toLowerCase() === id.toLowerCase());
         if (game) {
-          title = `${game.title} Unblocked - Play on Classroom 6x`;
+          title = `${game.title} Unblocked - Play Online | Classroom 6x`;
           description = game.description || `Play ${game.title} unblocked for free on Classroom 6x. The best school-friendly mirror for ${game.category} games.`;
+          
+          // Force /game/ prefix in canonical for games to be consistent with sitemap
+          const canonicalUrl = `${baseUrl}/game/${game.id.toLowerCase()}`;
           
           schema.push({
             "@context": "https://schema.org",
@@ -165,7 +168,7 @@ async function startServer() {
         }
       } else if (blogMatch) {
         const id = blogMatch[1];
-        const blog = BLOGS.find(b => b.id === id);
+        const blog = BLOGS.find(b => b.id.toLowerCase() === id.toLowerCase());
         if (blog) {
           title = `${blog.title} | Classroom 6x Guides`;
           description = blog.excerpt;
@@ -238,16 +241,23 @@ async function startServer() {
       if (breadcrumbs) schema.push(breadcrumbs);
 
       // Construct injection string
+      // Final fallback for canonical if not already specialized
+      const finalCanonical = (gameMatch && GAMES.find(g => g.id.toLowerCase() === gameMatch[1].toLowerCase())) 
+        ? `${baseUrl}/game/${GAMES.find(g => g.id.toLowerCase() === gameMatch[1].toLowerCase())?.id.toLowerCase()}`
+        : (blogMatch && BLOGS.find(b => b.id.toLowerCase() === blogMatch[1].toLowerCase()))
+          ? `${baseUrl}/blog/${blogMatch[1].toLowerCase()}`
+          : fullUrl.toLowerCase();
+
       const seoInjections = `
     <title>${title}</title>
     <meta name="description" content="${description}" />
-    <link rel="canonical" href="${fullUrl}" />
+    <link rel="canonical" href="${finalCanonical}" />
     <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${description}" />
-    <meta property="og:url" content="${fullUrl}" />
+    <meta property="og:url" content="${finalCanonical}" />
     <meta property="twitter:title" content="${title}" />
     <meta property="twitter:description" content="${description}" />
-    <meta property="twitter:url" content="${fullUrl}" />
+    <meta property="twitter:url" content="${finalCanonical}" />
     ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n    ')}
   `;
 
