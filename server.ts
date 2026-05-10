@@ -120,80 +120,88 @@ async function startServer() {
       const blogMatch = pathOnly.match(/^\/blog\/([a-z0-9-]+)$/i);
       const catMatch = pathOnly.match(/^\/category\/([a-z0-9-]+)$/i);
 
+      // Final canonical calculation (move up so it can be used in schemas)
+      let matchedGame = null;
+      if (gameMatch) {
+        matchedGame = GAMES.find(g => g.id.toLowerCase() === gameMatch[1].toLowerCase());
+      }
+      
+      let matchedBlog = null;
+      if (blogMatch) {
+         matchedBlog = BLOGS.find(b => b.id.toLowerCase() === blogMatch[1].toLowerCase());
+      }
+
+      const finalCanonical = matchedGame 
+        ? `${baseUrl}/game/${matchedGame.id.toLowerCase()}`
+        : matchedBlog
+          ? `${baseUrl}/blog/${matchedBlog.id.toLowerCase()}`
+          : (pathOnly === '/' ? `${baseUrl}/` : `${baseUrl}${pathOnly}`);
+
       // List of static pages to exclude from game matching if using the root /id format
       const staticPages = ["contact-us", "about-us", "privacy-policy", "terms-of-service", "blogs"];
 
-      if (gameMatch && !staticPages.includes(gameMatch[1])) {
-        const id = gameMatch[1];
-        const game = GAMES.find(g => g.id.toLowerCase() === id.toLowerCase());
-        if (game) {
-          title = `${game.title} Unblocked - Play Online | Classroom 6x`;
-          description = game.description || `Play ${game.title} unblocked for free on Classroom 6x. The best school-friendly mirror for ${game.category} games.`;
-          
-          // Force /game/ prefix in canonical for games to be consistent with sitemap
-          const canonicalUrl = `${baseUrl}/game/${game.id.toLowerCase()}`;
-          
-          schema.push({
-            "@context": "https://schema.org",
-            "@type": "VideoGame",
-            "name": game.title,
-            "description": description,
-            "genre": game.category,
-            "operatingSystem": "Browser",
-            "applicationCategory": "Game",
-            "image": game.image,
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": game.rating || "4.8",
-              "ratingCount": "1250",
-              "bestRating": "5",
-              "worstRating": "1"
-            },
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            }
-          });
+      if (matchedGame && !staticPages.includes(gameMatch![1])) {
+        const game = matchedGame;
+        title = `${game.title} Unblocked - Play Online | Classroom 6x`;
+        description = game.description || `Play ${game.title} unblocked for free on Classroom 6x. The best school-friendly mirror for ${game.category} games.`;
+        
+        schema.push({
+          "@context": "https://schema.org",
+          "@type": "VideoGame",
+          "name": game.title,
+          "description": description,
+          "genre": game.category,
+          "operatingSystem": "Browser",
+          "applicationCategory": "Game",
+          "image": game.image,
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": game.rating || "4.8",
+            "ratingCount": "1250",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        });
 
-          breadcrumbs = {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-              { "@type": "ListItem", "position": 2, "name": game.category, "item": `${baseUrl}/category/${game.category.toLowerCase()}` },
-              { "@type": "ListItem", "position": 3, "name": game.title, "item": fullUrl }
-            ]
-          };
-        }
-      } else if (blogMatch) {
-        const id = blogMatch[1];
-        const blog = BLOGS.find(b => b.id.toLowerCase() === id.toLowerCase());
-        if (blog) {
-          title = `${blog.title} | Classroom 6x Guides`;
-          description = blog.excerpt;
-          schema.push({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": blog.title,
-            "description": blog.excerpt,
-            "author": { "@type": "Organization", "name": "Classroom 6x Team" },
-            "publisher": organizationSchema,
-            "datePublished": "2026-04-19T08:00:00Z",
-            "dateModified": "2026-05-09T19:00:00Z",
-            "image": "https://classroom6x.store/logo.png"
-          });
+        breadcrumbs = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+            { "@type": "ListItem", "position": 2, "name": game.category, "item": `${baseUrl}/category/${game.category.toLowerCase()}` },
+            { "@type": "ListItem", "position": 3, "name": game.title, "item": finalCanonical }
+          ]
+        };
+      } else if (matchedBlog) {
+        const blog = matchedBlog;
+        title = `${blog.title} | Classroom 6x Guides`;
+        description = blog.excerpt;
+        schema.push({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": blog.title,
+          "description": blog.excerpt,
+          "author": { "@type": "Organization", "name": "Classroom 6x Team" },
+          "publisher": organizationSchema,
+          "datePublished": "2026-04-19T08:00:00Z",
+          "dateModified": "2026-05-09T19:00:00Z",
+          "image": "https://classroom6x.store/logo.png"
+        });
 
-          breadcrumbs = {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-              { "@type": "ListItem", "position": 2, "name": "Blogs", "item": `${baseUrl}/blogs` },
-              { "@type": "ListItem", "position": 3, "name": blog.title, "item": fullUrl }
-            ]
-          };
-        }
+        breadcrumbs = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+            { "@type": "ListItem", "position": 2, "name": "Blogs", "item": `${baseUrl}/blogs` },
+            { "@type": "ListItem", "position": 3, "name": blog.title, "item": finalCanonical }
+          ]
+        };
       } else if (catMatch) {
         const cat = catMatch[1];
         title = `Best ${cat.charAt(0).toUpperCase() + cat.slice(1)} Unblocked Games | Classroom 6x`;
@@ -203,7 +211,7 @@ async function startServer() {
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-            { "@type": "ListItem", "position": 2, "name": cat.charAt(0).toUpperCase() + cat.slice(1), "item": fullUrl }
+            { "@type": "ListItem", "position": 2, "name": cat.charAt(0).toUpperCase() + cat.slice(1), "item": finalCanonical }
           ]
         };
       } else if (req.path === '/contact-us') {
@@ -239,14 +247,6 @@ async function startServer() {
       }
 
       if (breadcrumbs) schema.push(breadcrumbs);
-
-      // Construct injection string
-      // Final fallback for canonical if not already specialized
-      const finalCanonical = (gameMatch && GAMES.find(g => g.id.toLowerCase() === gameMatch[1].toLowerCase())) 
-        ? `${baseUrl}/game/${GAMES.find(g => g.id.toLowerCase() === gameMatch[1].toLowerCase())?.id.toLowerCase()}`
-        : (blogMatch && BLOGS.find(b => b.id.toLowerCase() === blogMatch[1].toLowerCase()))
-          ? `${baseUrl}/blog/${blogMatch[1].toLowerCase()}`
-          : fullUrl.toLowerCase();
 
       const seoInjections = `
     <title>${title}</title>
