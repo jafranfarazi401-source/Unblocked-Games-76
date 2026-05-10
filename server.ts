@@ -12,79 +12,39 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Essential for accurate req.hostname and req.protocol when behind a proxy
-  app.set('trust proxy', true);
-
-  // Sitemap generator - Move to TOP to avoid interception
+  // Sitemap generator - Absolute top priority
   app.get(['/sitemap.xml', '/sitemap'], (req, res) => {
     const baseUrl = "https://classroom6x.store";
     const lastMod = new Date().toISOString().split('T')[0];
     
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${baseUrl}</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/blogs</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`;
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+    xml += `\n  <url>\n    <loc>${baseUrl}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>`;
+    xml += `\n  <url>\n    <loc>${baseUrl}/blogs</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`;
 
-    // Add games
     GAMES.forEach(game => {
-      xml += `
-  <url>
-    <loc>${baseUrl}/game/${game.id.toLowerCase()}</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>`;
+      xml += `\n  <url>\n    <loc>${baseUrl}/game/${game.id.toLowerCase()}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`;
     });
 
-    // Add blogs
     BLOGS.forEach(blog => {
-      xml += `
-  <url>
-    <loc>${baseUrl}/blog/${blog.id.toLowerCase()}</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`;
+      xml += `\n  <url>\n    <loc>${baseUrl}/blog/${blog.id.toLowerCase()}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
     });
 
-    // Add categories
     const categories = ["action", "sports", "racing", "arcade", "puzzle", "shooter", "multiplayer", "fighting", "adventure", "drawing"];
     categories.forEach(cat => {
-      xml += `
-  <url>
-    <loc>${baseUrl}/category/${cat}</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>`;
+      xml += `\n  <url>\n    <loc>${baseUrl}/category/${cat}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`;
     });
 
-    // Add static pages
-    ["/about-us", "/contact-us", "/privacy-policy", "/terms-of-service"].forEach(path => {
-      xml += `
-  <url>
-    <loc>${baseUrl}${path}</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>`;
+    ["/about-us", "/contact-us", "/privacy-policy", "/terms-of-service"].forEach(pth => {
+      xml += `\n  <url>\n    <loc>${baseUrl}${pth}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>\n  </url>`;
     });
 
     xml += '\n</urlset>';
     res.header('Content-Type', 'application/xml; charset=utf-8');
-    res.status(200).send(xml);
-    return;
+    return res.status(200).send(xml);
   });
+
+  // Essential for accurate req.hostname and req.protocol when behind a proxy
+  app.set('trust proxy', true);
 
   // Domain Protection & Canonical 301 Redirection for SEO
   app.use((req, res, next) => {
