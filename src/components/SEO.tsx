@@ -22,7 +22,7 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const siteName = "Classroom6x";
   const baseUrl = "https://classroom6x.store";
-  const fullUrl = `${baseUrl}${canonicalPath || ''}`;
+  const fullUrl = `${baseUrl}${canonicalPath ? (canonicalPath.startsWith('/') ? canonicalPath : '/' + canonicalPath) : ''}`;
   const defaultTitle = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
   const defaultDesc = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and more with zero lag.";
   

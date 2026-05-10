@@ -429,7 +429,9 @@ export default function App() {
     }
 
     // Canonical Path should be lowercase and without trailing slash for consistency
-    canonicalPath = canonicalPath.toLowerCase().replace(/\/+$/, '') || '/';
+    // If it's just '/', we'll use an empty string or just the base URL version
+    canonicalPath = canonicalPath.toLowerCase().replace(/\/+$/, '');
+    if (path === '/') canonicalPath = '';
 
     return { title, description, canonicalPath, type, image, noindex, schemas };
   }, [location.pathname, location.search]);

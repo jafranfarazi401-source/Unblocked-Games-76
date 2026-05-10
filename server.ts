@@ -76,7 +76,7 @@ async function startServer() {
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${baseUrl}/</loc>
+    <loc>${baseUrl}</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -403,12 +403,43 @@ async function startServer() {
     ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n    ')}
   `;
 
-      // Replace existing title and inject meta in head
+      // Define a standard footer link block for SSR to prevent orphan pages
+      const ssrFooter = `
+        <nav style="margin-top: 50px; padding: 20px; border-top: 1px solid #eee; font-size: 12px; color: #666;">
+          <h3>Unblocked Games Library</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px;">
+            ${GAMES.map(g => `<a href="/game/${g.id.toLowerCase()}">${g.title}</a>`).join('')}
+          </div>
+          
+          <h3>Game Categories</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+            ${["action", "sports", "racing", "arcade", "puzzle", "shooter", "multiplayer", "fighting", "adventure", "drawing"].map(cat => `<a href="/category/${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)} Games Unblocked</a>`).join('')}
+          </div>
+
+          <h3>Gaming Guides & Knowledge</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+            ${BLOGS.map(b => `<a href="/blog/${b.id.toLowerCase()}">${b.title}</a>`).join('')}
+            <a href="/blogs">All Blogs</a>
+          </div>
+
+          <h3>Site Information</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+            <a href="/about-us">About Us</a>
+            <a href="/contact-us">Contact Us</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms-of-service">Terms of Service</a>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="/">Home</a>
+          </div>
+        </nav>
+      `;
+
+      const finalRootContent = rootContent + ssrFooter;
+
+      // Robust replacement using stable markers
       html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
-      html = html.replace('</head>', `${seoInjections}\n  </head>`);
-      
-      // Inject unique content into root for non-JS crawlers
-      html = html.replace('<div id="root">', `<div id="root">${rootContent}`);
+      html = html.replace('<meta name="seo-meta-tag" content="injection-point" />', seoInjections);
+      html = html.replace('SSR_CONTENT_STUB', finalRootContent);
 
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (e: any) {
