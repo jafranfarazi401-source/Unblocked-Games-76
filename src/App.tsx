@@ -2615,32 +2615,45 @@ export default function App() {
           
           <div>
             <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Categories</h4>
-            <ul className="space-y-3 text-sm text-slate-500">
-              <li><a href="/category/action" onClick={(e) => { e.preventDefault(); navigate('/category/action'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Action Games</a></li>
-              <li><a href="/category/sports" onClick={(e) => { e.preventDefault(); navigate('/category/sports'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Sports Games</a></li>
-              <li><a href="/category/racing" onClick={(e) => { e.preventDefault(); navigate('/category/racing'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Racing Games</a></li>
-              <li><a href="/category/puzzle" onClick={(e) => { e.preventDefault(); navigate('/category/puzzle'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-brand-purple cursor-pointer transition-colors">Puzzle Games</a></li>
+            <ul className="grid grid-cols-2 md:grid-cols-1 gap-3 text-sm text-slate-500">
+              {NAV_TABS.slice(2).map(tab => (
+                <li key={`footer-cat-${tab}`}>
+                  <a 
+                    href={`/category/${tab.toLowerCase()}`} 
+                    onClick={(e) => { 
+                      e.preventDefault(); 
+                      navigate(`/category/${tab.toLowerCase()}`); 
+                      window.scrollTo({ top: 0, behavior: 'smooth' }); 
+                    }} 
+                    className="hover:text-brand-purple cursor-pointer transition-colors"
+                  >
+                    {tab} Games
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Popular Searches</h4>
-            <div className="flex flex-wrap gap-2 pr-4">
-              {['Slope', 'Retro Bowl', 'Run 3', 'Sniper', 'Soccer', 'Basketball', 'Driving', 'Car'].map(term => (
-                <a 
-                  key={term}
-                  href={`/?s=${term}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSearchQuery(term);
-                    document.getElementById('games-grid')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-[10px] font-bold text-slate-400 hover:text-brand-purple border border-slate-200 px-2 py-0.5 rounded transition-colors uppercase tracking-tighter"
-                >
-                  {term}
-                </a>
+            <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Knowledge Hub</h4>
+            <ul className="space-y-3 text-sm text-slate-500">
+              {BLOGS.slice(0, 8).map(blog => (
+                <li key={`footer-blog-${blog.id}`}>
+                  <a 
+                    href={`/blog/${blog.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(`/blog/${blog.id}`);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="hover:text-brand-purple cursor-pointer transition-colors truncate block max-w-[200px]"
+                    title={blog.title}
+                  >
+                    {blog.title}
+                  </a>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div>
