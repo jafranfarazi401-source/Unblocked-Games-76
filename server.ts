@@ -12,6 +12,48 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Sitemap generator - Absolute top priority
+  app.get(['/sitemap.xml', '/sitemap'], (req, res) => {
+    console.log('--- SITEMAP REQUESTED ---', req.url);
+    const baseUrl = "https://classroom6x.store";
+    const lastMod = new Date().toISOString().split('T')[0];
+    
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+    
+    // Add home
+    xml += `  <url>\n    <loc>${baseUrl}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
+    
+    // Add blogs index
+    xml += `  <url>\n    <loc>${baseUrl}/blogs</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+
+    // Add games
+    GAMES.forEach(game => {
+      xml += `  <url>\n    <loc>${baseUrl}/game/${game.id.toLowerCase()}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>\n`;
+    });
+
+    // Add blogs
+    BLOGS.forEach(blog => {
+      xml += `  <url>\n    <loc>${baseUrl}/blog/${blog.id.toLowerCase()}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
+    });
+
+    // Add categories
+    const categories = ["action", "sports", "racing", "arcade", "puzzle", "shooter", "multiplayer", "fighting", "adventure", "drawing"];
+    categories.forEach(cat => {
+      xml += `  <url>\n    <loc>${baseUrl}/category/${cat}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>\n`;
+    });
+
+    // Add static pages
+    ["/about-us", "/contact-us", "/privacy-policy", "/terms-of-service"].forEach(pth => {
+      xml += `  <url>\n    <loc>${baseUrl}${pth}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>\n  </url>\n`;
+    });
+
+    xml += '</urlset>';
+    
+    res.header('Content-Type', 'application/xml; charset=utf-8');
+    return res.status(200).send(xml);
+  });
+
   // Essential for accurate req.hostname and req.protocol when behind a proxy
   app.set('trust proxy', true);
 
@@ -73,30 +115,6 @@ async function startServer() {
     try {
       const url = req.path;
       const baseUrl = "https://classroom6x.store";
-
-      // Explicitly handle sitemap.xml here to avoid issues with standard routes
-      if (url === '/sitemap.xml' || url === '/sitemap') {
-        const lastMod = new Date().toISOString().split('T')[0];
-        let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
-        xml += `\n  <url>\n    <loc>${baseUrl}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>`;
-        xml += `\n  <url>\n    <loc>${baseUrl}/blogs</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`;
-        GAMES.forEach(game => {
-          xml += `\n  <url>\n    <loc>${baseUrl}/game/${game.id.toLowerCase()}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`;
-        });
-        BLOGS.forEach(blog => {
-          xml += `\n  <url>\n    <loc>${baseUrl}/blog/${blog.id.toLowerCase()}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
-        });
-        const categories = ["action", "sports", "racing", "arcade", "puzzle", "shooter", "multiplayer", "fighting", "adventure", "drawing"];
-        categories.forEach(cat => {
-          xml += `\n  <url>\n    <loc>${baseUrl}/category/${cat}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`;
-        });
-        ["/about-us", "/contact-us", "/privacy-policy", "/terms-of-service"].forEach(pth => {
-          xml += `\n  <url>\n    <loc>${baseUrl}${pth}</loc>\n    <lastmod>${lastMod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>\n  </url>`;
-        });
-        xml += '\n</urlset>';
-        res.set("Content-Type", "application/xml; charset=utf-8");
-        return res.status(200).send(xml);
-      }
 
       const fullUrl = `${baseUrl}${url}`;
       
