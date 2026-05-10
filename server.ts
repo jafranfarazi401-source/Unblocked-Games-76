@@ -16,7 +16,7 @@ async function startServer() {
   app.set('trust proxy', true);
 
   // Sitemap generator - Move to TOP to avoid interception
-  app.get('/sitemap.xml', (req, res) => {
+  app.get(['/sitemap.xml', '/sitemap'], (req, res) => {
     const baseUrl = "https://classroom6x.store";
     const lastMod = new Date().toISOString().split('T')[0];
     
@@ -81,8 +81,9 @@ async function startServer() {
     });
 
     xml += '\n</urlset>';
-    res.header('Content-Type', 'application/xml');
+    res.header('Content-Type', 'application/xml; charset=utf-8');
     res.status(200).send(xml);
+    return;
   });
 
   // Domain Protection & Canonical 301 Redirection for SEO
