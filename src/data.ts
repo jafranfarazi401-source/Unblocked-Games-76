@@ -330,7 +330,7 @@ export const GAMES = [
     description: "A dance of fire and ice unblocked classroom 6x represents the pinnacle of one-button rhythm precision. Navigate two orbiting planets through increasingly complex geometric paths on the Classroom 6x Hub. If you are looking for a dance of fire and ice unblocked classroom 6x, you won't find a better mirror. Master the beat of a dance of fire and ice unblocked classroom 6x today!"
   },
   {
-    id: 'ragdoll/hit/unblocked/games-6x',
+    id: 'ragdoll-hit',
     title: "Ragdoll Hit Unblocked Games 6x",
     category: "Action",
     image: "https://ragdoll-hit-game.github.io/uploads/2025/5/ragdoll-hit-3.png",
