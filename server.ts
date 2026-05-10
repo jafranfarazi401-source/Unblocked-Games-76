@@ -68,6 +68,76 @@ async function startServer() {
     app.use(express.static(distPath));
   }
 
+  // Sitemap generator
+  app.get('/sitemap.xml', (req, res) => {
+    const baseUrl = "https://classroom6x.store";
+    const lastMod = new Date().toISOString().split('T')[0];
+    
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${baseUrl}/</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/blogs</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+
+    // Add games
+    GAMES.forEach(game => {
+      xml += `
+  <url>
+    <loc>${baseUrl}/game/${game.id.toLowerCase()}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>`;
+    });
+
+    // Add blogs
+    BLOGS.forEach(blog => {
+      xml += `
+  <url>
+    <loc>${baseUrl}/blog/${blog.id.toLowerCase()}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`;
+    });
+
+    // Add categories
+    const categories = ["action", "sports", "racing", "arcade", "puzzle", "shooter", "multiplayer", "fighting", "adventure", "drawing"];
+    categories.forEach(cat => {
+      xml += `
+  <url>
+    <loc>${baseUrl}/category/${cat}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>`;
+    });
+
+    // Add static pages
+    ["/about-us", "/contact-us", "/privacy-policy", "/terms-of-service"].forEach(path => {
+      xml += `
+  <url>
+    <loc>${baseUrl}${path}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>`;
+    });
+
+    xml += '\n</urlset>';
+    res.header('Content-Type', 'application/xml');
+    res.send(xml);
+  });
+
   // SEO Injection Logic
   app.get('*', async (req, res) => {
     try {
@@ -85,9 +155,10 @@ async function startServer() {
 
       // Determine content based on path
       let title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
-      let description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and more with zero lag.";
+      let description = "Classroom 6x Hub: The #1 destination for unblocked games 6x of 2026. Play Slope, Retro Bowl, Basket Random, and hundreds of best school games with zero lag.";
       let schema: any[] = [];
       let breadcrumbs: any = null;
+      let rootContent = "";
 
       // Base Schemas
       const websiteSchema = {
@@ -116,23 +187,37 @@ async function startServer() {
 
       // Path based logic
       const pathOnly = url.split('?')[0].toLowerCase();
-      const gameMatch = pathOnly.match(/^\/game\/(.+)$/i) || pathOnly.match(/^\/([a-z0-9-/]+)$/i);
+      const pathFixes: Record<string, string> = {
+        '/blogs': '/blogs',
+        '/contact-us': '/contact-us',
+        '/about-us': '/about-us',
+        '/privacy-policy': '/privacy-policy',
+        '/terms-of-service': '/terms-of-service'
+      };
+
       const blogMatch = pathOnly.match(/^\/blog\/([a-z0-9-]+)$/i);
       const catMatch = pathOnly.match(/^\/category\/([a-z0-9-]+)$/i);
+      const gameStrictMatch = pathOnly.match(/^\/game\/(.+)$/i);
+      const gameBroadMatch = pathOnly.match(/^\/([a-z0-9-]+)$/i);
 
-      // List of static pages to exclude from game matching if using the root /id format
-      const staticPages = ["contact-us", "about-us", "privacy-policy", "terms-of-service", "blogs"];
-
-      if (gameMatch && !staticPages.includes(gameMatch[1])) {
-        const id = gameMatch[1];
+      if (gameStrictMatch || (gameBroadMatch && !pathFixes[pathOnly] && !catMatch && !blogMatch && pathOnly !== '/')) {
+        const id = gameStrictMatch ? gameStrictMatch[1] : (gameBroadMatch ? gameBroadMatch[1] : "");
         const game = GAMES.find(g => g.id.toLowerCase() === id.toLowerCase());
         if (game) {
           title = `${game.title} Unblocked - Play Online | Classroom 6x`;
           description = game.description || `Play ${game.title} unblocked for free on Classroom 6x. The best school-friendly mirror for ${game.category} games.`;
           
-          // Force /game/ prefix in canonical for games to be consistent with sitemap
           const canonicalUrl = `${baseUrl}/game/${game.id.toLowerCase()}`;
           
+          rootContent = `
+            <div style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto;">
+              <h1>${game.title} Unblocked - Classroom 6x</h1>
+              <p>Experience <strong>${game.title} unblocked</strong> at school or work on Classroom 6x. This ${game.category} game is optimized for performance and safety.</p>
+              <p>${game.description || ""}</p>
+              <a href="/">Back to Classroom 6x Home</a>
+            </div>
+          `;
+
           schema.push({
             "@context": "https://schema.org",
             "@type": "VideoGame",
@@ -145,15 +230,9 @@ async function startServer() {
             "aggregateRating": {
               "@type": "AggregateRating",
               "ratingValue": game.rating || "4.8",
-              "ratingCount": "1250",
-              "bestRating": "5",
-              "worstRating": "1"
+              "ratingCount": "1250"
             },
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            }
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
           });
 
           breadcrumbs = {
@@ -162,7 +241,7 @@ async function startServer() {
             "itemListElement": [
               { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
               { "@type": "ListItem", "position": 2, "name": game.category, "item": `${baseUrl}/category/${game.category.toLowerCase()}` },
-              { "@type": "ListItem", "position": 3, "name": game.title, "item": fullUrl }
+              { "@type": "ListItem", "position": 3, "name": game.title, "item": canonicalUrl }
             ]
           };
         }
@@ -172,6 +251,16 @@ async function startServer() {
         if (blog) {
           title = `${blog.title} | Classroom 6x Guides`;
           description = blog.excerpt;
+          
+          rootContent = `
+            <div style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto;">
+              <h1>${blog.title}</h1>
+              <p>${blog.excerpt}</p>
+              <div class="content">${blog.content}</div>
+              <a href="/blogs">Back to Blogs</a>
+            </div>
+          `;
+
           schema.push({
             "@context": "https://schema.org",
             "@type": "Article",
@@ -180,7 +269,6 @@ async function startServer() {
             "author": { "@type": "Organization", "name": "Classroom 6x Team" },
             "publisher": organizationSchema,
             "datePublished": "2026-04-19T08:00:00Z",
-            "dateModified": "2026-05-09T19:00:00Z",
             "image": "https://classroom6x.store/logo.png"
           });
 
@@ -190,39 +278,87 @@ async function startServer() {
             "itemListElement": [
               { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
               { "@type": "ListItem", "position": 2, "name": "Blogs", "item": `${baseUrl}/blogs` },
-              { "@type": "ListItem", "position": 3, "name": blog.title, "item": fullUrl }
+              { "@type": "ListItem", "position": 3, "name": blog.title, "item": `${baseUrl}/blog/${blog.id}` }
             ]
           };
         }
       } else if (catMatch) {
-        const cat = catMatch[1];
-        title = `Best ${cat.charAt(0).toUpperCase() + cat.slice(1)} Unblocked Games | Classroom 6x`;
-        description = `Explore our curated selection of the best ${cat} unblocked games. Play online for free at school on Classroom 6x.`;
+        const catId = catMatch[1];
+        const catName = catId.charAt(0).toUpperCase() + catId.slice(1);
+        title = `Best ${catName} Unblocked Games | Classroom 6x Library`;
+        description = `Explore our curated selection of the best ${catName} unblocked games. Play ${catName} online for free at school on Classroom 6x.`;
+        
+        rootContent = `
+          <div style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto;">
+            <h1>Best ${catName} Unblocked Games</h1>
+            <p>Welcome to the <strong>${catName}</strong> category on Classroom 6x. Discover the most popular and latest ${catName} unblocked games for school.</p>
+            <ul>
+              ${GAMES.filter(g => g.category.toLowerCase() === catId).slice(0, 10).map(g => `<li><a href="/game/${g.id}">${g.title}</a></li>`).join('\n')}
+            </ul>
+            <a href="/">Back Home</a>
+          </div>
+        `;
+
         breadcrumbs = {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-            { "@type": "ListItem", "position": 2, "name": cat.charAt(0).toUpperCase() + cat.slice(1), "item": fullUrl }
+            { "@type": "ListItem", "position": 2, "name": catName, "item": `${baseUrl}/category/${catId}` }
           ]
         };
-      } else if (req.path === '/contact-us') {
-        title = "Contact Us | Classroom 6x";
+      } else if (pathOnly === '/contact-us') {
+        title = "Contact Us | Classroom 6x Hub";
         description = "Get in touch with the Classroom 6x team for support, game requests, or feedback.";
-      } else if (req.path === '/about-us') {
-        title = "About Us | Classroom 6x Hub";
+        rootContent = `<div style="padding: 20px;"><h1>Contact Classroom 6x</h1><p>Email us at support@classroom6x.com</p></div>`;
+      } else if (pathOnly === '/about-us') {
+        title = "About Us | Classroom 6x Mission";
         description = "Learn more about the mission behind Classroom 6x and how we provide the best unblocked games.";
-      } else if (req.path === '/privacy-policy') {
+        rootContent = `<div style="padding: 20px;"><h1>About Classroom 6x</h1><p>The mission behind the games.</p></div>`;
+      } else if (pathOnly === '/privacy-policy') {
         title = "Privacy Policy | Classroom 6x";
         description = "Read our privacy policy to understand how we protect your data while you enjoy unblocked games.";
-      } else if (req.path === '/terms-of-service') {
+        rootContent = `<div style="padding: 20px;"><h1>Privacy Policy</h1><p>Your privacy matters.</p></div>`;
+      } else if (pathOnly === '/terms-of-service') {
         title = "Terms of Service | Classroom 6x";
         description = "Review the terms and conditions for using the Classroom 6x unblocked games platform.";
-      } else if (req.path === '/blogs') {
-        title = "Unblocked Games Blog & Guides | Classroom 6x";
+        rootContent = `<div style="padding: 20px;"><h1>Terms of Service</h1><p>Rules of the game.</p></div>`;
+      } else if (pathOnly === '/blogs') {
+        title = "Unblocked Games Blog & Guides | Classroom 6x Hub";
         description = "Stay updated with the latest gaming trends, school-safe tips, and unblocked game reviews on our official blog.";
-      } else if (req.path === '/') {
-        // FAQ Schema for homepage
+        rootContent = `
+          <div style="padding: 20px;">
+            <h1>Unblocked Games Blog & Guides</h1>
+            <ul>
+              ${BLOGS.map(b => `<li><a href="/blog/${b.id}">${b.title}</a></li>`).join('\n')}
+            </ul>
+          </div>
+        `;
+      } else {
+        // Home page
+        rootContent = `
+          <div style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto;">
+            <h1>Classroom 6x Hub - The Ultimate Destination for Unblocked Games 6x</h1>
+            <p>Welcome to <strong>Classroom 6x</strong>, the premiere destination for <strong>unblocked games 6x</strong> and <strong>unblocked6x</strong> content in 2026. Play the best school-safe games with no downloads.</p>
+            
+            <h2>Popular Unblocked Games</h2>
+            <ul>
+              ${GAMES.slice(0, 30).map(g => `<li><a href="/game/${g.id.toLowerCase()}">${g.title}</a></li>`).join('\n')}
+            </ul>
+
+            <h2>Game Categories</h2>
+            <ul>
+              ${["action", "sports", "racing", "arcade", "puzzle", "shooter", "multiplayer", "fighting", "adventure", "drawing"].map(cat => `<li><a href="/category/${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)} Games Unblocked</a></li>`).join('\n')}
+            </ul>
+
+            <h2>Gaming Guides & Blogs</h2>
+            <ul>
+              ${BLOGS.slice(0, 15).map(b => `<li><a href="/blog/${b.id.toLowerCase()}">${b.title}</a></li>`).join('\n')}
+              <li><a href="/blogs">View All Gaming Hub Blogs</a></li>
+            </ul>
+          </div>
+        `;
+        
         const faqSchema = {
           "@context": "https://schema.org",
           "@type": "FAQPage",
@@ -231,7 +367,7 @@ async function startServer() {
             "name": f.question,
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": f.answer.replace(/<[^>]*>?/gm, '') // Strip HTML for schema
+              "text": f.answer.replace(/<[^>]*>?/gm, '')
             }
           }))
         };
@@ -240,13 +376,19 @@ async function startServer() {
 
       if (breadcrumbs) schema.push(breadcrumbs);
 
-      // Construct injection string
-      // Final fallback for canonical if not already specialized
-      const finalCanonical = (gameMatch && GAMES.find(g => g.id.toLowerCase() === gameMatch[1].toLowerCase())) 
-        ? `${baseUrl}/game/${GAMES.find(g => g.id.toLowerCase() === gameMatch[1].toLowerCase())?.id.toLowerCase()}`
-        : (blogMatch && BLOGS.find(b => b.id.toLowerCase() === blogMatch[1].toLowerCase()))
-          ? `${baseUrl}/blog/${blogMatch[1].toLowerCase()}`
-          : fullUrl.toLowerCase();
+      // Final fallback for canonical if not already specialized correctly
+      let finalCanonical = fullUrl.toLowerCase().replace(/\/+$/, '') || baseUrl;
+      if (gameStrictMatch || (gameBroadMatch && !pathFixes[pathOnly] && !catMatch && !blogMatch && pathOnly !== '/')) {
+        const id = gameStrictMatch ? gameStrictMatch[1] : (gameBroadMatch ? gameBroadMatch[1] : "");
+        const game = GAMES.find(g => g.id.toLowerCase() === id.toLowerCase());
+        if (game) finalCanonical = `${baseUrl}/game/${game.id.toLowerCase()}`;
+      } else if (blogMatch) {
+         const id = blogMatch[1];
+         const blog = BLOGS.find(b => b.id.toLowerCase() === id.toLowerCase());
+         if (blog) finalCanonical = `${baseUrl}/blog/${blog.id.toLowerCase()}`;
+      } else if (catMatch) {
+         finalCanonical = `${baseUrl}/category/${catMatch[1].toLowerCase()}`;
+      }
 
       const seoInjections = `
     <title>${title}</title>
@@ -261,8 +403,12 @@ async function startServer() {
     ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n    ')}
   `;
 
-      // Since index.html is now empty of these tags, we just inject before </head>
+      // Replace existing title and inject meta in head
+      html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
       html = html.replace('</head>', `${seoInjections}\n  </head>`);
+      
+      // Inject unique content into root for non-JS crawlers
+      html = html.replace('<div id="root">', `<div id="root">${rootContent}`);
 
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (e: any) {
