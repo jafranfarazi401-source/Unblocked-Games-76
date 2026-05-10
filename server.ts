@@ -15,60 +15,7 @@ async function startServer() {
   // Essential for accurate req.hostname and req.protocol when behind a proxy
   app.set('trust proxy', true);
 
-  // Domain Protection & Canonical 301 Redirection for SEO
-  app.use((req, res, next) => {
-    const host = req.get('host') || '';
-    const protocol = req.get('x-forwarded-proto') || req.protocol;
-    const hostname = req.hostname;
-    
-    // Safety check: Avoid redirecting in local development or AI studio preview environments
-    const isDevelopment = host.includes('localhost') || 
-                         host.includes('127.0.0.1') || 
-                         host.includes('asia-east1.run.app') || 
-                         host.includes('webcontainer.io');
-
-    if (!isDevelopment) {
-      // HSTS
-      res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
-
-      // Canonical 301 Redirection to non-trailing slash URLs
-      if (req.path.length > 1 && req.path.endsWith('/')) {
-        const query = req.url.slice(req.path.length);
-        const safePath = req.path.slice(0, -1);
-        return res.redirect(301, safePath + query);
-      }
-
-      // Specific SEO Fixes
-      const pathFixes: Record<string, string> = {
-        '/contact': '/contact-us',
-        '/classroom6x.store': '/',
-        '/classroom6x.store/': '/'
-      };
-      
-      if (pathFixes[req.path]) {
-        return res.redirect(301, pathFixes[req.path]);
-      }
-
-      if (hostname !== "classroom6x.store" || protocol !== "https") {
-        return res.redirect(301, `https://classroom6x.store${req.originalUrl}`);
-      }
-    }
-    next();
-  });
-
-  let vite: any;
-  if (process.env.NODE_ENV !== "production") {
-    vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-  }
-
-  // Sitemap generator
+  // Sitemap generator - Move to TOP to avoid interception
   app.get('/sitemap.xml', (req, res) => {
     const baseUrl = "https://classroom6x.store";
     const lastMod = new Date().toISOString().split('T')[0];
@@ -135,8 +82,61 @@ async function startServer() {
 
     xml += '\n</urlset>';
     res.header('Content-Type', 'application/xml');
-    res.send(xml);
+    res.status(200).send(xml);
   });
+
+  // Domain Protection & Canonical 301 Redirection for SEO
+  app.use((req, res, next) => {
+    const host = req.get('host') || '';
+    const protocol = req.get('x-forwarded-proto') || req.protocol;
+    const hostname = req.hostname;
+    
+    // Safety check: Avoid redirecting in local development or AI studio preview environments
+    const isDevelopment = host.includes('localhost') || 
+                         host.includes('127.0.0.1') || 
+                         host.includes('asia-east1.run.app') || 
+                         host.includes('webcontainer.io');
+
+    if (!isDevelopment) {
+      // HSTS
+      res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+
+      // Canonical 301 Redirection to non-trailing slash URLs
+      if (req.path.length > 1 && req.path.endsWith('/')) {
+        const query = req.url.slice(req.path.length);
+        const safePath = req.path.slice(0, -1);
+        return res.redirect(301, safePath + query);
+      }
+
+      // Specific SEO Fixes
+      const pathFixes: Record<string, string> = {
+        '/contact': '/contact-us',
+        '/classroom6x.store': '/',
+        '/classroom6x.store/': '/'
+      };
+      
+      if (pathFixes[req.path]) {
+        return res.redirect(301, pathFixes[req.path]);
+      }
+
+      if (hostname !== "classroom6x.store" || protocol !== "https") {
+        return res.redirect(301, `https://classroom6x.store${req.originalUrl}`);
+      }
+    }
+    next();
+  });
+
+  let vite: any;
+  if (process.env.NODE_ENV !== "production") {
+    vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: "spa",
+    });
+    app.use(vite.middlewares);
+  } else {
+    const distPath = path.join(process.cwd(), 'dist');
+    app.use(express.static(distPath));
+  }
 
   // SEO Injection Logic
   app.get('*', async (req, res) => {
@@ -205,17 +205,38 @@ async function startServer() {
         const game = GAMES.find(g => g.id.toLowerCase() === id.toLowerCase());
         if (game) {
           title = `${game.title} Unblocked - Play Online | Classroom 6x`;
-          description = game.description || `Play ${game.title} unblocked for free on Classroom 6x. The best school-friendly mirror for ${game.category} games.`;
+          description = game.description || `Play ${game.title} unblocked for free on Classroom 6x. The best school-friendly mirror for ${game.category} games of 2026.`;
           
           const canonicalUrl = `${baseUrl}/game/${game.id.toLowerCase()}`;
           
           rootContent = `
-            <div style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto;">
-              <h1>${game.title} Unblocked - Classroom 6x</h1>
-              <p>Experience <strong>${game.title} unblocked</strong> at school or work on Classroom 6x. This ${game.category} game is optimized for performance and safety.</p>
-              <p>${game.description || ""}</p>
-              <a href="/">Back to Classroom 6x Home</a>
-            </div>
+            <article style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+              <header>
+                <h1>${game.title} Unblocked - Classroom 6x</h1>
+                <p>Play <strong>${game.title}</strong> unblocked on Classroom 6x Hub. This game is optimized for performance and safety in school and work environments.</p>
+              </header>
+              <section>
+                <h2>Game Information & Features</h2>
+                <p>${game.description || `Experience the excitement of ${game.title} on our high-speed servers. This ${game.category} game has been highly requested by the community.`}</p>
+                <ul>
+                  <li><strong>Category:</strong> ${game.category}</li>
+                  <li><strong>Rating:</strong> ${game.rating || "4.8"}/5</li>
+                  <li><strong>Platform:</strong> Web Browser (Chromebook, Desktop, Tablet)</li>
+                  <li><strong>Publisher:</strong> Featured on Classroom 6x</li>
+                </ul>
+              </section>
+              <section>
+                <h2>How to Play ${game.title} at School?</h2>
+                <p>Navigating school firewalls can be tricky, but Classroom 6x provides a reliable mirror for <strong>${game.title} unblocked</strong>. Simply load this page, wait for the assets to fetch, and start playing immediately with zero downloads required. Our platform is built on advanced CDN technology to ensure minimal lag and high accessibility for chromebook students in 2026.</p>
+              </section>
+              <section>
+                <h2>Why Choose Classroom 6x Hub?</h2>
+                <p>Classroom 6x Hub is the #1 destination for <strong>unblocked games 6x</strong>. We curate the best school games, ensuring they are safe, fun, and educational. From Slope to Retro Bowl, we have everything a pro gamer needs to unwind during breaks. Join millions of users who trust our platform for its uptime and diverse game library.</p>
+              </section>
+              <footer>
+                <a href="/">Explore More Unblocked Games on Classroom 6x Home</a>
+              </footer>
+            </article>
           `;
 
           schema.push({
@@ -253,12 +274,27 @@ async function startServer() {
           description = blog.excerpt;
           
           rootContent = `
-            <div style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto;">
-              <h1>${blog.title}</h1>
-              <p>${blog.excerpt}</p>
-              <div class="content">${blog.content}</div>
-              <a href="/blogs">Back to Blogs</a>
-            </div>
+            <article style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+              <header>
+                <h1>${blog.title} - Classroom 6x Guide</h1>
+                <p>Published by the Classroom 6x Editorial Team on April 19, 2026. Stay ahead with the latest in <strong>unblocked games 6x</strong>.</p>
+              </header>
+              <section>
+                <div class="excerpt" style="font-weight: bold; margin-bottom: 20px; color: #555;">
+                  ${blog.excerpt}
+                </div>
+                <div class="content">
+                  ${blog.content}
+                </div>
+              </section>
+              <section style="margin-top: 40px; background: #f9f9f9; padding: 20px; border-radius: 8px;">
+                <h2>About Classroom 6x Blogs</h2>
+                <p>Welcome to the official <strong>Classroom 6x Hub</strong> blog section. We provide in-depth guides, reviews, and latest news about <strong>unblocked games 6x</strong> and <strong>unblocked6x</strong> platforms. Our mission is to help students find safe and high-quality browser games that work on school networks and Chromebooks without the need for a VPN.</p>
+              </section>
+              <footer style="margin-top: 30px;">
+                <a href="/blogs">Back to All Classroom 6x Guides</a>
+              </footer>
+            </article>
           `;
 
           schema.push({
@@ -337,25 +373,42 @@ async function startServer() {
       } else {
         // Home page
         rootContent = `
-          <div style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto;">
-            <h1>Classroom 6x Hub - The Ultimate Destination for Unblocked Games 6x</h1>
-            <p>Welcome to <strong>Classroom 6x</strong>, the premiere destination for <strong>unblocked games 6x</strong> and <strong>unblocked6x</strong> content in 2026. Play the best school-safe games with no downloads.</p>
+          <div style="padding: 20px; font-family: sans-serif; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            <header>
+              <h1>Classroom 6x Hub - The Ultimate Destination for Unblocked Games 6x</h1>
+              <p>Welcome to <strong>Classroom 6x Hub</strong>, the premiere destination for <strong>unblocked games 6x</strong> and <strong>unblocked6x</strong> content in 2026. We provide a curated selection of high-performance browser games optimized for school and work environments. Play Slope, Retro Bowl, Basket Random, and hundreds of best school games with zero lag and no downloads.</p>
+            </header>
             
-            <h2>Popular Unblocked Games</h2>
-            <ul>
-              ${GAMES.slice(0, 30).map(g => `<li><a href="/game/${g.id.toLowerCase()}">${g.title}</a></li>`).join('\n')}
-            </ul>
+            <section>
+              <h2>Top Popular Unblocked Games</h2>
+              <p>Discover our most played titles this week. These games are guaranteed to work on most school Chromebooks.</p>
+              <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                ${GAMES.slice(0, 40).map(g => `<li><a href="/game/${g.id.toLowerCase()}" title="${g.title} Unblocked">${g.title}</a></li>`).join('\n')}
+              </ul>
+            </section>
 
-            <h2>Game Categories</h2>
-            <ul>
-              ${["action", "sports", "racing", "arcade", "puzzle", "shooter", "multiplayer", "fighting", "adventure", "drawing"].map(cat => `<li><a href="/category/${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)} Games Unblocked</a></li>`).join('\n')}
-            </ul>
+            <section>
+              <h2>Games by Category</h2>
+              <p>Browse our extensive library by genre to find exactly what you are looking for.</p>
+              <ul style="display: flex; flex-wrap: wrap; gap: 15px; list-style: none; padding: 0;">
+                ${["action", "sports", "racing", "arcade", "puzzle", "shooter", "multiplayer", "fighting", "adventure", "drawing"].map(cat => `<li><a href="/category/${cat}" style="text-transform: capitalize; font-weight: bold;">${cat} Games Unblocked</a></li>`).join('\n')}
+              </ul>
+            </section>
 
-            <h2>Gaming Guides & Blogs</h2>
-            <ul>
-              ${BLOGS.slice(0, 15).map(b => `<li><a href="/blog/${b.id.toLowerCase()}">${b.title}</a></li>`).join('\n')}
-              <li><a href="/blogs">View All Gaming Hub Blogs</a></li>
-            </ul>
+            <section>
+              <h2>Unblocked Gaming Guides & Blog</h2>
+              <p>Learn how to master your favorite games and stay updated with school gaming trends.</p>
+              <ul>
+                ${BLOGS.slice(0, 15).map(b => `<li><a href="/blog/${b.id.toLowerCase()}">${b.title}</a></li>`).join('\n')}
+                <li><a href="/blogs">Visit the Classroom 6x Hub Blog Hub</a></li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>Why Classroom 6x is the Best Choice for Students</h2>
+              <p>Classroom 6x is designed from the ground up to be the most resilient and fast <strong>unblocked games 6x</strong> platform. Unlike other sites that get blocked easily, we use multiple mirrors and advanced proxy techniques to keep the games accessible. Whether you are looking for <strong>survivor io unblocked classroom 6x</strong> or <strong>mario 64 classroom 6x</strong>, our Hub is your safe haven for gaming.</p>
+              <p>Our commitment to quality means no annoying pop-ups, no invasive tracking, and a clean interface that respects your time and school environment. Bookmark <strong>Classroom 6x Store</strong> today and never be bored during your study breaks again.</p>
+            </section>
           </div>
         `;
         
