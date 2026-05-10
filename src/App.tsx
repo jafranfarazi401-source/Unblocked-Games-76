@@ -110,11 +110,36 @@ export default function App() {
 
   // SEO: Pseudo-Router to handle deep links for Games and Blogs
   useEffect(() => {
-    const path = location.pathname.toLowerCase();
+    const path = location.pathname;
+    const lowerPath = path.toLowerCase();
+    
+    // Normalize case: if path has uppercase, redirect to lowercase (unless it's a known non-lowercase path if any exist)
+    // Also remove trailing slash if not home
+    if (path !== '/' && (/[A-Z]/.test(path) || path.endsWith('/')) && !path.includes('://')) {
+      const normalizedPath = lowerPath.replace(/\/+$/, '') || '/';
+      if (normalizedPath !== path) {
+        navigate(normalizedPath, { replace: true });
+        return;
+      }
+    }
+
+    // Specific Redirects for legacy or weird paths found in logs/reports
+    const legacyRedirects: Record<string, string> = {
+      '/game/ragdoll/hit/unblocked/games-6x': '/game/ragdoll-hit',
+      '/ragdoll/hit/unblocked/games-6x': '/game/ragdoll-hit',
+      '/game/ragdoll-hit-unblocked': '/game/ragdoll-hit',
+      '/www.classroom6x.store': '/',
+      '/classroom6x.store': '/'
+    };
+
+    if (legacyRedirects[lowerPath]) {
+      navigate(legacyRedirects[lowerPath], { replace: true });
+      return;
+    }
     
     // Check for Game paths (/game/id or /id)
-    const gameMatch = path.match(/^\/game\/(.+)$/) || path.match(/^\/([a-z0-9-/]+)$/);
-    const staticPages = ["contact-us", "about-us", "privacy-policy", "terms-of-service", "blogs"];
+    const gameMatch = lowerPath.match(/^\/game\/(.+)$/) || lowerPath.match(/^\/([a-z0-9-]+)$/);
+    const staticPages = ["contact-us", "about-us", "privacy-policy", "terms-of-service", "blogs", "category", "blog"];
 
     if (gameMatch && !staticPages.includes(gameMatch[1])) {
       const id = gameMatch[1];
@@ -220,8 +245,8 @@ export default function App() {
     const baseUrl = "https://classroom6x.store";
     const siteName = "Classroom6x";
     
-    let title = "";
-    let description = "";
+    let title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
+    let description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Basket Random, and hundreds of best school games with zero lag and no downloads.";
     let canonicalPath = "/";
     let type: 'website' | 'article' | 'game' | 'collection' = 'website';
     let image = "https://classroom6x.store/logo.png";
@@ -240,7 +265,7 @@ export default function App() {
 
     if (selectedGame) {
       title = `${selectedGame.title} Unblocked - Play Online | Classroom 6x`;
-      description = selectedGame.description || `Play ${selectedGame.title} for free at Classroom 6x! Fast, unblocked gaming hub.`;
+      description = selectedGame.description || `Play ${selectedGame.title} unblocked on Classroom 6x. Experience ${selectedGame.shortDesc} and join thousands of students playing the best school-friendly games online.`;
       canonicalPath = `/game/${selectedGame.id.toLowerCase()}`;
       type = 'game';
       image = selectedGame.image;
@@ -302,17 +327,24 @@ export default function App() {
       };
       
       schemas = [blogSchema, breadcrumbSchema];
-    } else if (activePage) {
-      title = `${activePage} | Classroom 6x`;
-      description = `Learn more about our ${activePage} on Classroom 6x.`;
-      canonicalPath = `/${activePage.toLowerCase().replace(/\s+/g, '-')}`;
+    } else if (activePage || activeTab === "Blogs") {
+      const pageName = activePage || activeTab;
+      title = `${pageName} | Classroom 6x`;
+      
+      if (pageName === "Blogs") {
+        description = "Stay updated with the latest unblocked games news, guides, and tips on the Classroom 6x Blog. Discover how to play your favorite titles at school.";
+      } else {
+        description = `Learn more about our ${pageName} and how we provide a safe, high-performance unblocked gaming experience for students at Classroom 6x.`;
+      }
+      
+      canonicalPath = `/${pageName.toLowerCase().replace(/\s+/g, '-')}`;
       
       const breadcrumbSchema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-          { "@type": "ListItem", "position": 2, "name": activePage, "item": `${baseUrl}${canonicalPath}` }
+          { "@type": "ListItem", "position": 2, "name": pageName, "item": `${baseUrl}${canonicalPath}` }
         ]
       };
       schemas = [breadcrumbSchema];
@@ -341,8 +373,8 @@ export default function App() {
       schemas = [collectionSchema, breadcrumbSchema];
     } else {
       title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
-      description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and more with zero lag.";
-      noindex = location.search.includes('s=');
+      description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Basket Random, and hundreds of best school games with zero lag and no downloads.";
+      noindex = location.search.includes('s=') || (location.pathname !== '/' && location.pathname !== '');
       canonicalPath = "/";
       
       const webSiteSchema = {
