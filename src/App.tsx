@@ -244,39 +244,13 @@ export default function App() {
   const seoData = useMemo(() => {
     const baseUrl = "https://classroom6x.store";
     const siteName = "Classroom6x";
-    const path = location.pathname;
-    const lowerPath = path.toLowerCase();
     
-    // Determine context directly from path to avoid state sync lag
-    const gameMatch = lowerPath.match(/^\/game\/(.+)$/) || lowerPath.match(/^\/([a-z0-9-]+)$/);
-    const staticPages = ["contact-us", "about-us", "privacy-policy", "terms-of-service", "blogs", "category", "blog"];
-    
-    let pathGame = null;
-    if (gameMatch && !staticPages.includes(gameMatch[1])) {
-      pathGame = GAMES.find(g => g.id.toLowerCase() === gameMatch[1].toLowerCase());
-    }
-
-    const blogMatch = lowerPath.match(/^\/blog\/([a-z0-9-]+)$/);
-    const pathBlog = blogMatch ? BLOGS.find(b => b.id === blogMatch[1]) : null;
-
-    const categoryMatch = lowerPath.match(/^\/category\/([a-z0-9-]+)$/);
-    const pathCategoryName = categoryMatch ? NAV_TABS.find(t => t.toLowerCase() === categoryMatch[1]) : null;
-
-    const pagesMap: Record<string, string> = {
-      '/contact-us': 'Contact Us',
-      '/about-us': 'About Us',
-      '/privacy-policy': 'Privacy Policy',
-      '/terms-of-service': 'Terms of Service',
-      '/blogs': 'Blogs'
-    };
-    const pathPageName = pagesMap[lowerPath];
-
     let title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
     let description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Basket Random, and hundreds of best school games with zero lag and no downloads.";
     let canonicalPath = "/";
     let type: 'website' | 'article' | 'game' | 'collection' = 'website';
     let image = "https://classroom6x.store/logo.png";
-    let noindex = location.search.includes('s=');
+    let noindex = false;
     let schemas: any[] = [];
 
     // Base Organization Schema
@@ -289,25 +263,25 @@ export default function App() {
       "sameAs": ["https://facebook.com/classroom6x"]
     };
 
-    if (pathGame) {
-      title = `${pathGame.title} Unblocked - Play Online | Classroom 6x`;
-      description = pathGame.description || `Play ${pathGame.title} unblocked on Classroom 6x. Experience ${pathGame.shortDesc} and join thousands of students playing the best school-friendly games online.`;
-      canonicalPath = `/game/${pathGame.id.toLowerCase()}`;
+    if (selectedGame) {
+      title = `${selectedGame.title} Unblocked - Play Online | Classroom 6x`;
+      description = selectedGame.description || `Play ${selectedGame.title} unblocked on Classroom 6x. Experience ${selectedGame.shortDesc} and join thousands of students playing the best school-friendly games online.`;
+      canonicalPath = `/game/${selectedGame.id.toLowerCase()}`;
       type = 'game';
-      image = pathGame.image;
+      image = selectedGame.image;
       
       const gameSchema = {
         "@context": "https://schema.org",
         "@type": "VideoGame",
-        "name": pathGame.title,
+        "name": selectedGame.title,
         "description": description,
-        "genre": pathGame.category,
+        "genre": selectedGame.category,
         "operatingSystem": "Browser",
         "applicationCategory": "Game",
-        "image": pathGame.image,
+        "image": selectedGame.image,
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": pathGame.rating || "4.8",
+          "ratingValue": selectedGame.rating || "4.8",
           "ratingCount": "1250"
         },
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -318,22 +292,22 @@ export default function App() {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-          { "@type": "ListItem", "position": 2, "name": pathGame.category, "item": `${baseUrl}/category/${pathGame.category.toLowerCase()}` },
-          { "@type": "ListItem", "position": 3, "name": pathGame.title, "item": `${baseUrl}${canonicalPath}` }
+          { "@type": "ListItem", "position": 2, "name": selectedGame.category, "item": `${baseUrl}/category/${selectedGame.category.toLowerCase()}` },
+          { "@type": "ListItem", "position": 3, "name": selectedGame.title, "item": `${baseUrl}${canonicalPath}` }
         ]
       };
       
       schemas = [gameSchema, breadcrumbSchema];
-    } else if (pathBlog) {
-      title = `${pathBlog.title} | Classroom 6x Guides`;
-      description = pathBlog.excerpt || `Read our guide about ${pathBlog.title} on Classroom 6x.`;
-      canonicalPath = `/blog/${pathBlog.id}`;
+    } else if (selectedBlog) {
+      title = `${selectedBlog.title} | Classroom 6x Guides`;
+      description = selectedBlog.excerpt || `Read our guide about ${selectedBlog.title} on Classroom 6x.`;
+      canonicalPath = `/blog/${selectedBlog.id}`;
       type = 'article';
       
       const blogSchema = {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": pathBlog.title,
+        "headline": selectedBlog.title,
         "description": description,
         "author": { "@type": "Organization", "name": "Classroom 6x Team" },
         "publisher": orgSchema,
@@ -348,41 +322,42 @@ export default function App() {
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
           { "@type": "ListItem", "position": 2, "name": "Blogs", "item": `${baseUrl}/blogs` },
-          { "@type": "ListItem", "position": 3, "name": pathBlog.title, "item": `${baseUrl}${canonicalPath}` }
+          { "@type": "ListItem", "position": 3, "name": selectedBlog.title, "item": `${baseUrl}${canonicalPath}` }
         ]
       };
       
       schemas = [blogSchema, breadcrumbSchema];
-    } else if (pathPageName) {
-      title = `${pathPageName} | Classroom 6x`;
+    } else if (activePage || activeTab === "Blogs") {
+      const pageName = activePage || activeTab;
+      title = `${pageName} | Classroom 6x`;
       
-      if (pathPageName === "Blogs") {
+      if (pageName === "Blogs") {
         description = "Stay updated with the latest unblocked games news, guides, and tips on the Classroom 6x Blog. Discover how to play your favorite titles at school.";
       } else {
-        description = `Learn more about our ${pathPageName} and how we provide a safe, high-performance unblocked gaming experience for students at Classroom 6x.`;
+        description = `Learn more about our ${pageName} and how we provide a safe, high-performance unblocked gaming experience for students at Classroom 6x.`;
       }
       
-      canonicalPath = `/${pathPageName.toLowerCase().replace(/\s+/g, '-')}`;
+      canonicalPath = `/${pageName.toLowerCase().replace(/\s+/g, '-')}`;
       
       const breadcrumbSchema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-          { "@type": "ListItem", "position": 2, "name": pathPageName, "item": `${baseUrl}${canonicalPath}` }
+          { "@type": "ListItem", "position": 2, "name": pageName, "item": `${baseUrl}${canonicalPath}` }
         ]
       };
       schemas = [breadcrumbSchema];
-    } else if (pathCategoryName) {
-      title = `Best ${pathCategoryName} Unblocked Games | Classroom 6x`;
-      description = CATEGORY_DESCRIPTIONS[pathCategoryName] || `Explore the best collection of ${pathCategoryName} unblocked games on Classroom 6x.`;
-      canonicalPath = `/category/${pathCategoryName.toLowerCase()}`;
+    } else if (activeTab !== "Home") {
+      title = `Best ${activeTab} Unblocked Games | Classroom 6x`;
+      description = CATEGORY_DESCRIPTIONS[activeTab] || `Explore the best collection of ${activeTab} unblocked games on Classroom 6x.`;
+      canonicalPath = `/category/${activeTab.toLowerCase()}`;
       type = 'collection';
       
       const collectionSchema = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": `${pathCategoryName} Unblocked Games`,
+        "name": `${activeTab} Unblocked Games`,
         "description": description,
         "url": `${baseUrl}${canonicalPath}`
       };
@@ -392,12 +367,14 @@ export default function App() {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-          { "@type": "ListItem", "position": 2, "name": pathCategoryName, "item": `${baseUrl}${canonicalPath}` }
+          { "@type": "ListItem", "position": 2, "name": activeTab, "item": `${baseUrl}${canonicalPath}` }
         ]
       };
       schemas = [collectionSchema, breadcrumbSchema];
     } else {
-      // Home page or unknown
+      title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
+      description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Basket Random, and hundreds of best school games with zero lag and no downloads.";
+      noindex = location.search.includes('s=') || (location.pathname !== '/' && location.pathname !== '');
       canonicalPath = "/";
       
       const webSiteSchema = {
@@ -428,13 +405,8 @@ export default function App() {
       schemas = [webSiteSchema, orgSchema, faqSchema];
     }
 
-    // Canonical Path should be lowercase and without trailing slash for consistency
-    // If it's just '/', we'll use an empty string or just the base URL version
-    canonicalPath = canonicalPath.toLowerCase().replace(/\/+$/, '');
-    if (path === '/') canonicalPath = '';
-
     return { title, description, canonicalPath, type, image, noindex, schemas };
-  }, [location.pathname, location.search]);
+  }, [selectedGame, selectedBlog, activePage, activeTab, location.search]);
 
   const handleLogoClick = () => {
     navigate('/');
@@ -1931,8 +1903,7 @@ export default function App() {
           <div className="grid grid-cols-1 gap-8">
             {/* Left Section: Hero & Grid */}
             <div className="space-y-12">
-            {/* Header / Hero Section - Only show on Home or when no category is explicitly selected by user via Tab but we are on Home */}
-            {(activeTab === "Home" && !searchQuery) && (
+                           {/* Hero Section - Redesigned with a 3-column layout to include trending games */}
               <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 {/* Left: Character Image */}
                 <motion.div 
@@ -2038,16 +2009,16 @@ export default function App() {
                   </button>
                 </motion.div>
               </section>
-            )}
 
               {/* Games Grid */}
               <section id="games-grid" className="space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h1 className="text-3xl md:text-4xl font-heading font-bold flex items-center gap-3">
+                    <h2 className="text-2xl font-heading font-bold flex items-center gap-3">
                       <Clock className="text-brand-purple" />
-                      {activeTab === "Home" ? (searchQuery ? `Search: "${searchQuery}"` : "Recent Uploaded Games") : `Best ${activeTab} Unblocked Games`}
-                    </h1>
+                      {activeTab === "Home" ? "Recent Uploaded Games" : `${activeTab} Games`}
+                      {searchQuery && ` - Search: "${searchQuery}"`}
+                    </h2>
                     <button 
                       onClick={() => {
                         navigate('/');
@@ -2791,56 +2762,23 @@ export default function App() {
             </div>
           </div>
         </div>
-        <div className="container mx-auto px-6 mt-12 mb-12 space-y-12">
-          <div className="space-y-6">
-            <h4 className="font-bold text-slate-900 uppercase tracking-widest text-xs">Exhaustive Game & Guide Sitemap</h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-2 gap-x-4">
-              {GAMES.map(game => (
-                <a 
-                  key={`footer-map-${game.id}`}
-                  href={`/game/${game.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(`/game/${game.id}`);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="text-[11px] text-slate-400 hover:text-brand-purple transition-colors truncate"
-                  title={`${game.title} Unblocked`}
-                >
-                  {game.title}
-                </a>
-              ))}
-              {BLOGS.map(blog => (
-                <a 
-                  key={`footer-map-blog-${blog.id}`}
-                  href={`/blog/${blog.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(`/blog/${blog.id}`);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="text-[11px] text-slate-400 hover:text-brand-purple transition-colors truncate"
-                  title={blog.title}
-                >
-                  {blog.title}
-                </a>
-              ))}
-              {NAV_TABS.map(tab => tab !== "Home" && (
-                <a 
-                  key={`footer-map-cat-${tab}`}
-                  href={`/category/${tab.toLowerCase()}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(`/category/${tab.toLowerCase()}`);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="text-[11px] font-bold text-slate-500 hover:text-brand-purple transition-colors truncate"
-                  title={`${tab} Games Unblocked`}
-                >
-                  {tab} Games
-                </a>
-              ))}
-            </div>
+        <div className="container mx-auto px-6 mt-12 mb-12">
+          <h4 className="font-bold mb-6 text-slate-900 uppercase tracking-widest text-xs">Exhaustive Game Sitemap</h4>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-2 gap-x-4">
+            {GAMES.map(game => (
+              <a 
+                key={`footer-map-${game.id}`}
+                href={`/game/${game.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSelectedGame(game);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="text-[11px] text-slate-400 hover:text-brand-purple transition-colors truncate"
+              >
+                {game.title}
+              </a>
+            ))}
           </div>
         </div>
 
