@@ -245,8 +245,8 @@ export default function App() {
     const baseUrl = "https://classroom6x.store";
     const siteName = "Classroom6x";
     
-    let title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
-    let description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Basket Random, and hundreds of best school games with zero lag and no downloads.";
+    let title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Game Khela";
+    let description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Basket Random, and best school game khela with zero lag.";
     let canonicalPath = "/";
     let type: 'website' | 'article' | 'game' | 'collection' = 'website';
     let image = "https://classroom6x.store/logo.png";
@@ -372,8 +372,8 @@ export default function App() {
       };
       schemas = [collectionSchema, breadcrumbSchema];
     } else {
-      title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
-      description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Basket Random, and hundreds of best school games with zero lag and no downloads.";
+      title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Game Khela";
+      description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Basket Random, and best school game khela with zero lag.";
       noindex = location.search.includes('s=') || (location.pathname !== '/' && location.pathname !== '');
       canonicalPath = "/";
       

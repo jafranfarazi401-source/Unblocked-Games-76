@@ -84,8 +84,8 @@ async function startServer() {
       }
 
       // Determine content based on path
-      let title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Games";
-      let description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and more with zero lag.";
+      let title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Game Khela";
+      let description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Duck Duck Clicker, and best game khela with zero lag.";
       let schema: any[] = [];
       let breadcrumbs: any = null;
 
