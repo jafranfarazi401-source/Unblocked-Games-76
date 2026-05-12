@@ -287,7 +287,7 @@ export const GAMES = [
     rating: 4.9,
     url: "https://kirka.io/",
     shortDesc: "Competitive pixelated FPS. Also known as back-to-school-shopping.ml kirka.io unblocked.",
-    description: "Kirka.io unblocked is the ultimate competitive FPS you can play on the Classroom 6x Hub. Whether you are looking for kirka.io, kirka io, or kirka io., we provide the most stable version for school. Master your aim with kirka.io aimbot compatible settings and experience lag-free kirka.io unblocked gameplay. This version is also known as back-to-school-shopping.ml kirka.io among pro players. Jump into the arena and dominate Kirka.io today!"
+    description: "Kirka.io unblocked is the ultimate competitive FPS you can play on the Classroom 6x Hub. Whether you are looking for kirka.io, kirka io, or kirka io., we provide the most stable version for school. Master your aim with kirka.io aimbot compatible settings and experience lag-free kirka.io unblocked gameplay. Experience the best <strong>mustafa game play online</strong> action right here with our high-performance mirror. This version is also known as back-to-school-shopping.ml kirka.io among pro players. Jump into the arena and dominate Kirka.io today!"
   },
   {
     id: 'baseball-9',
@@ -338,6 +338,15 @@ export const GAMES = [
     url: "https://freetoplayz.github.io/ragdoll-hit/",
     shortDesc: "Master the art of ragdoll combat in this physics-based fighting challenge.",
     description: "Ragdoll Hit Unblocked Games 6x brings intense physics-based combat to the Classroom 6x Hub. Master the unique movement and striking mechanics of your ragdoll fighter to defeat opponents in various arenas. Whether you are looking for ragdoll hit unblocked games 6x or the best ragdoll hit mirror, we provide a smooth, lag-free experience perfect for school. Play ragdoll hit unblocked games 6x today and dominate the arena!"
+  },
+  {
+    id: 'free-fire-online',
+    title: "Free Fire Online Cloud Gaming",
+    category: "Action",
+    image: "https://play-lh.googleusercontent.com/An9yvAtS9U3lS6B-M0fGEXGj-A9X-S8f-A-X-S-8f-A-X-S-8f-A-X-S-8f-A-X-S=w240-h480-rw",
+    rating: 4.9,
+    shortDesc: "Experience the ultimate battle royale on any device with Free Fire online cloud gaming.",
+    description: "Free Fire online cloud gaming allows you to play the world-famous battle royale directly in your browser with zero downloads. Experience intense 50-player survival matches, fast-paced 4v4 combat, and smooth performance thanks to advanced cloud technology. Whether you are on a school Chromebook or a basic PC, Free Fire online cloud gaming on Classroom 6x ensures you stay in the action without any lag. Dominate the battlefield today with Free Fire online cloud gaming unblocked and the best online game free fire experience! If you are searching for information on <strong>diamonds hack free fire</strong> or a <strong>free fire diamonds generator</strong>, we provide insights on legal ways to enhance your gameplay while staying safe online."
   }
 ];
 
@@ -554,8 +563,24 @@ export const FAQS = [
     answer: "You can play <strong>classroom 6x golf orbit</strong> right here on our hub. We host the ultimate <strong>classroom 6x golf orbit</strong> version that is fully unblocked for school networks. Whether you are using a Chromebook or a mobile device, <strong>classroom 6x golf orbit</strong> provides smooth, lag-free gameplay for everyone."
   },
   {
+    question: "How to play mustafa game play online at Classroom 6x?",
+    answer: "You can enjoy the <strong>mustafa game play online</strong> experience directly through our <strong>Kirka.io unblocked</strong> portal. We provide a specialized mirror that ensures the <strong>mustafa game play online</strong> session remains unblocked and lag-free for all students."
+  },
+  {
     question: "What is back-to-school-shopping.ml kirka.io?",
     answer: "<strong>back-to-school-shopping.ml kirka.io</strong> is a popular alternative link for playing <strong>Kirka.io unblocked</strong>. We have integrated the <strong>back-to-school-shopping.ml kirka.io</strong> experience directly into our platform, allowing you to play the fastest <strong>kirka io</strong> matches at school without any restrictions. Join the <strong>back-to-school-shopping.ml kirka.io</strong> community here today!"
+  },
+  {
+    question: "Where can I find the best online slot games?",
+    answer: "If you are looking for the <strong>best online slot games</strong>, Classroom 6x provides a curated selection of arcade and luck-based games. Our platform ensures that all <strong>best online slot games</strong> experiences are unblocked and safe for school environments."
+  },
+  {
+    question: "How to play Free Fire online cloud gaming?",
+    answer: "<strong>Free Fire online cloud gaming</strong> information is available on our hub. While the direct play link is currently being updated for the best school compatibility, you can check back soon for the ultimate <strong>Free Fire</strong> and <strong>online game free fire</strong> experience on Classroom 6x."
+  },
+  {
+    question: "Where can I find diamonds hack free fire or free fire diamonds generator?",
+    answer: "When looking for a <strong>diamonds hack free fire</strong> or a <strong>free fire diamonds generator</strong>, it is important to lead with safety. At Classroom 6x, we emphasize official and secure ways to enjoy your <strong>online game free fire</strong> sessions without risking your account data."
   }
 ];
 

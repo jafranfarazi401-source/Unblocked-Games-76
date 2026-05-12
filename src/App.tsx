@@ -301,7 +301,7 @@ export default function App() {
     } else if (selectedBlog) {
       title = `${selectedBlog.title} | Classroom 6x Guides`;
       description = selectedBlog.excerpt || `Read our guide about ${selectedBlog.title} on Classroom 6x.`;
-      canonicalPath = `/blog/${selectedBlog.id}`;
+      canonicalPath = `/blog/${selectedBlog.id.toLowerCase()}`;
       type = 'article';
       
       const blogSchema = {
@@ -1771,7 +1771,7 @@ export default function App() {
               </div>
 
               {/* Internal Links for Top 10 Game Blog (Keep for extra depth) */}
-              {selectedBlog.id === 'top-10-classroom-6x' && (
+              {selectedBlog.id === 'top-10-unblocked-games' && (
                 <div className="pt-8 border-t border-black/5 space-y-6">
                   <h3 className="text-xl font-bold text-slate-900">Quick Links:</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1949,7 +1949,7 @@ export default function App() {
                     transition={{ delay: 0.4 }}
                     className="text-slate-600 text-base leading-relaxed max-w-xl mx-auto lg:mx-0"
                   >
-                    Welcome to the ultimate destination for <strong>Classroom 6x unblocked games</strong>. Our mission is to provide the best 
+                    Welcome to the ultimate destination for <strong>Classroom 6x unblocked games</strong> and the <strong>best online slot games</strong>. Our mission is to provide the best 
                     collection of <strong>unblocked games for school</strong>, including Ragdoll Archers, Retro Bowl, Slope, Snow Rider 3D, and thousands of other titles.
                   </motion.p>
 
