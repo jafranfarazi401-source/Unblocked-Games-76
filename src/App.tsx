@@ -1769,21 +1769,16 @@ export default function App() {
             </section>
           </motion.div>
         ) : activeTab === "Blogs" ? (
-          <div className="space-y-12 py-12">
-            <header className="text-center max-w-3xl mx-auto space-y-4">
-              <h1 className="text-5xl md:text-6xl font-display uppercase tracking-tight text-gradient leading-tight">Guides & Insights</h1>
-              <p className="text-slate-500 text-lg">Master the art of unblocked gaming with our exclusive guides and news.</p>
-            </header>
-
+          <div className="space-y-12 pb-12 pt-6">
             {/* Top Games in Guides & Insights - Moved to top */}
-            <div className="pt-12 mt-12 space-y-12">
+            <div className="space-y-12">
               <div className="text-center space-y-4">
-                <h2 className="text-4xl md:text-5xl font-display uppercase tracking-tight text-gradient">Featured Games for You</h2>
+                <h1 className="text-4xl md:text-5xl font-display uppercase tracking-tight text-gradient">Featured Games for You</h1>
                 <p className="text-slate-500 text-lg">Discover the most stable unblocked6x games mentioned in our guides.</p>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                {GAMES.slice(0, 12).map((game, idx) => (
+              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-3">
+                {GAMES.slice(0, 24).map((game, idx) => (
                   <motion.div
                     key={`insight-game-${game.id}`}
                     initial={{ opacity: 0, y: 20 }}
@@ -1797,24 +1792,28 @@ export default function App() {
                       }}
                       className="w-full text-left group"
                     >
-                      <div className="relative aspect-square rounded-2xl overflow-hidden glass mb-3 border border-black/5 group-hover:border-brand-purple/30 group-hover:scale-[1.02] transition-all duration-300">
+                      <div className="relative aspect-square rounded-xl overflow-hidden glass mb-1.5 border border-black/5 group-hover:border-brand-purple/30 group-hover:scale-[1.02] transition-all duration-300">
                         <img 
                           src={game.image} 
                           alt={game.title}
                           className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all"
                           referrerPolicy="no-referrer"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                          <Play size={20} className="text-white bg-brand-purple rounded-full p-1 shadow-lg" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2">
+                          <Play size={14} className="text-white bg-brand-purple rounded-full p-0.5 shadow-lg" />
                         </div>
                       </div>
-                      <h4 className="font-bold text-xs text-slate-800 group-hover:text-brand-purple transition-colors truncate">{game.title}</h4>
-                      <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mt-0.5">{game.category}</p>
+                      <h4 className="font-bold text-[9px] text-slate-800 group-hover:text-brand-purple transition-colors truncate">{game.title}</h4>
                     </button>
                   </motion.div>
                 ))}
               </div>
             </div>
+
+            <header className="text-center max-w-3xl mx-auto space-y-4">
+              <h1 className="text-5xl md:text-6xl font-display uppercase tracking-tight text-gradient leading-tight">Guides & Insights</h1>
+              <p className="text-slate-500 text-lg">Master the art of unblocked gaming with our exclusive guides and news.</p>
+            </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-12 border-t border-black/5">
               {BLOGS.map((blog, idx) => (
