@@ -38,17 +38,26 @@ async function startServer() {
         return res.redirect(301, safePath + query);
       }
 
-      // Specific SEO Fixes
+      // Specific SEO Fixes & Legacy Path Redirections
       const pathFixes: Record<string, string> = {
         '/contact': '/contact-us',
         '/classroom6x.store': '/',
-        '/classroom6x.store/': '/'
+        '/classroom6x.store/': '/',
+        '/category/blogs': '/blogs',
+        '/index.html': '/',
+        '/home': '/',
+        '/index.php': '/',
+        '/classroom6x.store/classroom6x.store/': '/',
+        '/classroom6x.store/index.php': '/'
       };
       
-      if (pathFixes[req.path]) {
-        return res.redirect(301, pathFixes[req.path]);
+      const lowerPath = req.path.toLowerCase();
+      if (pathFixes[lowerPath] || lowerPath.startsWith('/classroom6x.store')) {
+        const target = pathFixes[lowerPath] || '/';
+        return res.redirect(301, target + (req.url.slice(req.path.length) || ''));
       }
 
+      // Force HTTPS and Non-WWW host
       if (hostname !== "classroom6x.store" || protocol !== "https") {
         return res.redirect(301, `https://classroom6x.store${req.originalUrl}`);
       }
@@ -135,7 +144,11 @@ async function startServer() {
         ? `${baseUrl}/game/${matchedGame.id.toLowerCase()}`
         : matchedBlog
           ? `${baseUrl}/blog/${matchedBlog.id.toLowerCase()}`
-          : (pathOnly === '/' ? `${baseUrl}/` : `${baseUrl}${pathOnly}`);
+          : pathOnly === '/category/blogs'
+            ? `${baseUrl}/blogs`
+            : pathOnly === '/blogs'
+              ? `${baseUrl}/blogs`
+              : (pathOnly === '/' ? `${baseUrl}/` : `${baseUrl}${pathOnly}`);
 
       // List of static pages to exclude from game matching if using the root /id format
       const staticPages = ["contact-us", "about-us", "privacy-policy", "terms-of-service", "blogs"];
@@ -252,6 +265,7 @@ async function startServer() {
     <title>${title}</title>
     <meta name="description" content="${description}" />
     <link rel="canonical" href="${finalCanonical}" />
+    ${req.query.s || req.query.search || req.path === '/search' ? '<meta name="robots" content="noindex, follow" />' : ''}
     <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${description}" />
     <meta property="og:url" content="${finalCanonical}" />

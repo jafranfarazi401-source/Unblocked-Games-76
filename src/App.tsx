@@ -82,11 +82,20 @@ export default function App() {
       '/ragdoll/hit/unblocked/games-6x': '/game/ragdoll-hit',
       '/game/ragdoll-hit-unblocked': '/game/ragdoll-hit',
       '/www.classroom6x.store': '/',
-      '/classroom6x.store': '/'
+      '/classroom6x.store': '/',
+      '/classroom6x.store/': '/',
+      '/contact': '/contact-us',
+      '/category/blogs': '/blogs',
+      '/index.html': '/',
+      '/home': '/',
+      '/index.php': '/',
+      '/classroom6x.store/classroom6x.store/': '/',
+      '/classroom6x.store/index.php': '/'
     };
 
-    if (legacyRedirects[lowerPath]) {
-      navigate(legacyRedirects[lowerPath], { replace: true });
+    if (legacyRedirects[lowerPath] || lowerPath.startsWith('/classroom6x.store')) {
+      const target = legacyRedirects[lowerPath] || '/';
+      navigate(target, { replace: true });
       return;
     }
     
@@ -286,11 +295,11 @@ export default function App() {
       
       if (pageName === "Blogs") {
         description = "Stay updated with the latest unblocked games news, guides, and tips on the Classroom 6x Blog. Discover how to play your favorite titles at school.";
+        canonicalPath = "/blogs";
       } else {
         description = `Learn more about our ${pageName} and how we provide a safe, high-performance unblocked gaming experience for students at Classroom 6x.`;
+        canonicalPath = `/${pageName.toLowerCase().replace(/\s+/g, '-')}`;
       }
-      
-      canonicalPath = `/${pageName.toLowerCase().replace(/\s+/g, '-')}`;
       
       const breadcrumbSchema = {
         "@context": "https://schema.org",
@@ -327,7 +336,10 @@ export default function App() {
     } else {
       title = "Classroom 6x - Hub for Unblocked Games 6x & Best School Game Khela";
       description = "Classroom 6x Hub: Play the best unblocked games 6x for school. Enjoy Slope, Retro Bowl, Basket Random, and best school game khela with zero lag.";
-      noindex = location.search.includes('s=') || (location.pathname !== '/' && location.pathname !== '');
+      noindex = location.search.includes('s=') || 
+                location.search.includes('search=') || 
+                location.pathname === '/search' || 
+                (location.pathname !== '/' && location.pathname !== '');
       canonicalPath = "/";
       
       const webSiteSchema = {
@@ -2611,11 +2623,10 @@ export default function App() {
             <ul className="space-y-3 text-sm text-slate-500">
                <li>
                 <a 
-                  href="/about"
+                  href="/about-us"
                   onClick={(e) => {
                     e.preventDefault();
-                    setActivePage("About Us");
-                    setSelectedGame(null);
+                    navigate("/about-us");
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="hover:text-brand-purple cursor-pointer transition-colors"
@@ -2625,11 +2636,10 @@ export default function App() {
               </li>
               <li>
                 <a 
-                  href="/contact"
+                  href="/contact-us"
                   onClick={(e) => {
                     e.preventDefault();
-                    setActivePage("Contact Us");
-                    setSelectedGame(null);
+                    navigate("/contact-us");
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="hover:text-brand-purple cursor-pointer transition-colors"
@@ -2657,11 +2667,10 @@ export default function App() {
               </li>
               <li>
                 <a 
-                  href="/privacy"
+                  href="/privacy-policy"
                   onClick={(e) => {
                     e.preventDefault();
-                    setActivePage("Privacy Policy");
-                    setSelectedGame(null);
+                    navigate("/privacy-policy");
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="hover:text-brand-purple cursor-pointer transition-colors"
@@ -2671,11 +2680,10 @@ export default function App() {
               </li>
               <li>
                 <a 
-                  href="/terms"
+                  href="/terms-of-service"
                   onClick={(e) => {
                     e.preventDefault();
-                    setActivePage("Terms of Service");
-                    setSelectedGame(null);
+                    navigate("/terms-of-service");
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="hover:text-brand-purple cursor-pointer transition-colors"
