@@ -17,9 +17,12 @@ import {
   BookOpen,
   ArrowLeft,
   ShieldCheck,
-  Facebook
+  Facebook,
+  Maximize2,
+  Minimize2
 } from 'lucide-react';
 import SEO from './components/SEO';
+import { SlapGameWrapper } from './components/SlapGameWrapper';
 import { GAMES as GAMES_DATA, BLOGS as BLOGS_DATA, FAQS as FAQS_DATA, NAV_TABS as NAV_TABS_DATA, CATEGORY_DESCRIPTIONS as CATEGORY_DESCRIPTIONS_DATA } from './data';
 
 // Data migrated to data.ts, constants used from imports
@@ -28,6 +31,20 @@ const BLOGS = BLOGS_DATA;
 const FAQS = FAQS_DATA;
 const NAV_TABS = NAV_TABS_DATA;
 const CATEGORY_DESCRIPTIONS = CATEGORY_DESCRIPTIONS_DATA;
+
+function getPlayableUrl(url: string | undefined): string {
+  if (!url) return '';
+  // Convert github.com repo link to github.io deployment link
+  if (url.startsWith('https://github.com/') && url.endsWith('.git')) {
+    const match = url.match(/https:\/\/github\.com\/([^/]+)\/([^/]+)\.git/);
+    if (match) {
+      const username = match[1];
+      const repo = match[2];
+      return `https://${username}.github.io/${repo}/`;
+    }
+  }
+  return url;
+}
 
 export default function App() {
   const navigate = useNavigate();
@@ -43,6 +60,49 @@ export default function App() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isIframeFullscreen, setIsIframeFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      const doc = document as any;
+      setIsIframeFullscreen(!!(
+        doc.fullscreenElement ||
+        doc.webkitFullscreenElement ||
+        doc.mozFullScreenElement ||
+        doc.msFullscreenElement
+      ));
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleIframeFullscreen = () => {
+    const element = document.getElementById('iframe-game-player-container');
+    if (!element) return;
+    const doc = document as any;
+
+    if (!doc.fullscreenElement && !doc.webkitFullscreenElement && !doc.mozFullScreenElement && !doc.msFullscreenElement) {
+      const req = element.requestFullscreen || (element as any).webkitRequestFullscreen || (element as any).mozRequestFullScreen || (element as any).msRequestFullscreen;
+      if (req) {
+        req.call(element);
+      }
+    } else {
+      const exit = doc.exitFullscreen || doc.webkitExitFullscreen || doc.mozCancelFullScreen || doc.msExitFullscreen;
+      if (exit) {
+        exit.call(doc);
+      }
+    }
+  };
 
   // Domain Protection & Cannonical Redirection logic
   useEffect(() => {
@@ -935,38 +995,82 @@ export default function App() {
 
             {/* Game Player Section */}
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <img 
                     src={selectedGame.image} 
-                    className="w-12 h-12 rounded-xl object-cover shadow-lg" 
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover shadow-lg" 
                     alt="" 
                     referrerPolicy="no-referrer"
                     onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/game/100/100"; }}
                   />
                   <div>
-                    <h1 className="text-3xl font-bold">{selectedGame.title}</h1>
-                    <p className="text-slate-500 text-sm">{selectedGame.category} • {selectedGame.rating} Rating</p>
+                    <h1 className="text-xl sm:text-3xl font-bold tracking-tight text-slate-900">{selectedGame.title}</h1>
+                    <p className="text-slate-500 text-xs sm:text-sm">{selectedGame.category} • {selectedGame.rating} Rating</p>
                   </div>
                 </div>
-                <button 
-                  onClick={() => {
-                    navigate('/');
-                  }}
-                  className="px-6 py-2 glass rounded-xl hover:bg-black/10 transition-all flex items-center gap-2"
-                >
-                  <X size={18} /> Back to Home
-                </button>
+                <div className="flex items-center gap-2 sm:gap-3 justify-end w-full sm:w-auto">
+                  {isPlaying && (
+                    <button 
+                      onClick={toggleIframeFullscreen}
+                      className="px-3 py-2 sm:px-5 sm:py-2.5 bg-brand-purple hover:bg-brand-purple/80 text-white rounded-xl transition-all flex items-center gap-1.5 sm:gap-2 purple-glow font-semibold text-xs sm:text-sm active:scale-95 cursor-pointer"
+                      title={isIframeFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+                    >
+                      {isIframeFullscreen ? <Minimize2 size={14} className="sm:w-4 sm:h-4" /> : <Maximize2 size={14} className="sm:w-4 sm:h-4" />}
+                      <span>Fullscreen</span>
+                    </button>
+                  )}
+                  <button 
+                    onClick={() => {
+                      if (document.fullscreenElement || (document as any).webkitFullscreenElement) {
+                        const doc = document as any;
+                        const exit = doc.exitFullscreen || doc.webkitExitFullscreen || doc.mozCancelFullScreen || doc.msExitFullscreen;
+                        if (exit) exit.call(doc);
+                      }
+                      navigate('/');
+                    }}
+                    className="px-3.5 py-2 sm:px-6 sm:py-2.5 glass rounded-xl hover:bg-black/10 transition-all flex items-center gap-1.5 sm:gap-2 active:scale-95 text-xs sm:text-sm"
+                  >
+                    <X size={15} /> Back to Home
+                  </button>
+                </div>
               </div>
               
-              <div className="w-full max-w-[800px] aspect-video mx-auto glass rounded-3xl overflow-hidden relative bg-black shadow-2xl group">
+              <div 
+                id="iframe-game-player-container"
+                className={`w-full mx-auto relative bg-black transition-all duration-300 ${
+                  isIframeFullscreen 
+                    ? 'fixed inset-0 z-50 w-screen h-screen max-w-none rounded-none' 
+                    : selectedGame.id === 'bbf-syndicate-rag-korla-game' 
+                      ? 'max-w-[800px] aspect-[4/5] sm:aspect-video glass rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group border border-white/10'
+                      : 'max-w-[800px] aspect-[4/3] sm:aspect-video glass rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group border border-white/10'
+                }`}
+              >
                 {/* Background Pre-loader / Iframe */}
-                <iframe 
-                  src={selectedGame.url} 
-                  className={`absolute inset-0 w-full h-full border-none z-10 transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                  title={selectedGame.title}
-                  allowFullScreen
-                />
+                {selectedGame.id === 'bbf-syndicate-rag-korla-game' ? (
+                  isPlaying && (
+                    <div className="absolute inset-0 z-10 w-full h-full">
+                      <SlapGameWrapper />
+                    </div>
+                  )
+                ) : (
+                  <iframe 
+                    src={getPlayableUrl(selectedGame.url)} 
+                    className={`absolute inset-0 w-full h-full border-none z-10 transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                    title={selectedGame.title}
+                    allowFullScreen
+                  />
+                )}
+
+                {isIframeFullscreen && (
+                  <button
+                    onClick={toggleIframeFullscreen}
+                    className="absolute top-4 right-4 z-50 p-3 bg-black/80 hover:bg-black text-white rounded-full transition-all border border-white/25 active:scale-95 flex items-center justify-center cursor-pointer shadow-lg"
+                    title="Exit Fullscreen"
+                  >
+                    <Minimize2 size={20} className="text-amber-400" />
+                  </button>
+                )}
 
                 {!isPlaying && (
                   <div className="absolute inset-0 z-20 flex flex-col items-center justify-center">

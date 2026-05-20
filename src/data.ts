@@ -347,6 +347,16 @@ export const GAMES = [
     rating: 4.9,
     shortDesc: "Experience the ultimate battle royale on any device with Free Fire online cloud gaming.",
     description: "Free Fire online cloud gaming allows you to play the world-famous battle royale directly in your browser with zero downloads. Experience intense 50-player survival matches, fast-paced 4v4 combat, and smooth performance thanks to advanced cloud technology. Whether you are on a school Chromebook or a basic PC, Free Fire online cloud gaming on Classroom 6x ensures you stay in the action without any lag. Dominate the battlefield today with Free Fire online cloud gaming unblocked and the best online game free fire experience! If you are searching for information on <strong>diamonds hack free fire</strong> or a <strong>free fire diamonds generator</strong>, we provide insights on legal ways to enhance your gameplay while staying safe online."
+  },
+  {
+    id: 'bbf-syndicate-rag-korla-game',
+    title: "BBF Syndicate Rag korla Game Classroom 6x",
+    category: "Sports",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Logo_of_Bangladesh_Football_Federation.svg/960px-Logo_of_Bangladesh_Football_Federation.svg.png",
+    rating: 4.9,
+    url: "https://ai.studio/apps/42fe7e44-e034-4a59-afc1-3980a605f47e",
+    shortDesc: "A thrilling soccer challenge that tests your precision and agility under the BBF syndicate.",
+    description: "BBF Syndicate Rag korla Game Classroom 6x is an engaging, interactive sport challenge associated with the Bangladesh Football Federation. Experience the competitive excitement, guide your team with precision, navigate obstacles under the syndicate brand, and rank highest. This game is optimized for easy school-safe, unblocked play directly in browser with high response times and zero installation."
   }
 ];
 
