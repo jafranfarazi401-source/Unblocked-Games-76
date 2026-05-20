@@ -72,6 +72,7 @@ export const SlapArena: React.FC<SlapArenaProps> = ({
   const [combo, setCombo] = useState<number>(0);
   const [maxCombo, setMaxCombo] = useState<number>(0);
   const [timeRemaining, setTimeRemaining] = useState<number>(60); // standard challenge/timer modes
+  const [isPlayingSeconds, setIsPlayingSeconds] = useState<number>(0);
   
   // Game visual feedback
   const [screenShake, setScreenShake] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -113,21 +114,80 @@ export const SlapArena: React.FC<SlapArenaProps> = ({
     };
   }, []);
 
-  // Update speed/spawning based on game state score
+  // Active gameplay duration tracker
+  useEffect(() => {
+    if (!isPlaying || isGameOver) {
+      setIsPlayingSeconds(0);
+      return;
+    }
+    const interval = setInterval(() => {
+      setIsPlayingSeconds(prev => prev + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isPlaying, isGameOver]);
+
+  // Trouble transition warning trigger
+  useEffect(() => {
+    if (isPlayingSeconds === 5 && isPlaying && !isGameOver) {
+      // Impact camera flash and shake to alarm the user
+      setArenaFlash(true);
+      setTimeout(() => setArenaFlash(false), 200);
+      setScreenShake({ x: 12, y: 12 });
+      setTimeout(() => setScreenShake({ x: 0, y: 0 }), 300);
+      
+      // Audible warning beep using standard Web Audio
+      if (!isMuted) {
+        try {
+          const AudioContextClass = (window as any).AudioContext || (window as any).webkitAudioContext;
+          if (AudioContextClass) {
+            const ctx = new AudioContextClass();
+            const osc = ctx.createOscillator();
+            const gainNode = ctx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(ctx.destination);
+            
+            osc.frequency.setValueAtTime(320, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(780, ctx.currentTime + 0.4);
+            gainNode.gain.setValueAtTime(0.25, ctx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+            
+            osc.start();
+            osc.stop(ctx.currentTime + 0.41);
+          }
+        } catch (_) {}
+      }
+    }
+  }, [isPlayingSeconds, isPlaying, isGameOver, isMuted]);
+
+  // Update speed/spawning based on game state score & elapsed duration (making it significantly harder after 5 seconds)
   useEffect(() => {
     if (!isPlaying) return;
+    
+    let baseSpeed = 1.0;
+    let baseSpawn = 1600;
+
     // Base rules for game scale difficulties
     if (gameMode === 'arcade') {
-      speedScale.current = 1.0 + Math.floor(score / 40) * 0.15;
-      spawnRateMs.current = Math.max(500, 1600 - Math.floor(score / 20) * 120);
+      baseSpeed = 1.0 + Math.floor(score / 40) * 0.15;
+      baseSpawn = Math.max(500, 1600 - Math.floor(score / 20) * 120);
     } else if (gameMode === 'challenge') {
-      speedScale.current = 1.4 + Math.floor(score / 50) * 0.22;
-      spawnRateMs.current = Math.max(400, 1100 - Math.floor(score / 25) * 100);
+      baseSpeed = 1.4 + Math.floor(score / 50) * 0.22;
+      baseSpawn = Math.max(400, 1100 - Math.floor(score / 25) * 100);
     } else { // Zen Mode
-      speedScale.current = 0.9 + Math.floor(score / 150) * 0.08;
-      spawnRateMs.current = 1500;
+      baseSpeed = 0.9 + Math.floor(score / 150) * 0.08;
+      baseSpawn = 1500;
     }
-  }, [score, gameMode, isPlaying]);
+
+    // Dynamic difficulty bump! Exactly 5 seconds after starting a session, speeds scale up drastically!
+    if (isPlayingSeconds >= 5) {
+      // 1.55x speed increase & launch 45% faster
+      baseSpeed *= 1.55;
+      baseSpawn = Math.max(350, Math.floor(baseSpawn * 0.55));
+    }
+
+    speedScale.current = baseSpeed;
+    spawnRateMs.current = baseSpawn;
+  }, [score, gameMode, isPlaying, isPlayingSeconds]);
 
   // Combo decay tracking
   const triggerSlapCombo = () => {
@@ -628,6 +688,7 @@ export const SlapArena: React.FC<SlapArenaProps> = ({
     setScore(0);
     setCombo(0);
     setLives(3);
+    setIsPlayingSeconds(0);
     setIsGameOver(false);
     setIsPlaying(true);
     previousTimeRef.current = null;
@@ -691,6 +752,14 @@ export const SlapArena: React.FC<SlapArenaProps> = ({
                 </span>
               )}
             </div>
+          </div>
+        )}
+
+        {/* Rapid Difficulty Rise Alert Widget */}
+        {isPlaying && isPlayingSeconds >= 5 && (
+          <div className="absolute top-16 left-[50%] -translate-x-[50%] z-45 bg-red-900/90 backdrop-blur-md border border-red-500/35 text-red-100 font-sans px-3.5 py-1.5 rounded-full text-[9px] sm:text-xs uppercase tracking-widest font-black animate-pulse flex items-center gap-1.5 shadow-lg shadow-red-500/20 select-none pointer-events-none">
+            <Flame className="w-3.5 h-3.5 text-amber-400 animate-bounce" />
+            <span>SYNDICATE RAGE MODE (HARD)</span>
           </div>
         )}
 
