@@ -4,6 +4,18 @@
  */
 
 import { WeaponSoundType } from '../types';
+import { SLAP_SOUND_BASE64 } from './slapSoundData';
+
+// Convert base64 safely to ArrayBuffer for Web Audio decoding
+function base64ToArrayBuffer(base64: string): ArrayBuffer {
+  const binaryString = window.atob(base64);
+  const len = binaryString.length;
+  const bytes = new Uint8Array(len);
+  for (let i = 0; i < len; i++) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
 
 let audioCtx: AudioContext | null = null;
 
@@ -41,7 +53,7 @@ function getNoiseBuffer(ctx: AudioContext): AudioBuffer {
   return noiseBuffer;
 }
 
-const SLAP_AUDIO_PATH = '/slap.mp3?v=classroom6x-v3';
+const SLAP_AUDIO_PATH = '/slap.mp3?v=classroom6x-v4';
 
 let slapAudioBuffer: AudioBuffer | null = null;
 let isFetchingSlapBuffer = false;
@@ -52,13 +64,22 @@ async function loadSlapAudioBuffer(ctx: AudioContext): Promise<AudioBuffer | nul
   
   isFetchingSlapBuffer = true;
   try {
-    const response = await fetch(SLAP_AUDIO_PATH);
-    if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-    const arrayBuffer = await response.arrayBuffer();
+    // Attempt decoding directly from built-in base64 string
+    const arrayBuffer = base64ToArrayBuffer(SLAP_SOUND_BASE64);
     slapAudioBuffer = await ctx.decodeAudioData(arrayBuffer);
     return slapAudioBuffer;
   } catch (err) {
-    console.warn('Failed to pre-decode custom slap audio, falling back to elements:', err);
+    console.warn('Failed to pre-decode custom base64 slap audio, trying network path fallback:', err);
+    try {
+      const response = await fetch(SLAP_AUDIO_PATH);
+      if (response.ok) {
+        const arrayBuffer = await response.arrayBuffer();
+        slapAudioBuffer = await ctx.decodeAudioData(arrayBuffer);
+        return slapAudioBuffer;
+      }
+    } catch (networkErr) {
+      console.warn('Network path fallback failed:', networkErr);
+    }
     return null;
   } finally {
     isFetchingSlapBuffer = false;
@@ -96,13 +117,19 @@ export function playSlapSound(type: WeaponSoundType, isMuted: boolean): void {
 
   function playWithAudioElement() {
     try {
-      const audio = new Audio(SLAP_AUDIO_PATH);
+      // Play from inline base64 data URL
+      const audio = new Audio("data:audio/mp3;base64," + SLAP_SOUND_BASE64);
       audio.volume = 0.85;
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch((err) => {
-          console.warn("Local slap.mp3 play failed, using procedural synth:", err);
-          playProceduralSlapSound(type, isMuted);
+          console.warn("Base64 audio element play failed, trying network file:", err);
+          const backupAudio = new Audio(SLAP_AUDIO_PATH);
+          backupAudio.volume = 0.85;
+          backupAudio.play().catch((backupErr) => {
+            console.warn("Network play failed too, playing procedural synth:", backupErr);
+            playProceduralSlapSound(type, isMuted);
+          });
         });
       }
     } catch (err) {
@@ -116,12 +143,17 @@ export function playButtonClickSound(isMuted: boolean): void {
   if (isMuted) return;
 
   try {
-    const audio = new Audio(SLAP_AUDIO_PATH);
+    const audio = new Audio("data:audio/mp3;base64," + SLAP_SOUND_BASE64);
     audio.volume = 0.35;
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.catch((err) => {
-        console.warn("Button play failed:", err);
+        console.warn("Base64 button click failed, trying network file:", err);
+        const backupAudio = new Audio(SLAP_AUDIO_PATH);
+        backupAudio.volume = 0.35;
+        backupAudio.play().catch((backupErr) => {
+          console.warn("Network button click failed too:", backupErr);
+        });
       });
     }
   } catch (err) {
