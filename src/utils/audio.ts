@@ -41,6 +41,8 @@ function getNoiseBuffer(ctx: AudioContext): AudioBuffer {
   return noiseBuffer;
 }
 
+const SLAP_AUDIO_PATH = '/slap.mp3?v=classroom6x-v3';
+
 let slapAudioBuffer: AudioBuffer | null = null;
 let isFetchingSlapBuffer = false;
 
@@ -50,7 +52,7 @@ async function loadSlapAudioBuffer(ctx: AudioContext): Promise<AudioBuffer | nul
   
   isFetchingSlapBuffer = true;
   try {
-    const response = await fetch('/slap.mp3');
+    const response = await fetch(SLAP_AUDIO_PATH);
     if (!response.ok) throw new Error(`HTTP error ${response.status}`);
     const arrayBuffer = await response.arrayBuffer();
     slapAudioBuffer = await ctx.decodeAudioData(arrayBuffer);
@@ -94,7 +96,7 @@ export function playSlapSound(type: WeaponSoundType, isMuted: boolean): void {
 
   function playWithAudioElement() {
     try {
-      const audio = new Audio("/slap.mp3");
+      const audio = new Audio(SLAP_AUDIO_PATH);
       audio.volume = 0.85;
       const playPromise = audio.play();
       if (playPromise !== undefined) {
@@ -114,7 +116,7 @@ export function playButtonClickSound(isMuted: boolean): void {
   if (isMuted) return;
 
   try {
-    const audio = new Audio("/slap.mp3");
+    const audio = new Audio(SLAP_AUDIO_PATH);
     audio.volume = 0.35;
     const playPromise = audio.play();
     if (playPromise !== undefined) {
