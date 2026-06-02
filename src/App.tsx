@@ -22,7 +22,6 @@ import {
   Minimize2
 } from 'lucide-react';
 import SEO from './components/SEO';
-import { SlapGameWrapper } from './components/SlapGameWrapper';
 import { GAMES as GAMES_DATA, BLOGS as BLOGS_DATA, FAQS as FAQS_DATA, NAV_TABS as NAV_TABS_DATA, CATEGORY_DESCRIPTIONS as CATEGORY_DESCRIPTIONS_DATA } from './data';
 
 // Data migrated to data.ts, constants used from imports
@@ -1041,26 +1040,16 @@ export default function App() {
                 className={`w-full mx-auto relative bg-black transition-all duration-300 ${
                   isIframeFullscreen 
                     ? 'fixed inset-0 z-50 w-screen h-screen max-w-none rounded-none' 
-                    : selectedGame.id === 'bbf-syndicate-rag-korla-game' 
-                      ? 'max-w-[800px] aspect-[4/5] sm:aspect-video glass rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group border border-white/10'
-                      : 'max-w-[800px] aspect-[4/3] sm:aspect-video glass rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group border border-white/10'
+                    : 'max-w-[800px] aspect-[4/3] sm:aspect-video glass rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group border border-white/10'
                 }`}
               >
                 {/* Background Pre-loader / Iframe */}
-                {selectedGame.id === 'bbf-syndicate-rag-korla-game' ? (
-                  isPlaying && (
-                    <div className="absolute inset-0 z-10 w-full h-full">
-                      <SlapGameWrapper />
-                    </div>
-                  )
-                ) : (
-                  <iframe 
-                    src={getPlayableUrl(selectedGame.url)} 
-                    className={`absolute inset-0 w-full h-full border-none z-10 transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                    title={selectedGame.title}
-                    allowFullScreen
-                  />
-                )}
+                <iframe 
+                  src={getPlayableUrl(selectedGame.url)} 
+                  className={`absolute inset-0 w-full h-full border-none z-10 transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                  title={selectedGame.title}
+                  allowFullScreen
+                />
 
                 {isIframeFullscreen && (
                   <button
