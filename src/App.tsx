@@ -771,7 +771,7 @@ export default function App() {
                         The "Classroom 6x" project began in the early 2020s as a small collection of optimized HTML5 mirrors. While other sites were cluttered with intrusive ads and slow-loading Flash files, we focused on "The 6x Standard": lightweight assets, zero installations, and immediate accessibility. 
                       </p>
                       <p className="text-slate-600 leading-relaxed">
-                        By 2026, we have expanded our infrastructure to support millions of monthly active users across the globe. Our engineering team, led by <strong>Azim Alam Jafran (Jafran Farazi)</strong>, continues to innovate with advanced CDN routing and edge-level mirroring to bypass restrictive school firewalls securely and responsibly.
+                        By 2026, we have expanded our infrastructure to support millions of monthly active users across the globe. Our engineering team, led by <strong>Azim Alam Jafran (Jafran Farazi)</strong>, continues to innovate with advanced CDN routing and edge-level mirroring to optimize network delivery securely and responsibly.
                       </p>
                     </div>
                     <img 
@@ -901,7 +901,7 @@ export default function App() {
                   <section className="space-y-6">
                     <h3 className="text-2xl font-bold text-slate-900 border-b border-black/5 pb-2">1. Permitted and Prohibited Use</h3>
                     <p>
-                      Classroom 6x is provided for personal, non-commercial entertainment purposes. You agree to use the site in compliance with all local laws and your respective school or workplace internet usage policies. Prohibited activities include, but are not limited to: bypassing security protocols, scraping site content, hosting malicious scripts, or attempting to compromise the availability of our mirrors via DDoS or automated traffic.
+                      Classroom 6x is provided for personal, non-commercial entertainment purposes. You agree to use the site in compliance with all local laws and your respective school or workplace internet usage policies. Prohibited activities include, but are not limited to: violating network security protocols, scraping site content, hosting malicious scripts, or attempting to compromise the availability of our mirrors via DDoS or automated traffic.
                     </p>
                   </section>
 
@@ -2208,7 +2208,7 @@ export default function App() {
                     <h2 className="text-4xl font-display uppercase tracking-tight text-gradient">Classroom 6x: The Ultimate Hub for School-Friendly Unblocked Games</h2>
                     <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-6 text-lg">
                       <p>
-                        Welcome to the official <strong>Classroom 6x</strong> platform, where the barriers between you and your favorite digital entertainment disappear. In the modern educational landscape, finding high-quality <strong>unblocked games</strong> that are safe, reliable, and accessible from school networks can be a challenge. Our mission is to provide a curated, high-speed gaming environment that bypasses restrictive filters while maintaining a secure and distraction-free experience for students worldwide.
+                        Welcome to the official <strong>Classroom 6x</strong> platform, where the barriers between you and your favorite digital entertainment disappear. In the modern educational landscape, finding high-quality <strong>unblocked games</strong> that are safe, reliable, and accessible from school networks can be a challenge. Our mission is to provide a curated, high-speed gaming environment that is highly compatible with school networks while maintaining a secure and distraction-free experience for students worldwide.
                       </p>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 border-y border-black/5 py-12">
@@ -2575,7 +2575,7 @@ export default function App() {
             </div>
             <div className="glass p-6 rounded-2xl">
               <h3 className="font-bold text-slate-900 mb-2">How do I play survivor io unblocked classroom 6x?</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">Playing <strong>survivor io unblocked classroom 6x</strong> is easy! Simply search for it in our <strong>classroom 6x hub</strong>. We host the dedicated <strong>survivor io unblocked classroom 6x</strong> mirror that bypasses school filters, allowing you to enjoy <strong>unblocked games 6x</strong> action instantly.</p>
+              <p className="text-slate-600 text-sm leading-relaxed">Playing <strong>survivor io unblocked classroom 6x</strong> is easy! Simply search for it in our <strong>classroom 6x hub</strong>. We host the dedicated <strong>survivor io unblocked classroom 6x</strong> mirror that is optimized for school network environments, allowing you to enjoy <strong>unblocked games 6x</strong> action instantly.</p>
             </div>
             <div className="glass p-6 rounded-2xl">
               <h3 className="font-bold text-slate-900 mb-2">Why should I use unblocked6x sites?</h3>
