@@ -1116,7 +1116,7 @@ export default function App() {
                        selectedGame.id === '1v1-lol' ? '1v1.LOL Unblocked: Master the Art of Competitive Building and Combat' :
                        selectedGame.id === 'geometry-dash-og' ? 'Geometry Dash OG Unblocked: Rhythm, Precision, and Geometric Chaos' :
                        selectedGame.id === 'super-mario-64' ? 'Super Mario 64 Unblocked Games Classroom 6x: The 3D Adventure That Changed Gaming' :
-                       selectedGame.id === 'kirka-io' ? 'Kirka.io Unblocked: Skill-Based Competitive FPS Action (back-to-school-shopping.ml kirka.io)' :
+                       selectedGame.id === 'kirka-io' ? 'Kirka.io Unblocked: Skill-Based Competitive FPS Action' :
                        selectedGame.id === 'golf-orbit' ? 'Golf Orbit Unblocked Classroom 6x: Master the Ultimate Long Drive (classroom 6x golf orbit)' :
                        selectedGame.id === 'ragdoll-hit' ? 'Ragdoll Hit Unblocked Games 6x: Physics-Based Combat Mayhem' :
                        `The Chaotic Joy of ${selectedGame.title}`}
@@ -1536,24 +1536,24 @@ export default function App() {
                       ) : selectedGame.id === 'kirka-io' ? (
                         <>
                           <p>
-                            Experience the intense, fast-paced world of <strong>Kirka.io Unblocked</strong>, the premier skill-based competitive first-person shooter available directly in your browser. Often searched as <strong>back-to-school-shopping.ml kirka.io</strong>, this game delivers a polished FPS experience that rivals many desktop titles, all while remaining accessible on limited school and office networks.
+                            Experience the intense, fast-paced world of <strong>Kirka.io Unblocked</strong>, the premier skill-based competitive first-person shooter available directly in your browser. This game delivers a polished FPS experience that rivals many desktop titles, all while remaining accessible on limited school and office networks.
                           </p>
                           <p>
-                            In <strong>Kirka.io</strong>, you step into stylized arenas where reflexes and tactical positioning are the keys to victory. Whether you're playing solo or joining a clan, the game offers a variety of modes and maps that keep the combat fresh and engaging. The lightweight nature of <strong>back-to-school-shopping.ml kirka.io</strong> means you get high frame rates and low latency, which are crucial for competitive play.
+                            In <strong>Kirka.io</strong>, you step into stylized arenas where reflexes and tactical positioning are the keys to victory. Whether you're playing solo or joining a clan, the game offers a variety of modes and maps that keep the combat fresh and engaging. The lightweight nature of <strong>Kirka.io Unblocked</strong> means you get high frame rates and low latency, which are crucial for competitive play.
                           </p>
-                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Master the Mechanics of back-to-school-shopping.ml kirka.io</h3>
+                          <h3 className="text-2xl font-bold text-slate-900 mt-8">Master the Mechanics of Kirka.io</h3>
                           <p>
-                            What sets <strong>Kirka.io Unblocked</strong> apart is its focus on movement and gunplay. You can customize your loadout with a wide array of weapons, from rapid-fire SMGs to high-precision sniper rifles. The integration of <strong>back-to-school-shopping.ml kirka.io</strong> ensures that fans can find and play their favorite shooter even when standard links are restricted.
+                            What sets <strong>Kirka.io Unblocked</strong> apart is its focus on movement and gunplay. You can customize your loadout with a wide array of weapons, from rapid-fire SMGs to high-precision sniper rifles. The integration of <strong>Kirka.io unblocked</strong> ensures that fans can find and play their favorite shooter even when standard links are restricted.
                           </p>
                           <p>
-                            As you progress, you can earn rewards, unlock new skins, and climb the global leaderboards. The community is active and competitive, providing a continuous challenge for players of all skill levels. If you're looking for the best unblocked FPS experience, <strong>back-to-school-shopping.ml kirka.io</strong> is the definitive choice on our platform.
+                            As you progress, you can earn rewards, unlock new skins, and climb the global leaderboards. The community is active and competitive, providing a continuous challenge for players of all skill levels. If you're looking for the best unblocked FPS experience, <strong>Kirka.io</strong> is the definitive choice on our platform.
                           </p>
                           <h3 className="text-2xl font-bold text-slate-900 mt-8">Why Play Kirka.io on Classroom 6x?</h3>
                           <p>
-                            Our version of <strong>Kirka.io Unblocked</strong> is specifically tuned for browser performance. We understand the importance of the <strong>back-to-school-shopping.ml kirka.io</strong> keyword for our users, and we've optimized this page to ensure it's easy to find and fast to load. No downloads, no installations—just pure, skill-based shooter action at your fingertips.
+                            Our version of <strong>Kirka.io Unblocked</strong> is specifically tuned for browser performance. We understand the importance of <strong>Kirka.io</strong> for our users, and we've optimized this page to ensure it's easy to find and fast to load. No downloads, no installations—just pure, skill-based shooter action at your fingertips.
                           </p>
                           <p>
-                            Join the battle today and see why <strong>back-to-school-shopping.ml kirka.io</strong> has become a favorite among the unblocked gaming community. Whether you're sharpening your aim during a break or competing in a high-stakes clan match, <strong>Kirka.io</strong> delivers the goods.
+                            Join the battle today and see why <strong>Kirka.io</strong> has become a favorite among the unblocked gaming community. Whether you're sharpening your aim during a break or competing in a high-stakes clan match, <strong>Kirka.io</strong> delivers the goods.
                           </p>
                         </>
                       ) : selectedGame.id === 'golf-orbit' ? (
@@ -2587,7 +2587,7 @@ export default function App() {
             </div>
             <div className="glass p-6 rounded-2xl">
               <h3 className="font-bold text-slate-900 mb-2">Where can I play Kirka.io unblocked?</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">You can play <strong>kirka.io unblocked</strong> right here on the <strong>Classroom 6x Hub</strong>. We host the best version of <strong>kirka io</strong> that is compatible with school Chromebooks. Whether you call it <strong>kirka io.</strong> or <strong>back-to-school-shopping.ml kirka.io</strong>, we have the fastest connection available.</p>
+              <p className="text-slate-600 text-sm leading-relaxed">You can play <strong>kirka.io unblocked</strong> right here on the <strong>Classroom 6x Hub</strong>. We host the best version of <strong>kirka io</strong> that is compatible with school Chromebooks. Whether you call it <strong>kirka io</strong> or <strong>kirka.io web</strong>, we have the fastest connection available.</p>
             </div>
             <div className="glass p-6 rounded-2xl">
               <h3 className="font-bold text-slate-900 mb-2">Is Kirka.io aimbot allowed?</h3>

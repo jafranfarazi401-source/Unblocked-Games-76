@@ -286,8 +286,8 @@ export const GAMES = [
     image: "https://imgs.crazygames.com/kirka-io_1x1/20260116015838/kirka-io_1x1-cover?format=auto&quality=100&metadata=none&width=1200",
     rating: 4.9,
     url: "https://kirka.io/",
-    shortDesc: "Competitive pixelated FPS. Also known as back-to-school-shopping.ml kirka.io unblocked.",
-    description: "Kirka.io unblocked is the ultimate competitive FPS you can play on the Classroom 6x Hub. Whether you are looking for kirka.io, kirka io, or kirka io., we provide the most stable version for school. Master your aim with kirka.io custom sensitivity and experience lag-free kirka.io unblocked gameplay. Experience the best <strong>mustafa game play online</strong> action right here with our high-performance mirror. This version is also known as back-to-school-shopping.ml kirka.io among pro players. Jump into the arena and dominate Kirka.io today!"
+    shortDesc: "Competitive pixelated FPS. Experience the best unblocked pixel shooter online.",
+    description: "Kirka.io unblocked is the ultimate competitive FPS you can play on the Classroom 6x Hub. Whether you are looking for kirka.io, kirka io, or kirka io., we provide the most stable version for school. Master your aim with kirka.io custom sensitivity and experience lag-free kirka.io unblocked gameplay. Experience the best <strong>mustafa game play online</strong> action right here with our high-performance mirror. This version is highly optimized for pro players. Jump into the arena and dominate Kirka.io today!"
   },
   {
     id: 'baseball-9',
@@ -567,8 +567,8 @@ export const FAQS = [
     answer: "You can enjoy the <strong>mustafa game play online</strong> experience directly through our <strong>Kirka.io unblocked</strong> portal. We provide a specialized mirror that ensures the <strong>mustafa game play online</strong> session remains unblocked and lag-free for all students."
   },
   {
-    question: "What is back-to-school-shopping.ml kirka.io?",
-    answer: "<strong>back-to-school-shopping.ml kirka.io</strong> is a popular alternative link for playing <strong>Kirka.io unblocked</strong>. We have integrated the <strong>back-to-school-shopping.ml kirka.io</strong> experience directly into our platform, allowing you to play the fastest <strong>kirka io</strong> matches at school without any restrictions. Join the <strong>back-to-school-shopping.ml kirka.io</strong> community here today!"
+    question: "What is Kirka.io unblocked?",
+    answer: "<strong>Kirka.io unblocked</strong> is a popular competitive pixelated first-person shooter game. We have integrated the <strong>Kirka.io</strong> experience directly into our platform, allowing you to play the fastest <strong>kirka io</strong> matches at school without any restrictions. Join the <strong>Kirka.io</strong> community here today!"
   },
   {
     question: "Where can I find the best online arcade games?",
